@@ -12310,3 +12310,27 @@
   "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
 }
 [2026-02-14T23:00:00.163Z] [ERROR] Error in automatic voucher cleanup request:
+[2026-01-01T01:36:23.094Z] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone",
+  "stack": "Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone"
+}
+[2026-01-01T01:36:35.246Z] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone",
+  "stack": "Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone"
+}
+[2026-01-01T01:37:12.747Z] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone",
+  "stack": "Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone"
+}
+[2026-01-01T01:37:37.826Z] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone",
+  "stack": "Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone"
+}
