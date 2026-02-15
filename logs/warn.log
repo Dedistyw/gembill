@@ -10987,3 +10987,6 @@
 [2025-10-24T01:37:50.708Z] [WARN] WhatsApp socket not available for agent notification
 [2025-10-24T01:45:33.872Z] [WARN] No technician group configured for PPPoE notifications
 [2025-10-24T01:47:33.906Z] [WARN] No technician group configured for PPPoE notifications
+[2026-02-12T23:31:55.277Z] [WARN] Device not found by phone 081356899096, trying PPPoE...
+[2026-02-12T23:31:55.329Z] [WARN] Device not found by PPPoE pppoe_9096_8g
+[2026-02-12T23:31:55.330Z] [WARN] GenieACS: No device found for customer dp71
