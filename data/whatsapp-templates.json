@@ -12,7 +12,7 @@
   "payment_received": {
     "title": "Pembayaran Diterima",
     "template": "\n✅ *PEMBAYARAN DITERIMA*\n\nHay kaka {customer_name},\n\nTerima kasih! Pembayaran Anda telah kami terima:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount}\n💳 *Metode Pembayaran:* {payment_method}\n📅 *Tanggal Pembayaran:* {payment_date}\n🔢 *No. Referensi:* {reference_number}\n\n📸Download invoice di halaman wifi.dsshh.space\n\n⚡️⚡️Layanan internet Anda akan tetap aktif. Terima kasih atas kepercayaan Anda.",
-    "enabled": true
+    "enabled": false
   },
   "service_disruption": {
     "title": "Gangguan Layanan",
