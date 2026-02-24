@@ -23,9 +23,9 @@
   "company_header": "35K",
   "footer_info": "Info Hubungi : 085894387669",
   "app_name": "dss-bill",
-  "customerPortalOtp": false,
+  "customerPortalOtp": true,
   "otp_length": "4",
-  "otp_expiry_minutes": "5",
+  "otp_expiry_minutes": "10",
   "server_host": "localhost",
   "pppoe_notifications.enabled": false,
   "pppoe_notifications.loginNotifications": false,
@@ -157,5 +157,8 @@
       "comment_format": "tele-{username}-{date}-{time}-{creator}",
       "session_management_enabled": "true"
     }
-  }
+  },
+  "whatsapp_daily_count.2026-02-17": 2,
+  "whatsapp_daily_count.2026-02-18": 2,
+  "whatsapp_daily_count.2026-02-19": 2
 }
