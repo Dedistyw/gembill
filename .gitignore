@@ -10,6 +10,8 @@ data/billing.db
 data/billing.db-wal
 data/billing.db-shm
 data/test-*.db
+*.sqlite
+*.db
 
 # Logs
 logs/*.log
