@@ -19,8 +19,8 @@ class ScheduledTasksManager {
 
         logger.info('Initializing scheduled tasks...');
 
-        // Schedule due date reminder task (runs daily at 8 AM)
-        this.scheduleTask('0 8 * * *', async () => {
+        // Schedule due date reminder task (runs daily at 7 AM)
+        this.scheduleTask('0 7 * * *', async () => {
             await this.sendDueDateReminders();
         });
 
@@ -48,11 +48,11 @@ class ScheduledTasksManager {
         try {
             logger.info('Running due date reminder task...');
 
-            // Get all unpaid invoices that are due within the next 7 days
+            // Get all unpaid invoices that are due within the next 0 days
             const db = require('./billing').db;
             const today = new Date();
             const sevenDaysLater = new Date(today);
-            sevenDaysLater.setDate(today.getDate() + 7);
+            sevenDaysLater.setDate(today.getDate() + 1);
 
             const invoices = await new Promise((resolve, reject) => {
                 db.all(`
@@ -70,7 +70,7 @@ class ScheduledTasksManager {
                 });
             });
 
-            logger.info(`Found ${invoices.length} invoices due in the next 7 days`);
+            logger.info(`Found ${invoices.length} invoices due in the next 0 days`);
 
             // Send reminder for each invoice
             for (const invoice of invoices) {

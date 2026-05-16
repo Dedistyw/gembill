@@ -88,14 +88,21 @@
   },
   {
     "id": "TR984063C3E",
-    "status": "open",
+    "status": "closed",
     "createdAt": "2025-08-23T02:59:44.063Z",
-    "updatedAt": "2025-08-23T02:59:44.064Z",
+    "updatedAt": "2026-04-29T00:25:28.818Z",
     "phone": "081234567890",
     "name": "Test Customer Admin Notification",
     "location": "Test Location for Admin",
     "category": "Test Category",
-    "description": "Test trouble report untuk memastikan admin juga menerima notifikasi."
+    "description": "Test trouble report untuk memastikan admin juga menerima notifikasi.",
+    "notes": [
+      {
+        "timestamp": "2026-04-29T00:25:28.818Z",
+        "content": "Oke",
+        "status": "closed"
+      }
+    ]
   },
   {
     "id": "TR756171FCJ",
@@ -149,9 +156,9 @@
   },
   {
     "id": "TR2290062ZF",
-    "status": "in_progress",
+    "status": "closed",
     "createdAt": "2025-08-28T14:27:09.006Z",
-    "updatedAt": "2025-08-29T07:23:45.926Z",
+    "updatedAt": "2026-04-29T00:24:59.599Z",
     "phone": "081321960111",
     "name": "Testing Customer",
     "location": "Jl. Test No. 123, Kota Test",
@@ -163,6 +170,11 @@
         "content": "[Teknisi]: maning",
         "status": "in_progress",
         "notificationSent": true
+      },
+      {
+        "timestamp": "2026-04-29T00:24:59.600Z",
+        "content": "Oke",
+        "status": "closed"
       }
     ]
   },

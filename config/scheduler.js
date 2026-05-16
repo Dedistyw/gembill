@@ -189,17 +189,17 @@ class InvoiceScheduler {
             const invoices = await billingManager.getInvoices();
             const today = new Date();
             
-            // Filter invoices that are due in the next 3 days
+            // Filter invoices that are due in the next 0 days
             const upcomingInvoices = invoices.filter(invoice => {
                 if (invoice.status !== 'unpaid') return false;
                 
                 const dueDate = new Date(invoice.due_date);
                 const daysUntilDue = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
                 
-                return daysUntilDue >= 0 && daysUntilDue <= 3;
+                return daysUntilDue >= 0 && daysUntilDue <= 0;
             });
             
-            logger.info(`Found ${upcomingInvoices.length} invoices due in the next 3 days`);
+            logger.info(`Found ${upcomingInvoices.length} invoices due in the next 0 days`);
             
             for (const invoice of upcomingInvoices) {
                 try {
@@ -250,11 +250,11 @@ class InvoiceScheduler {
                         continue;
                     }
 
-                    // Set due date based on customer's billing_day (1-28), capped to month's last day
+                    // Set due date based on customer's billing_day (1-31), capped to month's last day
                     const billingDay = (() => {
                         const v = parseInt(customer.billing_day, 10);
-                        if (Number.isFinite(v)) return Math.min(Math.max(v, 1), 28);
-                        return 15;
+                        if (Number.isFinite(v)) return Math.min(Math.max(v, 1), 31);
+                        return 10;
                     })();
                     const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
                     const targetDay = Math.min(billingDay, lastDayOfMonth);

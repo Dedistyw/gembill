@@ -438,7 +438,7 @@ async function updateSSID(phone, newSSID) {
       { auth: { username, password } }
     );
     // Update SSID 5GHz (index 5-8, ambil yang berhasil saja)
-    const newSSID5G = `${newSSID}-5G`;
+    const newSSID5G = `${newSSID}`;
     const ssid5gIndexes = [5, 6, 7, 8];
     for (const idx of ssid5gIndexes) {
       try {
@@ -536,7 +536,7 @@ async function updateSSIDOptimized(phone, newSSID) {
     const password = settings.genieacs_password || '';
     
     // Buat nama SSID 5G berdasarkan SSID 2.4G (seperti di WhatsApp)
-    const newSSID5G = `${newSSID}-5G`;
+    const newSSID5G = `${newSSID}`;
     
     // Concurrent API calls untuk speed up
     const axiosConfig = {
@@ -1304,7 +1304,7 @@ router.post('/change-ssid', async (req, res) => {
   if (ok) {
     // Kirim notifikasi WhatsApp ke pelanggan
     const waJid = phone.replace(/^0/, '62') + '@s.whatsapp.net';
-    const msg = `✅ *PERUBAHAN NAMA WIFI*\n\nNama WiFi Anda telah diubah menjadi:\n• WiFi 2.4GHz: ${ssid}\n• WiFi 5GHz: ${ssid}-5G\n\nSilakan hubungkan ulang perangkat Anda ke WiFi baru.`;
+    const msg = `✅ *PERUBAHAN NAMA WIFI*\n\nNama WiFi Anda telah diubah menjadi:\n• WiFi 2.4GHz: ${ssid}\n• WiFi 5GHz: ${ssid}\n\nSilakan hubungkan ulang perangkat Anda ke WiFi baru.`;
     try { await sendMessage(waJid, msg); } catch (e) {}
   }
   const data = await getCustomerDeviceData(phone);
@@ -1342,7 +1342,7 @@ router.post('/api/change-ssid', async (req, res) => {
       if (result.success) {
         // Kirim notifikasi WhatsApp ke pelanggan (non-blocking)
         const waJid = phone.replace(/^0/, '62') + '@s.whatsapp.net';
-        const msg = `✅ *PERUBAHAN NAMA WIFI*\n\nNama WiFi Anda telah diubah menjadi:\n• WiFi 2.4GHz: ${ssid}\n• WiFi 5GHz: ${ssid}-5G\n\nSilakan hubungkan ulang perangkat Anda ke WiFi baru.`;
+        const msg = `✅ *PERUBAHAN NAMA WIFI*\n\nNama WiFi Anda telah diubah menjadi:\n• WiFi 2.4GHz: ${ssid}\n• WiFi 5GHz: ${ssid}\n\nSilakan hubungkan ulang perangkat Anda ke WiFi baru.`;
         sendMessage(waJid, msg).catch(e => {
           console.error('Error sending WhatsApp notification:', e);
         });

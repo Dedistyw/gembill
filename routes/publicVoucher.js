@@ -856,9 +856,9 @@ function formatVoucherMessage(vouchers, purchase, settings) {
     });
 
     message += `🌐 *CARA PENGGUNAAN:*\n`;
-    message += `1. Hubungkan ke WiFi hotspot\n`;
-    message += `2. Buka browser dan login ke hotspot\n`;
-    message += `3. Masukkan Username & Password di atas\n`;
+    message += `1. Hubungkan ke WiFi 35k/bln , akan otomatis muncul loginpage\n`;
+    message += `2. Jika tidak muncul , Buka browser dan ketik dsthh.com >>> *jangan nyalakan kuota data*\n`;
+    message += `3. Masukkan Username & Password di atas (copas)\n`;
     message += `4. Klik Login\n\n`;
 
     message += `⏰ *MASA AKTIF:* Sesuai paket yang dipilih\n\n`;
@@ -870,31 +870,46 @@ function formatVoucherMessage(vouchers, purchase, settings) {
 
 // Helper function untuk format pesan voucher dengan link success page
 function formatVoucherMessageWithSuccessPage(vouchers, purchase, successUrl, settings) {
-    let message = `🛒 *${settings.company_header || 'VOUCHER HOTSPOT'} BERHASIL DIBELI*\n\n`;
-    message += `👤 Nama: ${purchase.customer_name}\n`;
-    message += `📱 No HP: ${purchase.customer_phone}\n`;
-    message += `💰 Total: Rp ${purchase.amount.toLocaleString('id-ID')}\n\n`;
 
-    message += `🎫 *DETAIL VOUCHER:*\n\n`;
+    const companyName = settings.company_header || 'VOUCHER HOTSPOT';
+    const totalAmount = Number(purchase.amount || 0).toLocaleString('id-ID');
+
+    let message = `🛒 *${companyName} - VOUCHER BERHASIL DIBELI*\n\n`;
 
     vouchers.forEach((voucher, index) => {
-        message += `${index + 1}. *${voucher.username}*\n`;
-        message += `   Password: ${voucher.password}\n`;
-        message += `   Profile: ${voucher.profile}\n\n`;
+        message += `📌 *Voucher ${index + 1}*\n`;
+        message += `👤 Username: *${voucher.username || '-'}*\n`;
+        message += `🔑 Password: *${voucher.password || '-'}*\n`;
+        message += `📦 Paket: ${voucher.profile || '-'}\n\n`;
     });
 
-    message += `🌐 *LIHAT DETAIL LENGKAP:*\n`;
-    message += `${successUrl}\n\n`;
+    message += `━━━━━━━━━━━━━━━\n`;
+    message += `👤 Nama: ${purchase.customer_name || '-'}\n`;
+    message += `📱 No HP: ${purchase.customer_phone || '-'}\n`;
+    message += `💰 Total: Rp ${totalAmount}\n`;
+    message += `━━━━━━━━━━━━━━━\n\n`;
+
+    // Jika ingin aktifkan success page
+    // if (successUrl) {
+    //     message += `🌐 *DETAIL PEMBELIAN:*\n`;
+    //     message += `${successUrl}\n\n`;
+    // }
 
     message += `🌐 *CARA PENGGUNAAN:*\n`;
-    message += `1. Hubungkan ke WiFi hotspot\n`;
-    message += `2. Buka browser dan login ke hotspot\n`;
-    message += `3. Masukkan Username & Password di atas\n`;
-    message += `4. Klik Login\n\n`;
+    message += `1. Hubungkan perangkat ke WiFi 35k/bln.\n`;
+    message += `2. Pastikan kuota data dimatikan.\n`;
+    message += `3. Login page akan muncul otomatis.\n`;
+    message += `4. Jika tidak muncul, buka browser lalu ketik *dsthh.com*.\n`;
+    message += `5. Masukkan Id/Username di atas.\n`;
+    message += `6. Klik Login.\n\n`;
 
-    message += `⏰ *MASA AKTIF:* Sesuai paket yang dipilih\n\n`;
-    message += `📞 *BANTUAN:* Hubungi ${settings.contact_phone || settings['admins.0'] || 'admin'} jika ada kendala\n\n`;
-    message += `Terima kasih telah menggunakan layanan ${settings.company_header || 'kami'}! 🚀`;
+    message += `⏰ *MASA AKTIF:*\n`;
+    message += `Cek secara berkala status dan penggunaan akun Anda di dsthh.com.\n\n`;
+
+    // Jika ingin tampilkan kontak admin
+    // message += `📞 *BANTUAN:* Hubungi ${settings.contact_phone || settings['admins.0'] || 'admin'} jika ada kendala.\n\n`;
+
+    message += `🙏 Terima kasih telah menggunakan layanan *${companyName}* 🚀`;
 
     return message;
 }
@@ -1035,14 +1050,70 @@ async function handleVoucherWebhook(body, headers) {
 
             // Update status invoice menjadi paid
             try {
-                console.log('Updating invoice status to paid for invoice_id:', purchase.invoice_id);
-                await billingManager.updateInvoiceStatus(purchase.invoice_id, 'paid', gateway);
-                console.log('Invoice status updated successfully');
+            
+                console.log('Updating invoice status to paid for invoice_number:', purchase.invoice_id);
+            
+                // Cari invoice berdasarkan invoice_number
+                const invoice = await new Promise((resolve, reject) => {
+            
+                    db.get(
+                        `
+                        SELECT id, invoice_number, status 
+                        FROM invoices 
+                        WHERE invoice_number = ?
+                        `,
+                        [purchase.invoice_id],
+                        (err, row) => {
+            
+                            if (err) {
+                                reject(err);
+                            } else {
+                                resolve(row);
+                            }
+            
+                        }
+                    );
+            
+                });
+            
+                // Jika invoice tidak ditemukan
+                if (!invoice) {
+            
+                    console.error('Invoice tidak ditemukan:', purchase.invoice_id);
+            
+                } else {
+            
+                    console.log('Invoice ditemukan:', invoice);
+            
+                    // Hindari double update
+                    if (invoice.status !== 'paid') {
+            
+                        await billingManager.updateInvoiceStatus(
+                            invoice.id,
+                            'paid',
+                            gateway
+                        );
+            
+                        console.log('Invoice berhasil diubah menjadi paid:', {
+                            invoiceId: invoice.id,
+                            invoiceNumber: invoice.invoice_number
+                        });
+            
+                    } else {
+            
+                        console.log('Invoice sudah paid:', invoice.invoice_number);
+            
+                    }
+            
+                }
+            
             } catch (invoiceError) {
+            
                 console.error('Error updating invoice status:', invoiceError);
-                // Log error tapi jangan gagalkan webhook
+            
+                // Jangan gagalkan webhook
             }
-
+            
             // Kirim voucher via WhatsApp jika ada nomor HP
             if (purchase.customer_phone) {
                 try {
@@ -1144,7 +1215,7 @@ async function generateHotspotVouchersWithRetry(purchaseData, maxRetries = 3) {
             console.log(`Attempt ${attempt} to generate vouchers for purchase:`, purchaseData);
 
             // Generate user-friendly voucher format
-            const timestamp = Date.now().toString().slice(-6); // Ambil 6 digit terakhir timestamp
+            const timestamp = Date.now().toString().slice(-2); // Ambil 2 digit terakhir timestamp
             const prefix = `V${timestamp}`; // Format: V123456
 
             const result = await generateHotspotVouchers(
@@ -1177,9 +1248,9 @@ async function generateHotspotVouchersWithRetry(purchaseData, maxRetries = 3) {
     }
 }
 
-async function generateHotspotVouchers(count, prefix, profile, comment, limitUptime, limitBytes, passwordType) {
+async function generateHotspotVouchers(count, prefix, profile, limitUptime, limitBytes, passwordType) {
     const { generateHotspotVouchers } = require('../config/mikrotik');
-    return await generateHotspotVouchers(count, prefix, profile, comment, limitUptime, limitBytes, passwordType);
+    return await generateHotspotVouchers(count, prefix, profile, limitUptime, limitBytes, passwordType);
 }
 
 async function sendVoucherWithRetry(phone, message, maxRetries = 3) {

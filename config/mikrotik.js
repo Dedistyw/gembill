@@ -494,12 +494,12 @@ async function addHotspotUserRadius(username, password, profile, comment = null)
     );
 
     // Add comment to radreply table if provided
-    if (comment) {
+    /*if (comment) {
         await conn.execute(
             "INSERT INTO radreply (username, attribute, op, value) VALUES (?, 'Reply-Message', ':=', ?)",
             [username, comment]
         );
-    }
+    }*/
 
     await conn.end();
     return { success: true, message: 'User hotspot berhasil ditambahkan ke RADIUS' };
@@ -549,9 +549,9 @@ async function addHotspotUser(username, password, profile, comment = null) {
             ];
 
             // Add comment if provided
-            if (comment) {
+            /*if (comment) {
                 params.push('=comment=' + comment);
-            }
+            }*/
 
             // Tambahkan user hotspot
             await conn.write('/ip/hotspot/user/add', params);
@@ -1748,7 +1748,7 @@ async function generateHotspotVouchers(count, prefix, profile, server, validUnti
                     `=name=${username}`,
                     `=password=${password}`,
                     `=profile=${profile}`,
-                    `=comment=voucher`
+                    //`=comment=voucher`
                 ];
 
                 // Tambahkan server jika bukan 'all'

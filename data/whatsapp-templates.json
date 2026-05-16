@@ -1,42 +1,42 @@
 {
   "invoice_created": {
     "title": "Tagihan Baru",
-    "template": "\n📋 *TAGIHAN BARU*\n\nHay kaka {customer_name},\n\n⏰Tagihan bulanan Anda telah dibuat:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount}\n📅 *Tempo:* {due_date}\n📦 *Paket. :* {package_name} ({package_speed})\n📝 *Catatan:* {notes}\n\n💥Silakan melakukan pembayaran sebelum tanggal jatuh tempo untuk menghindari *isolir* keterlambatan.\nLink pembayaran wifi.dsshh.space\nTerima kasih atas kepercayaan Anda.",
+    "template": "\n📋 *TAGIHAN BARU*\n\nHay kaka {customer_name},\n\n⏰Tagihan bulanan Anda telah dibuat:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount} sesuaikan kode bayar\n📅 *Tempo:* {due_date}\n📦 *Paket. :* {package_name} ({package_speed})\n📝 *Catatan:* {notes}\n\n💥Agar layanan tetap *optimal* , silahkan melakukan pembayaran sebelum tanggal jatuh tempo untuk menghindari *isolir* keterlambatan.\nLink pembayaran 35k.dsthh.web.id \nKetik : menu , untuk melihat layanan.\n\nTerima kasih atas kepercayaan Anda.",
     "enabled": false
   },
   "due_date_reminder": {
     "title": "Peringatan Jatuh Tempo",
-    "template": "\n⚠️ *PENGINGAT JATUH TEMPO*\n\nHay kaka {customer_name},\n\n⏰Tagihan Anda akan jatuh tempo dalam {days_remaining} hari:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount}\n📅 *Tempo :* {due_date}\n📦 *Paket   :* {package_name} ({package_speed})\n\n💥Silahkan melakukan pembayaran segera untuk menghindari *isolir*.\n\n📸*Simpan* bukti pembayaran.\nAbaikan pesan ini apabila sudah melakukan pembayaran sebelumnya.\nLink pembayaran wifi.dsshh.space \n\nTerima kasih.",
-    "enabled": false
+    "template": "\n⚠️ *PENGINGAT JATUH TEMPO*\n\nHay kaka {customer_name},\n\n⏰Tagihan Anda akan jatuh tempo dalam {days_remaining} hari:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount} sesuaikan kode bayar\n📅 *Tempo :* {due_date}\n📦 *Paket   :* {package_name} ({package_speed})\n\n💥Agar layanan tetap *optimal* , silahkan melakukan pembayaran segera untuk menghindari *isolir*.\n\n📸*Simpan* bukti pembayaran.\nPembayaran dianggap *sah* apabila melampirkan bukti transaksi dan terkonfirmasi by sistem.\nAbaikan pesan ini apabila sudah melakukan pembayaran sebelumnya.\n\n🌐 *Cek tagihan dan pembayaran* 35k.dsthh.web.id \n📞 Ketik : menu , untuk melihat layanan\n\n\nTerima kasih atas kepercayaan Anda.",
+    "enabled": true
   },
   "payment_received": {
     "title": "Pembayaran Diterima",
-    "template": "\n✅ *PEMBAYARAN DITERIMA*\n\nHay kaka {customer_name},\n\nTerima kasih! Pembayaran Anda telah kami terima:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount}\n💳 *Metode Pembayaran:* {payment_method}\n📅 *Tanggal Pembayaran:* {payment_date}\n🔢 *No. Referensi:* {reference_number}\n\n📸Download invoice di halaman wifi.dsshh.space\n\n⚡️⚡️Layanan internet Anda akan tetap aktif. Terima kasih atas kepercayaan Anda.",
-    "enabled": false
+    "template": "\n✅ *PEMBAYARAN DITERIMA*\n\nHay kaka {customer_name},\n\nTerima kasih! Pembayaran Anda telah kami terima🙏:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount}\n💳 *Metode Pembayaran:* {payment_method}\n📅 *Tanggal Pembayaran:* {payment_date}\n🔢 *No. Referensi:* {reference_number}\n\n📸Download invoice di halaman 35k.dsthh.web.id \n\n⚡️⚡️Layanan internet Anda tetap aktif *optimal*.\n📞 Ketik : menu , untuk melihat layanan.\n\nTerima kasih atas kepercayaan Anda.",
+    "enabled": true
   },
   "service_disruption": {
     "title": "Gangguan Layanan",
-    "template": "🚨 *GANGGUAN LAYANAN*\n\nHalo Pelanggan Setia,\n\nKami informasikan bahwa sedang terjadi gangguan pada jaringan internet:\n\n📡 *Jenis Gangguan:* {disruption_type}\n📍 *Area Terdampak:* {affected_area}\n⏰ *Perkiraan Selesai:* {estimated_resolution}\n📞 *Hotline:* {support_phone}\n\nKami sedang bekerja untuk mengatasi masalah ini secepat mungkin. Mohon maaf atas ketidaknyamanannya.\n\nTerima kasih atas pengertian Anda.",
+    "template": "🚨 *GANGGUAN LAYANAN*\n\nHalo Pelanggan Setia,\n\nKami informasikan bahwa sedang terjadi gangguan pada jaringan internet:\n\n📡 *Jenis Gangguan:* {disruption_type}\n📍 *Area Terdampak:* {affected_area}\n⏰ *Perkiraan Selesai:* {estimated_resolution}\n📞 *Hotline:* {support_phone}\n\nKami sedang bekerja untuk mengatasi masalah ini secepat mungkin. Mohon maaf atas ketidaknyamanannya.\nKetik : menu , untuk melihat layanan\n\nTerima kasih atas pengertian Anda.",
     "enabled": false
   },
   "service_announcement": {
     "title": "Pengumuman Layanan",
-    "template": "📢 *PENGUMUMAN LAYANAN*\n\nHalo Pelanggan Setia,\n\n{announcement_content}\n\nTerima kasih atas perhatian Anda.",
+    "template": "📢 *PENGUMUMAN LAYANAN*\n\nHalo Pelanggan Setia,\n\n{announcement_content}\nKetik : menu , untuk melihat layanan\n\nTerima kasih atas perhatian Anda.",
     "enabled": false
   },
   "service_suspension": {
     "title": "Service Suspension",
-    "template": "⚠️ *LAYANAN INTERNET DINONAKTIFKAN*\n\nHalo {customer_name},\n\nLayanan internet Anda telah dinonaktifkan karena:\n📋 *Alasan:* {reason}\n\n💡 *Cara Mengaktifkan Kembali:*\n1. Lakukan pembayaran tagihan yang tertunggak\n2. Layanan akan aktif otomatis setelah pembayaran dikonfirmasi\n\n📞 *Butuh Bantuan?*\nHubungi kami di: {contact_whatsapp}\n\n*35K*\nTerima kasih atas perhatian Anda.",
+    "template": "⚠️ *LAYANAN INTERNET DINONAKTIFKAN*\n\nHalo {customer_name},\n\nLayanan internet Anda telah dinonaktifkan karena:\n📋 *Alasan:* {reason}\n\n💡 *Cara Mengaktifkan Kembali:*\n1. Lakukan pembayaran tagihan yang tertunggak\n2. Layanan akan aktif otomatis setelah pembayaran dikonfirmasi\n\n📞 *Butuh Bantuan?*\nHubungi kami di: {contact_whatsapp}\nKetik : menu , untuk melihat layanan\n\n*35K*\nTerima kasih atas perhatian Anda.",
     "enabled": false
   },
   "service_restoration": {
     "title": "Service Restoration",
-    "template": "✅ *LAYANAN INTERNET DIAKTIFKAN*\n\nHalo {customer_name},\n\nSelamat! Layanan internet Anda telah diaktifkan kembali.\n\n📋 *Informasi:*\n• Status: AKTIF ✅\n• Paket: {package_name}\n• Kecepatan: {package_speed}\n\nTerima kasih telah melakukan pembayaran tepat waktu.\n\n*35K*\nInfo: {contact_whatsapp}",
+    "template": "✅ *LAYANAN INTERNET DIAKTIFKAN*\n\nHalo {customer_name},\n\nSelamat! Layanan internet Anda telah diaktifkan kembali.\n\n📋 *Informasi:*\n• Status: AKTIF ✅\n• Paket: {package_name}\n• Kecepatan: {package_speed}\nKetik : menu , untuk melihat layanan\n\nTerima kasih telah melakukan pembayaran tepat waktu.\n\n*35K*\nInfo: {contact_whatsapp}",
     "enabled": false
   },
   "welcome_message": {
     "title": "Welcome Message",
-    "template": "👋 *SELAMAT DATANG*\n\nHalo {customer_name},\n\nSelamat datang di layanan internet kami!\n\n📦 *Paket:* {package_name} ({package_speed})\n📞 *Support:* {support_phone}\n\n📱 *Untuk menggunakan layanan WhatsApp:*\nKetik: REG {customer_name}\n\nTerima kasih telah memilih layanan kami.",
+    "template": "👋 *SELAMAT DATANG*\n\nHalo {customer_name},\n\nSelamat datang di layanan internet kami!\n\n📦 *Paket:* {package_name} ({package_speed})\n📞 *Support:* {support_phone}\n\n📱 *Untuk menggunakan layanan WhatsApp:*\nKetik: REG {customer_name}\nKetik: Menu , untuk melihat layanan\n\nTerima kasih telah memilih layanan kami.",
     "enabled": false
   },
   "installation_job_assigned": {
