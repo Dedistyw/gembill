@@ -123,61 +123,6 @@ class InvoiceScheduler {
 
         logger.info('Service suspension/restoration scheduler initialized - will run daily at 10:00 and 11:00');
 
-        // Schedule voucher cleanup every 6 hours (00:00, 06:00, 12:00, 18:00)
-        cron.schedule('0 0,6,12,18 * * *', async () => {
-            try {
-                logger.info('Starting automatic voucher cleanup...');
-
-                // Make HTTP request to cleanup endpoint
-                const https = require('http');
-
-                const options = {
-                    hostname: 'localhost',
-                    port: process.env.PORT || 3004,
-                    path: '/voucher/cleanup-expired',
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                };
-
-                const req = https.request(options, (res) => {
-                    let data = '';
-                    res.on('data', (chunk) => {
-                        data += chunk;
-                    });
-                    res.on('end', () => {
-                        try {
-                            const result = JSON.parse(data);
-                            if (result.success) {
-                                logger.info(`Automatic voucher cleanup completed: ${result.message}`);
-                                if (result.details) {
-                                    logger.info(`Database deleted: ${result.details.database_deleted}, Mikrotik deleted: ${result.details.mikrotik_deleted}`);
-                                }
-                            } else {
-                                logger.error('Automatic voucher cleanup failed:', result.message);
-                            }
-                        } catch (e) {
-                            logger.error('Error parsing voucher cleanup response:', e);
-                        }
-                    });
-                });
-
-                req.on('error', (e) => {
-                    logger.error('Error in automatic voucher cleanup request:', e.message);
-                });
-
-                req.write(JSON.stringify({}));
-                req.end();
-
-            } catch (error) {
-                logger.error('Error in automatic voucher cleanup:', error);
-            }
-        }, {
-            scheduled: true,
-            timezone: "Asia/Jakarta"
-        });
-
         logger.info('Voucher cleanup scheduler initialized - will run every 6 hours');
         
 

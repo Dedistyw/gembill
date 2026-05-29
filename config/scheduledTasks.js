@@ -19,10 +19,10 @@ class ScheduledTasksManager {
 
         logger.info('Initializing scheduled tasks...');
 
-        // Schedule due date reminder task (runs daily at 7 AM)
+        /*/ Schedule due date reminder task (runs daily at 7 AM)
         this.scheduleTask('0 7 * * *', async () => {
             await this.sendDueDateReminders();
-        });
+        });*/
 
         this.isRunning = true;
         logger.info('Scheduled tasks initialized successfully');

@@ -366,7 +366,7 @@ const versionCheckRouter = require('./routes/versionCheck');
 app.use('/api/version', versionCheckRouter);
 
 // Inisialisasi scheduled tasks
-const scheduledTasks = require('./config/scheduledTasks');
+//const scheduledTasks = require('./config/scheduledTasks');
 
 // Inisialisasi WhatsApp dan PPPoE monitoring
 try {
@@ -403,7 +403,7 @@ try {
             troubleReport.setSockInstance(sock);
 
             // Initialize scheduled tasks
-            scheduledTasks.initialize();
+            //scheduledTasks.initialize();
 
             // Initialize database tables for legacy databases without agent feature
             const initAgentTables = () => {

@@ -183,7 +183,6 @@ async function checkPPPoEChanges() {
         // Bandingkan dengan data sebelumnya
         let changes;
         try {
-            console.log('[PPPoE-MONITOR] Membandingkan data PPPoE...');
             changes = await withTimeout(comparePPPoEData(previousPPPoEData, currentPPPoEData), 5000, 'Timeout saat membandingkan data PPPoE');
         } catch (compareError) {
             console.error('[PPPoE-MONITOR] Error saat membandingkan data PPPoE:', compareError.message);
@@ -237,8 +236,8 @@ function scheduleNextCheck() {
 }
 
 // Mulai penjadwalan pemeriksaan
-console.log('[PPPoE-MONITOR] Memulai monitor PPPoE...');
-scheduleNextCheck();
+//console.log('[PPPoE-MONITOR] Memulai monitor PPPoE...');
+//scheduleNextCheck();
 
 // Start PPPoE monitoring
 async function startPPPoEMonitoring() {

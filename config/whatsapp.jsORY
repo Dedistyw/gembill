@@ -185,9 +185,6 @@ async function sendFormattedMessage(remoteJid, message, options = {}) {
 }
 
 let sock = null;
-let isConnecting = false;
-let reconnectTimeout = null;
-let pingInterval = null;
 let qrCodeDisplayed = false;
 
 // Tambahkan variabel global untuk menyimpan QR code dan status koneksi
@@ -338,21 +335,6 @@ function addWatermarkToMessage(message) {
 // Update fungsi koneksi WhatsApp dengan penanganan error yang lebih baik
 async function connectToWhatsApp() {
     try {
-        //edit dss
-        if (isConnecting) {
-            console.log('⚠️ WhatsApp masih proses connect...');
-            return sock;
-        }
-        
-        isConnecting = true;
-        
-        // Tutup socket lama jika masih ada
-        try {
-            if (sock) {
-                sock.end(undefined);
-            }
-        } catch (e) {}
-        
         console.log('Memulai koneksi WhatsApp...');
 
         // Pastikan direktori sesi ada
@@ -404,8 +386,7 @@ async function connectToWhatsApp() {
         sock = makeWASocket({
             auth: state,
             logger,
-            browser: ['Ubuntu', 'Chrome', '1.0.0'],
-        
+            browser: ['ALIJAYA Genieacs Bot Mikrotik', 'Chrome', '1.0.0'],
             connectTimeoutMs: 60000,
             qrTimeout: 40000,
             defaultQueryTimeoutMs: 30000, // Timeout untuk query
@@ -413,178 +394,138 @@ async function connectToWhatsApp() {
             version: version
         });
 
+
+
+
         // Tangani update koneksi
         sock.ev.on('connection.update', async (update) => {
             const { connection, lastDisconnect, qr } = update;
-        
+
+            // Log update koneksi
             console.log('Connection update:', update);
-        
-            // ===============================
-            // QR HANDLING
-            // ===============================
+
+            // Tangani QR code
             if (qr) {
-                console.log('QR Code tersedia, siap dipindai');
+                // Simpan QR code dalam format yang bersih
+                // Simpan QR code ke global status (untuk admin panel)
+                if (!global.whatsappStatus || global.whatsappStatus.qrCode !== qr) {
+                    global.whatsappStatus = {
+                        connected: false,
+                        qrCode: qr,
+                        phoneNumber: null,
+                        connectedSince: null,
+                        status: 'qr_code'
+                    };
+                }
+
+
+                // Tampilkan QR code di terminal
+                console.log('QR Code tersedia, siap untuk dipindai');
                 qrcode.generate(qr, { small: true });
-        
-                global.whatsappStatus = {
-                    ...(global.whatsappStatus || {}),
-                    connected: false,
-                    qrCode: qr,
-                    phoneNumber: null,
-                    connectedSince: null,
-                    status: 'qr_code'
-                };
             }
-        
-            // ===============================
-            // CONNECTION OPEN
-            // ===============================
+
+            // Tangani koneksi
             if (connection === 'open') {
-                console.log('✅ WhatsApp terhubung!');
-        
+                console.log('WhatsApp terhubung!');
                 const connectedSince = new Date();
-                isConnecting = false;
-        
-                // clear reconnect timeout
-                if (reconnectTimeout) {
-                    clearTimeout(reconnectTimeout);
-                    reconnectTimeout = null;
-                }
-        
-                // clear ping interval
-                if (pingInterval) {
-                    clearInterval(pingInterval);
-                }
-        
-                // ===============================
-                // KEEP ALIVE
-                // ===============================
-                pingInterval = setInterval(async () => {
-                    try {
-                        if (sock?.ws?.readyState === 1) {
-                            await sock.sendPresenceUpdate('available');
-                        }
-                    } catch (e) {
-                        console.log('⚠️ Keepalive failed:', e.message);
-                    }
-                }, 30000);
-        
-                // ===============================
-                // UPDATE GLOBAL STATUS
-                // ===============================
-                const phoneNumber =
-                    sock?.user?.id?.split(':')[0] || null;
-        
+
+                // Update status global
                 global.whatsappStatus = {
-                    ...(global.whatsappStatus || {}),
                     connected: true,
                     qrCode: null,
-                    phoneNumber,
-                    connectedSince,
+                    phoneNumber: sock.user?.id?.split(':')[0] || null,
+                    connectedSince: connectedSince,
                     status: 'connected'
                 };
-        
+
+                // Set sock instance untuk modul lain
                 setSock(sock);
-        
-                // ===============================
-                // MODULE INJECTION (SAFE)
-                // ===============================
+
+                // Set sock instance untuk modul sendMessage
                 try {
-                    require('./sendMessage').setSock(sock);
-                    require('./mikrotik-commands').setSock(sock);
+                    const sendMessageModule = require('./sendMessage');
+                    sendMessageModule.setSock(sock);
+                } catch (error) {
+                    console.error('Error setting sock for sendMessage:', error);
+                }
+
+                // Kirim notifikasi ke superadmin saat pertama kali connect
+                try {
+                    const fs = require('fs');
+                    const path = require('path');
+                    const superAdminPath = path.join(__dirname, 'superadmin.txt');
+                    
+                    if (fs.existsSync(superAdminPath)) {
+                        const superAdminNumber = fs.readFileSync(superAdminPath, 'utf8').trim();
+                        
+                        if (superAdminNumber) {
+                            const phoneNumber = sock.user?.id?.split(':')[0] || 'Unknown';
+                            const welcomeMessage = `*Selamat datang!*\n\n` +
+                                `Aplikasi WhatsApp Bot berhasil dijalankan.\n\n` +
+                                `Rekening untuk pengembangan aplikasi GEMBOK\n` +
+                                `4206 01 003 953 53 1\n` +
+                                `BRI a.n. WARJAYA\n\n` +
+                                `Donasi melalui e-wallet:\n` +
+                                `081947215703\n\n` +
+                                `Terima kasih atas partisipasi dan dukungan Anda 🙏\n\n` +
+                                `Info Hubungi : 081947215703`;
+                            
+                            // Kirim pesan ke superadmin
+                            await sock.sendMessage(`${superAdminNumber}@s.whatsapp.net`, {
+                                text: welcomeMessage
+                            });
+                            
+                            console.log(`✅ Notifikasi koneksi berhasil dikirim ke superadmin: ${superAdminNumber}`);
+                        }
+                    }
+                } catch (notifError) {
+                    console.error('Error mengirim notifikasi ke superadmin:', notifError);
+                }
+
+                // Set sock instance untuk modul mikrotik-commands
+                try {
+                    const mikrotikCommands = require('./mikrotik-commands');
+                    mikrotikCommands.setSock(sock);
+                } catch (error) {
+                    console.error('Error setting sock for mikrotik-commands:', error);
+                }
+
+                // Set sock instance untuk WhatsApp notification manager
+                try {
                     whatsappNotifications.setSock(sock);
                 } catch (error) {
-                    console.error('❌ Module setSock error:', error.message);
+                    console.error('Error setting sock for WhatsApp notifications:', error);
                 }
-        
-                // ===============================
-                // WELCOME MESSAGE (SAFE DELAY)
-                // ===============================
-                setTimeout(async () => {
-                    try {
-                        const superAdminPath = path.join(__dirname, 'superadmin.txt');
-        
-                        if (!fs.existsSync(superAdminPath)) return;
-        
-                        let superAdminNumber = fs.readFileSync(superAdminPath, 'utf8')
-                            .toString()
-                            .trim()
-                            .replace(/\D/g, '');
-        
-                        if (!superAdminNumber) return;
-        
-                        const jid = `${superAdminNumber}@s.whatsapp.net`;
-        
-                        const phone =
-                            sock?.user?.id?.split(':')[0] || 'Unknown';
-        
-                        const message =
-        `✅ *WhatsApp Bot Connected*
-        
-        Bot berhasil terhubung dan siap digunakan.
-        
-        📱 Nomor:
-        ${phone}
-        
-        🕒 Connected:
-        ${connectedSince.toLocaleString('id-ID')}
-        
-        🚀 Sistem berjalan normal`;
-        
-                        await sock.sendMessage(jid, { text: message });
-        
-                        console.log(`✅ Welcome message terkirim ke ${jid}`);
-        
-                    } catch (err) {
-                        console.error('❌ Welcome message error:', err.message);
-                    }
-                }, 8000);
-        
-                // ===============================
-                // STARTUP LOG
-                // ===============================
+
+                // Kirim pesan ke admin bahwa bot telah terhubung
                 try {
-                    const activePort =
-                        global.appSettings?.port ||
-                        getSetting('server_port', '3001');
-        
-                    const serverHost =
-                        global.appSettings?.host ||
-                        getSetting('server_host', 'localhost');
-        
-                    console.log(
-                        `✅ WhatsApp bot connected successfully at ${connectedSince.toLocaleString('id-ID')}`
-                    );
-        
+                    // Ambil port yang aktif dari global settings atau fallback
+                    const activePort = global.appSettings?.port || getSetting('server_port', '3001');
+                    const serverHost = global.appSettings?.host || getSetting('server_host', 'localhost');
+
+                    // Silent startup - notifications disabled
+                    console.log(`✅ WhatsApp bot connected successfully at ${connectedSince.toLocaleString()}`);
+                    // Super admin notifications disabled
                 } catch (error) {
-                    console.error('❌ Startup log error:', error.message);
+                    console.error('Error sending connection notification:', error);
                 }
-            }
-        
-            // ===============================
-            // CONNECTION CLOSE
-            // ===============================
-            else if (connection === 'close') {
+            } else if (connection === 'close') {
                 const statusCode = lastDisconnect?.error?.output?.statusCode;
-                const shouldReconnect =
-                    statusCode !== DisconnectReason.loggedOut;
-        
-                console.log(
-                    `❌ Koneksi terputus. Reconnect: ${shouldReconnect}`
-                );
-        
+                const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
+
+                console.log(`Koneksi WhatsApp terputus. Mencoba koneksi ulang: ${shouldReconnect}`);
+
+                // Update status global
                 global.whatsappStatus = {
-                    ...(global.whatsappStatus || {}),
                     connected: false,
                     qrCode: null,
                     phoneNumber: null,
                     connectedSince: null,
                     status: 'disconnected'
                 };
-        
-                if (shouldReconnect && !isConnecting) {
-                    isConnecting = true;
-        
+
+                // Reconnect jika bukan karena logout
+                if (shouldReconnect) {
                     setTimeout(() => {
                         connectToWhatsApp();
                     }, getSetting('reconnect_interval', 5000));
@@ -593,30 +534,30 @@ async function connectToWhatsApp() {
         });
 
         // Tangani credentials update
-        //edit dss
         sock.ev.on('creds.update', saveCreds);
 
-        sock.ev.on('messages.upsert', async ({ messages, type }) => {        
-            if (type !== 'notify') return;        
-            for (const message of messages) {        
-                if (!message.message) continue;        
-                if (message.key.fromMe) continue;        
-                try {        
-                    await handleIncomingMessage(sock, message);        
-                } catch (err) {        
-                    console.error(
-                        'Incoming message error:',
-                        err.message
-                    );        
+        // PERBAIKAN: Tangani pesan masuk dengan benar
+        sock.ev.on('messages.upsert', async ({ messages, type }) => {
+            if (type === 'notify') {
+                for (const message of messages) {
+                    if (!message.key.fromMe && message.message) {
+                        try {
+                            // Log pesan masuk untuk debugging
+                            console.log('Pesan masuk:', JSON.stringify(message, null, 2));
+
+                            // Panggil fungsi handleIncomingMessage
+                            await handleIncomingMessage(sock, message);
+                        } catch (error) {
+                            console.error('Error handling incoming message:', error);
+                        }
+                    }
                 }
             }
         });
-        //sampe sini
+
         return sock;
     } catch (error) {
         console.error('Error connecting to WhatsApp:', error);
-        //edit dss
-        isConnecting = false;
 
         // Coba koneksi ulang setelah interval
         setTimeout(() => {
@@ -811,65 +752,22 @@ async function handleHelpCommand(remoteJid, isAdmin = false) {
 
 // Fungsi untuk menampilkan menu admin
 async function sendAdminMenuList(remoteJid) {
-
     try {
-
         console.log(`Menampilkan menu admin ke ${remoteJid}`);
-
-        // cek socket
-        if (!sock || sock?.ws?.readyState !== 1) {
-
-            console.log('⚠️ WhatsApp socket belum ready');
-
-            return false;
-
-        }
 
         // Gunakan help message dari file terpisah
         const adminMessage = getAdminHelpMessage();
 
         // Kirim pesan menu admin
-        await sock.sendMessage(remoteJid, {
-            text: adminMessage
-        });
-
-        console.log(`✅ Pesan menu admin terkirim ke ${remoteJid}`);
-
-        return true;
+        await sock.sendMessage(remoteJid, { text: adminMessage });
+        console.log(`Pesan menu admin terkirim ke ${remoteJid}`);
 
     } catch (error) {
-
         console.error('Error sending admin menu:', error);
-
-        // jangan paksa kirim kalau socket mati
-        try {
-
-            if (sock && sock?.ws?.readyState === 1) {
-
-                await sock.sendMessage(remoteJid, {
-                    text:
-`❌ *ERROR*
-
-Terjadi kesalahan saat menampilkan menu admin:
-
-${error.message}`
-                });
-
-            }
-
-        } catch (err) {
-
-            console.error(
-                'Fallback message failed:',
-                err.message
-            );
-
-        }
-
-        return false;
-
+        await sock.sendMessage(remoteJid, {
+            text: `âŒ *ERROR*\n\nTerjadi kesalahan saat menampilkan menu admin:\n${error.message}`
+        });
     }
-
 }
 
 // Update fungsi getDeviceByNumber
@@ -943,21 +841,38 @@ async function getDeviceByNumber(number) {
                 // Debug: Tampilkan parameter pencarian
                 console.log(`🔍 [DEBUG] Mencari pelanggan dengan parameter:`);
                 console.log(`   cleanNumber: ${cleanNumber}`);
-                console.log(`   searchPhone: ${searchPhone}`);
-                console.log(`   '0' + cleanNumber.substring(2): ${'0' + cleanNumber.substring(2)}`);
-                console.log(`   cleanNumber.substring(2): ${cleanNumber.substring(2)}`);
+                
+                // Query yang lebih fleksibel untuk menangani nomor yang tidak standar di database
+                // Mencoba membersihkan field phone di database dari karakter non-digit sebelum membandingkan
+                const query = `
+                    SELECT id, username, pppoe_username, phone 
+                    FROM customers 
+                    WHERE 
+                        replace(replace(replace(phone, '-', ''), ' ', ''), '+', '') = ? 
+                        OR replace(replace(replace(phone, '-', ''), ' ', ''), '+', '') = ?
+                        OR replace(replace(replace(phone, '-', ''), ' ', ''), '+', '') = ?
+                        OR replace(replace(replace(phone, '-', ''), ' ', ''), '+', '') = ?
+                        OR phone LIKE '%' || ?
+                `;
 
                 database.get(
-                    'SELECT id, username, pppoe_username FROM customers WHERE phone = ? OR phone = ? OR phone = ? OR phone = ?',
-                    [cleanNumber, searchPhone, '0' + cleanNumber.substring(2), cleanNumber.substring(2)],
+                    query,
+                    [
+                        cleanNumber, 
+                        searchPhone, 
+                        '0' + cleanNumber.substring(2), 
+                        cleanNumber.substring(2),
+                        cleanNumber.substring(3) // Wildcard match untuk 8-9 digit terakhir sebagai fallback
+                    ],
                     (err, row) => {
                         if (err) {
                             console.error(`❌ [ERROR] Database error: ${err.message}`);
                             reject(err);
                         } else {
-                            console.log(`📋 [DEBUG] Hasil pencarian: ${row ? 'Ditemukan' : 'Tidak ditemukan'}`);
                             if (row) {
-                                console.log(`   Pelanggan: ${row.username}`);
+                                console.log(`📋 [DEBUG] Ditemukan pelanggan: ${row.username} (${row.phone})`);
+                            } else {
+                                console.log(`📋 [DEBUG] Pelanggan tidak ditemukan dengan nomor: ${cleanNumber}`);
                             }
                             resolve(row);
                         }
@@ -4560,6 +4475,11 @@ async function handleIncomingMessage(sock, message) {
             return;
         }
 
+        // Skip status updates (broadcast)
+        if (remoteJid === 'status@broadcast') {
+            return;
+        }
+
         // Skip jika pesan dari grup dan bukan dari admin
         if (remoteJid.includes('@g.us')) {
             logger.debug('Message from group received', { groupJid: remoteJid });
@@ -4594,46 +4514,58 @@ async function handleIncomingMessage(sock, message) {
 
         // Ekstrak nomor pengirim dengan penanganan error
         let senderNumber;
+        let senderLid = null;
         try {
-            senderNumber = remoteJid.split('@')[0];
+            // Ambil bagian sebelum @
+            let rawNumber = remoteJid.split('@')[0];
+
+            // WhatsApp LID (Linked Identity) handling - Improved based on reference
+            if (remoteJid.endsWith('@lid')) {
+                senderLid = remoteJid;
+                logger.debug(`WhatsApp LID detected`, { lid: senderLid });
+
+                // PRIORITY 1: Check remoteJidAlt (Baileys often puts the real number here)
+                if (message.key?.remoteJidAlt && message.key.remoteJidAlt.endsWith('@s.whatsapp.net')) {
+                    rawNumber = message.key.remoteJidAlt.split('@')[0];
+                    logger.info(`✅ Got real number from remoteJidAlt: ${rawNumber}`);
+                } 
+                // PRIORITY 2: Check participant (for group messages or some specific cases)
+                else if (message.key?.participant && message.key.participant.endsWith('@s.whatsapp.net')) {
+                    rawNumber = message.key.participant.split('@')[0];
+                    logger.info(`✅ Got real number from participant: ${rawNumber}`);
+                }
+                // PRIORITY 3: Fallback to database resolution
+                else {
+                    try {
+                        const BillingManager = require('./billing');
+                        const billing = new BillingManager();
+                        const customer = await billing.getCustomerByWhatsAppLid(senderLid);
+                        if (customer) {
+                            rawNumber = customer.phone;
+                            logger.info(`✅ Resolved LID ${senderLid} from database to phone: ${rawNumber}`);
+                        } else {
+                            logger.warn(`⚠️ LID ${senderLid} not found in database and no alternate JID available`);
+                        }
+                    } catch (err) {
+                        logger.warn(`⚠️ Could not resolve LID ${senderLid}:`, err.message);
+                    }
+                }
+            }
+            
+            // Hapus karakter non-digit untuk keamanan
+            senderNumber = rawNumber.replace(/\D/g, '');
+
+            // Normalisasi: 08xxx -> 628xxx
+            if (senderNumber.startsWith('0')) {
+                senderNumber = '62' + senderNumber.slice(1);
+            }
         } catch (error) {
             logger.error('Error extracting sender number', { remoteJid, error: error.message });
             return;
         }
 
-        logger.info(`Message received`, { sender: senderNumber, messageLength: messageText.length });
+        logger.info(`Message received`, { sender: senderNumber, rawJid: remoteJid, messageLength: messageText.length });
         logger.debug(`Message content`, { sender: senderNumber, message: messageText });
-
-        // Extract WhatsApp LID if present (for @lid format)
-        let senderLid = null;
-        if (remoteJid.includes('@lid')) {
-            senderLid = remoteJid; // Format: 85280887435270@lid
-            logger.debug(`WhatsApp LID detected`, { lid: senderLid });
-
-            // PRIORITY 1: Try to get real number from remoteJidAlt (fastest, most reliable)
-            if (message.key?.remoteJidAlt) {
-                const actualJid = message.key.remoteJidAlt;
-                senderNumber = actualJid.replace('@s.whatsapp.net', '');
-                logger.info(`✅ Got real number from remoteJidAlt: ${senderNumber}`);
-            } else {
-                // FALLBACK: Try to resolve from database
-                try {
-                    const BillingManager = require('./billing');
-                    const billing = new BillingManager();
-                    const customer = await billing.getCustomerByWhatsAppLid(senderLid);
-                    if (customer) {
-                        senderNumber = customer.phone;
-                        // Normalize
-                        if (senderNumber.startsWith('0')) senderNumber = '62' + senderNumber.slice(1);
-                        logger.info(`✅ Resolved LID ${senderLid} from database to phone: ${senderNumber}`);
-                    } else {
-                        logger.warn(`⚠️ LID ${senderLid} not found in database and no remoteJidAlt available`);
-                    }
-                } catch (err) {
-                    logger.warn(`⚠️ Could not resolve LID ${senderLid}:`, err.message);
-                }
-            }
-        }
 
         // Cek apakah pengirim adalah admin
         const isAdmin = isAdminNumber(senderNumber);

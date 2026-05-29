@@ -19389,3 +19389,1112 @@
   "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
   "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
 }
+[2026-05-16T01:00:13.318Z] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-16T05:00:00.159Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T05:00:00.160Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T05:00:00.184Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-16T11:00:00.318Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T11:00:00.320Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T11:00:00.349Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-16T17:00:00.185Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T17:00:00.188Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T17:00:00.213Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-16T23:00:00.274Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T23:00:00.278Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-16T23:00:00.328Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-17T05:00:00.254Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T05:00:00.258Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T05:00:00.307Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-17T11:00:00.211Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T11:00:00.214Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T11:00:00.257Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-17T17:00:00.143Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T17:00:00.146Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T17:00:00.188Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-17T23:00:00.257Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T23:00:00.260Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-17T23:00:00.285Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-18T05:00:00.252Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T05:00:00.255Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T05:00:00.292Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-18T11:00:00.150Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T11:00:00.155Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T11:00:00.190Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-18T17:00:00.221Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T17:00:00.225Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T17:00:00.281Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-18T23:00:00.198Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T23:00:00.201Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-18T23:00:00.245Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-19T05:00:00.119Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T05:00:00.125Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T05:00:00.163Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-19T11:00:00.140Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T11:00:00.143Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T11:00:00.182Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-19T17:00:00.254Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T17:00:00.259Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T17:00:00.309Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-19T23:00:00.245Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T23:00:00.249Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-19T23:00:00.277Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-20T05:00:00.190Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T05:00:00.201Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T05:00:00.237Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-20T11:00:00.204Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T11:00:00.208Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T11:00:00.231Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-20T17:00:00.139Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T17:00:00.141Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T17:00:00.173Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-20T23:00:00.182Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T23:00:00.186Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-20T23:00:00.220Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-21T01:47:27.240Z] [ERROR] Mikrotik PPPoE restoration failed for kg94: - missing =.id=
+[2026-05-21T05:00:00.149Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-21T05:00:00.150Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-21T05:00:00.174Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-21T05:15:41.732Z] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-21T05:15:45.414Z] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-21T11:00:00.161Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-21T11:00:00.162Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-21T11:00:00.189Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-22T03:28:23.634Z] [ERROR] Error connecting to WhatsApp:
+{
+  "name": "TypeError",
+  "message": "scheduledTasks.initialize is not a function",
+  "stack": "TypeError: scheduledTasks.initialize is not a function\n    at /root/gembill/app.js:406:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+[2026-05-22T05:00:00.237Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T05:00:00.241Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T05:00:00.336Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-22T11:00:00.522Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T11:00:00.526Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T11:00:00.565Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-22T17:00:00.665Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T17:00:00.686Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T17:00:00.735Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-22T23:00:00.215Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T23:00:00.218Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-22T23:00:00.260Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-22T23:30:27.932Z] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-23T02:00:04.968Z] [ERROR] ❌ Failed sending image to 0000000000, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-23T02:00:04.978Z] [ERROR] Error sending WhatsApp notification to 0000000000:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-23T05:00:00.168Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T05:00:00.172Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T05:00:00.209Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-23T11:00:00.382Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T11:00:00.392Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T11:00:00.445Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-23T17:00:01.088Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T17:00:01.093Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T17:00:01.169Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-23T23:00:00.570Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T23:00:00.584Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-23T23:00:00.735Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-24T01:28:21.954Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T01:28:24.353Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T01:28:27.173Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T01:28:31.583Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T01:28:33.295Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T01:31:08.170Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T01:31:10.507Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T01:31:12.864Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T02:00:10.598Z] [ERROR] ❌ Failed sending image to 085649911851, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:10.611Z] [ERROR] Error sending WhatsApp notification to 085649911851:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:11.385Z] [ERROR] ❌ Failed sending image to 089699107384, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:11.391Z] [ERROR] Error sending WhatsApp notification to 089699107384:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:12.132Z] [ERROR] ❌ Failed sending image to 081385230983, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:12.141Z] [ERROR] Error sending WhatsApp notification to 081385230983:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:12.882Z] [ERROR] ❌ Failed sending image to 085832977896, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:12.890Z] [ERROR] Error sending WhatsApp notification to 085832977896:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:13.556Z] [ERROR] ❌ Failed sending image to 081317583476, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:13.562Z] [ERROR] Error sending WhatsApp notification to 081317583476:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:14.283Z] [ERROR] ❌ Failed sending image to 088212810331, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:00:14.289Z] [ERROR] Error sending WhatsApp notification to 088212810331:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:01:15.726Z] [ERROR] ❌ Failed sending image to 081317583476, falling back to text:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T02:01:15.734Z] [ERROR] Error sending WhatsApp notification to 081317583476:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-24T04:14:31.487Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T04:14:34.126Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T04:14:37.349Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T04:14:41.047Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T04:14:43.322Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T04:14:46.339Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T04:14:54.254Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T05:00:00.232Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T05:00:00.233Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T05:00:00.287Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-24T08:11:26.500Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:29.673Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:32.369Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:35.843Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:38.406Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:42.135Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:44.382Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:47.293Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:50.492Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:55.163Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:58.602Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:11:59.279Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:12:02.011Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:12:02.578Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:12:04.948Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:12:05.462Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:12:08.437Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T08:12:11.696Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T11:00:34.059Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T11:00:34.241Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T14:34:01.474Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:05.819Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:08.649Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:11.746Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:14.669Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:17.438Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:20.088Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:23.759Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:31.366Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:34.650Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:35.722Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:37.867Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:40.414Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:45.585Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:48.009Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:53.266Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T14:34:56.874Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-24T17:00:00.549Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T17:00:00.555Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T17:00:00.731Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-24T23:00:00.857Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T23:00:00.867Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-24T23:00:00.981Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-25T00:28:22.551Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_ERROR: no such table: telegram_sessions",
+  "stack": "Error: SQLITE_ERROR: no such table: telegram_sessions\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T01:28:22.418Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_IOERR: disk I/O error",
+  "stack": "Error: SQLITE_IOERR: disk I/O error\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T02:28:22.411Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_IOERR: disk I/O error",
+  "stack": "Error: SQLITE_IOERR: disk I/O error\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T03:28:22.411Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_IOERR: disk I/O error",
+  "stack": "Error: SQLITE_IOERR: disk I/O error\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T04:28:22.422Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_IOERR: disk I/O error",
+  "stack": "Error: SQLITE_IOERR: disk I/O error\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T05:00:00.142Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T05:00:00.143Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js",
+  "stack": "Error: Cannot find module './settings'\nRequire stack:\n- /root/gembill/config/billing.js\n- /root/gembill/config/billing-commands.js\n- /root/gembill/config/whatsapp.js\n- /root/gembill/app.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)\n    at Hook._require.Module.require (/usr/lib/node_modules/pm2/node_modules/require-in-the-middle/index.js:81:25)\n    at require (node:internal/modules/helpers:182:18)\n    at /root/gembill/config/billing.js:2695:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T05:00:00.187Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-25T05:28:22.423Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_IOERR: disk I/O error",
+  "stack": "Error: SQLITE_IOERR: disk I/O error\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T06:28:22.493Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_IOERR: disk I/O error",
+  "stack": "Error: SQLITE_IOERR: disk I/O error\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T07:28:22.458Z] [ERROR] Error cleaning up Telegram sessions:
+{
+  "name": "Error",
+  "message": "SQLITE_IOERR: disk I/O error",
+  "stack": "Error: SQLITE_IOERR: disk I/O error\n--> in Database#run(\"DELETE FROM telegram_sessions WHERE datetime(expires_at) <= datetime('now')\", [Function (anonymous)])\n    at /root/gembill/config/telegramAuth.js:242:16\n    at new Promise (<anonymous>)\n    at TelegramAuth.cleanupExpiredSessions (/root/gembill/config/telegramAuth.js:241:16)\n    at Timeout._onTimeout (/root/gembill/config/telegramBot.js:149:52)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T07:53:28.059Z] [ERROR] Error connecting to WhatsApp:
+{
+  "name": "TypeError",
+  "message": "scheduledTasks.initialize is not a function",
+  "stack": "TypeError: scheduledTasks.initialize is not a function\n    at /root/gembill/app.js:406:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+[2026-05-25T08:25:49.783Z] [ERROR] Error connecting to WhatsApp:
+{
+  "name": "TypeError",
+  "message": "scheduledTasks.initialize is not a function",
+  "stack": "TypeError: scheduledTasks.initialize is not a function\n    at /root/gembill/app.js:406:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+[2026-05-25T11:00:00.235Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "TypeError",
+  "message": "getSetting is not a function",
+  "stack": "TypeError: getSetting is not a function\n    at /root/gembill/config/billing.js:2696:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T11:00:00.239Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "TypeError",
+  "message": "getSetting is not a function",
+  "stack": "TypeError: getSetting is not a function\n    at /root/gembill/config/billing.js:2696:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T11:00:00.303Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-25T17:00:00.770Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "TypeError",
+  "message": "getSetting is not a function",
+  "stack": "TypeError: getSetting is not a function\n    at /root/gembill/config/billing.js:2696:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T17:00:00.774Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "TypeError",
+  "message": "getSetting is not a function",
+  "stack": "TypeError: getSetting is not a function\n    at /root/gembill/config/billing.js:2696:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T17:00:00.858Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-25T23:00:00.165Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "TypeError",
+  "message": "getSetting is not a function",
+  "stack": "TypeError: getSetting is not a function\n    at /root/gembill/config/billing.js:2696:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T23:00:00.169Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "TypeError",
+  "message": "getSetting is not a function",
+  "stack": "TypeError: getSetting is not a function\n    at /root/gembill/config/billing.js:2696:36\n    at new Promise (<anonymous>)\n    at BillingManager.cleanupExpiredVoucherInvoices (/root/gembill/config/billing.js:2694:16)\n    at InvoiceScheduler.cleanupExpiredVoucherInvoices (/root/gembill/config/scheduler.js:430:49)\n    at cron.schedule.scheduled (/root/gembill/config/scheduler.js:50:28)\n    at Runner.onMatch (/root/gembill/node_modules/node-cron/dist/cjs/tasks/inline-scheduled-task.js:69:20)\n    at Timeout._onTimeout (/root/gembill/node_modules/node-cron/dist/cjs/scheduler/runner.js:70:55)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)"
+}
+[2026-05-25T23:00:00.190Z] [ERROR] Error parsing voucher cleanup response:
+{
+  "name": "SyntaxError",
+  "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+  "stack": "SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n    at JSON.parse (<anonymous>)\n    at IncomingMessage.<anonymous> (/root/gembill/config/scheduler.js:151:49)\n    at IncomingMessage.emit (node:events:536:35)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)"
+}
+[2026-05-26T00:54:50.831Z] [ERROR] Error connecting to WhatsApp:
+{
+  "name": "TypeError",
+  "message": "scheduledTasks.initialize is not a function",
+  "stack": "TypeError: scheduledTasks.initialize is not a function\n    at /root/gembill/app.js:406:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+[2026-05-26T00:59:36.511Z] [ERROR] Error connecting to WhatsApp:
+{
+  "name": "TypeError",
+  "message": "scheduledTasks.initialize is not a function",
+  "stack": "TypeError: scheduledTasks.initialize is not a function\n    at /root/gembill/app.js:406:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}
+[2026-05-26T05:00:00.143Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-26T05:00:00.146Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-26T11:00:00.188Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-26T11:00:00.191Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-26T17:00:00.125Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-26T17:00:00.128Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-26T23:00:00.168Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-26T23:00:00.172Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T02:00:00.237Z] [ERROR] Error sending WhatsApp notification to 085748607606:
+{
+  "name": "Error",
+  "message": "Connection Closed",
+  "stack": "Error: Connection Closed\n    at sendRawMessage (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:122:13\n    at new Promise (<anonymous>)\n    at promiseTimeout (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/generics.js:111:16)\n    at query (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:120:30)\n    at Object.executeUSyncQuery (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:209:30)\n    at getUSyncDevices (file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:185:35)\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:594:48\n    at async file:///root/gembill/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36"
+}
+[2026-05-27T05:00:00.136Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T05:00:00.137Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T11:00:00.168Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T11:00:00.171Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T13:14:28.068Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T13:14:31.084Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T13:14:34.059Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T13:14:37.111Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T13:14:40.078Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T17:00:00.197Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T17:00:00.198Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T23:00:00.171Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T23:00:00.174Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T23:52:23.215Z] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-27T23:54:38.906Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:07.244Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:08.683Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:11.484Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:12.920Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:14.632Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:15.408Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:15.846Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:15.964Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-27T23:55:16.254Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T01:48:18.111Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T01:48:21.055Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T05:00:00.231Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T05:00:00.235Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T11:00:00.259Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T11:00:00.262Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T17:00:00.242Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T17:00:00.245Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T23:00:00.220Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T23:00:00.223Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-28T23:53:04.794Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:07.727Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:10.708Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:13.771Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:16.710Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:19.703Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:22.820Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:43.064Z] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-05-28T23:53:43.717Z] [ERROR] Error getting interface traffic: - input does not match any value of interface

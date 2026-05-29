@@ -59,7 +59,7 @@ Terima kasih! Pembayaran Anda telah kami terima:
 💰 *Jumlah:* Rp {amount}
 💳 *Metode Pembayaran:* {payment_method}
 📅 *Tanggal Pembayaran:* {payment_date}
-🔢 *No. Referensi:* {reference_number}
+🔢 *Catatan:* {notes}
 
 Layanan internet Anda akan tetap aktif. Terima kasih atas kepercayaan Anda.`,
                 enabled: true
@@ -328,11 +328,11 @@ Balas dengan: *BANTU* atau *HELP*
             path.resolve(__dirname, '../public/img/logo.png')
         ];
 
-        // Check each path and return the first one that exists
+        // Image notification disabled
         for (const imagePath of imagePaths) {
             if (fs.existsSync(imagePath)) {
-                logger.info(`📸 Using invoice image: ${imagePath}`);
-                return imagePath;
+                logger.info(`📵 Image notification disabled`);
+                return null;
             }
         }
 
@@ -421,7 +421,7 @@ Balas dengan: *BANTU* atau *HELP*
             const fullMessage = `${companyHeader}${message}${footerInfo}`;
             
             // If imagePath provided and exists, try to send as image with caption
-            if (options.imagePath) {
+            /*if (options.imagePath) {
                 try {
                     const imagePath = options.imagePath;
                     logger.info(`📸 Mencoba mengirim dengan gambar: ${imagePath}`);
@@ -439,7 +439,7 @@ Balas dengan: *BANTU* atau *HELP*
                 } catch (imgErr) {
                     logger.error(`❌ Failed sending image to ${phoneNumber}, falling back to text:`, imgErr);
                 }
-            }
+            }*/
 
             // Send as text message (fallback or when no image specified)
             await this.sock.sendMessage(jid, { text: fullMessage }, options);

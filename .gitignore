@@ -60,4 +60,3 @@ node_modules
 # Local Configurations
 settings.json
 settings.json.bak
-data/billing.db*

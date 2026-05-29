@@ -889,12 +889,6 @@ function formatVoucherMessageWithSuccessPage(vouchers, purchase, successUrl, set
     message += `💰 Total: Rp ${totalAmount}\n`;
     message += `━━━━━━━━━━━━━━━\n\n`;
 
-    // Jika ingin aktifkan success page
-    // if (successUrl) {
-    //     message += `🌐 *DETAIL PEMBELIAN:*\n`;
-    //     message += `${successUrl}\n\n`;
-    // }
-
     message += `🌐 *CARA PENGGUNAAN:*\n`;
     message += `1. Hubungkan perangkat ke WiFi 35k/bln.\n`;
     message += `2. Pastikan kuota data dimatikan.\n`;
@@ -906,10 +900,10 @@ function formatVoucherMessageWithSuccessPage(vouchers, purchase, successUrl, set
     message += `⏰ *MASA AKTIF:*\n`;
     message += `Cek secara berkala status dan penggunaan akun Anda di dsthh.com.\n\n`;
 
-    // Jika ingin tampilkan kontak admin
-    // message += `📞 *BANTUAN:* Hubungi ${settings.contact_phone || settings['admins.0'] || 'admin'} jika ada kendala.\n\n`;
+    message += `📞 *Menerima* request pemasangan baru.\n\n`;
 
     message += `🙏 Terima kasih telah menggunakan layanan *${companyName}* 🚀`;
+    message += `*HEMAT - CEPAT - MERAKYAT*`;
 
     return message;
 }
