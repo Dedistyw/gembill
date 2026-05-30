@@ -528,6 +528,66 @@ async function getActiveHotspotUsers() {
     }
 }
 
+// Fungsi untuk mendapatkan detail user hotspot
+async function getHotspotUserDetail(username) {
+
+    try {
+
+        const conn = await connectToMikrotik();
+
+        if (!conn) {
+
+            return {
+                success: false,
+                message: 'Gagal konek ke Mikrotik'
+            };
+        }
+
+        // Cari user hotspot
+        const users = await conn.write(
+            '/ip/hotspot/user/print',
+            [['?name', username]]
+        );
+
+        if (!users.length) {
+
+            return {
+                success: false,
+                message: 'Voucher tidak ditemukan'
+            };
+        }
+
+        const user = users[0];
+
+        // Cari session aktif
+        const activeUsers = await conn.write(
+            '/ip/hotspot/active/print',
+            [['?user', username]]
+        );
+
+        const active = activeUsers[0] || null;
+
+        return {
+            success: true,
+            data: {
+                user,
+                active
+            }
+        };
+
+    } catch (error) {
+
+        logger.error(
+            `Error getting hotspot user detail: ${error.message}`
+        );
+
+        return {
+            success: false,
+            message: error.message
+        };
+    }
+}
+
 // Fungsi untuk menambahkan user hotspot
 async function addHotspotUser(username, password, profile, comment = null) {
     const mode = getSetting('user_auth_mode', 'mikrotik');
@@ -1936,6 +1996,357 @@ fs.watchFile(settingsPath, { interval: 2000 }, (curr, prev) => {
     }
 });
 
+// Fungsi bot detail hotspot lengkap
+async function getHotspotVoucherDetail(voucherCode) {
+
+    try {
+
+        console.log('[HS-DEBUG] Mulai cek voucher:', voucherCode);
+
+        const conn = await connectToMikrotik();
+
+        if (!conn) {
+            return {
+                success: false,
+                message: 'Gagal konek Mikrotik'
+            };
+        }
+
+        console.log('[HS-DEBUG] Koneksi Mikrotik OK');
+
+        // ==============================
+        // AMBIL USER HOTSPOT
+        // ==============================
+
+        const users =
+            await conn.write(
+                '/ip/hotspot/user/print'
+            );
+
+        console.log(
+            '[HS-DEBUG] Total hotspot user:',
+            users.length
+        );
+
+        const user =
+            users.find(u =>
+                (u.name || '').toLowerCase()
+                ===
+                voucherCode.toLowerCase()
+            );
+
+        if (!user) {
+
+            return {
+                success: false,
+                message: 'Voucher tidak ditemukan'
+            };
+        }
+
+        console.log(
+            '[HS-DEBUG] User ditemukan:',
+            user
+        );
+
+        // ==============================
+        // ACTIVE SESSION
+        // ==============================
+
+        const activeUsers =
+            await conn.write(
+                '/ip/hotspot/active/print'
+            );
+
+        console.log(
+            '[HS-DEBUG] Active hotspot:',
+            activeUsers.length
+        );
+
+        // Cari semua session aktif user
+        const sessions =
+            activeUsers.filter(a =>
+                a.user === user.name
+            );
+
+        const active =
+            sessions[0];
+
+        console.log(
+            '[HS-DEBUG] Session aktif:',
+            active
+        );
+
+        // ==============================
+        // COOKIE LOGIN
+        // ==============================
+
+        const cookies =
+            await conn.write(
+                '/ip/hotspot/cookie/print'
+            );
+
+        const userCookies =
+            cookies.filter(c =>
+                c.user === user.name
+            );
+
+        console.log(
+            '[HS-DEBUG] Cookie:',
+            userCookies[0]
+        );
+        
+        // ==============================
+        // LAST LOG HISTORY
+        // ==============================
+        
+        let lastLogin = '-';
+        let lastLogout = '-';
+        
+        try {
+        
+            const logs =
+                await conn.write(
+                    '/log/print'
+                );
+        
+            const loginLog =
+                logs
+                .filter(l =>
+                    (
+                        l.message || ''
+                    ).includes(user.name)
+                )
+                .find(l =>
+                    (
+                        l.message || ''
+                    ).toLowerCase()
+                    .includes('logged in')
+                );
+        
+            const logoutLog =
+                logs
+                .filter(l =>
+                    (
+                        l.message || ''
+                    ).includes(user.name)
+                )
+                .find(l =>
+                    (
+                        l.message || ''
+                    ).toLowerCase()
+                    .includes('logged out')
+                );
+        
+            if (loginLog) {
+        
+                lastLogin =
+                    `${loginLog.date || ''} ${loginLog.time || ''}`
+                    .trim();
+            }
+        
+            if (logoutLog) {
+        
+                lastLogout =
+                    `${logoutLog.date || ''} ${logoutLog.time || ''}`
+                    .trim();
+            }
+        
+        } catch (e) {
+        
+            console.log(
+                '[HS-DEBUG] Log history gagal:',
+                e.message
+            );
+        }
+
+        // ==============================
+        // DETEKSI DEVICE
+        // ==============================
+
+        let deviceType = '-';
+
+        const macAddress =
+            active?.['mac-address']
+            ||
+            userCookies?.[0]?.['mac-address']
+            ||
+            '';
+        
+        const macLower =
+            macAddress.toLowerCase();
+        
+        if (
+            macLower.startsWith('3c:') ||
+            macLower.startsWith('9c:') ||
+            macLower.startsWith('a4:') ||
+            macLower.startsWith('dc:') ||
+            macLower.startsWith('6c:')
+        ) {
+        
+            deviceType = 'iPhone/iOS';
+        
+        } else if (macAddress) {
+        
+            deviceType = 'Android';
+        
+        }
+
+        // ==============================
+        // STATUS REAL
+        // ==============================
+
+        let status = 'Offline';
+
+        if (sessions.length > 0) {
+            status = 'Online';
+        }
+
+        // ==============================
+        // MULTI LOGIN
+        // ==============================
+
+        const multiLogin =
+            sessions.length;
+
+        // ==============================
+        // SHARING DETECT
+        // ==============================
+
+        let sharing = 'Normal';
+
+        const uniqueMacs =
+            [
+                ...new Set(
+                    sessions.map(
+                        s => s['mac-address']
+                    )
+                )
+            ];
+
+        if (uniqueMacs.length >= 2) {
+
+            sharing =
+                'Terdeteksi Sharing';
+        }
+
+        // ==============================
+        // LAST SEEN
+        // ==============================
+
+        let lastSeen = '-';
+
+        if (status === 'Online') {
+
+            lastSeen = 'Sedang Online';
+
+        } else {
+
+            if (
+                userCookies[0]?.['expires-in']
+            ) {
+
+                lastSeen =
+                    userCookies[0]['expires-in']
+                    + ' lalu';
+            }
+        }
+
+        // ==============================
+        // TOTAL TRAFFIC
+        // ==============================
+
+        const bytesIn =
+            Number(
+                user['bytes-in'] || 0
+            );
+
+        const bytesOut =
+            Number(
+                user['bytes-out'] || 0
+            );
+
+        const totalBytes =
+            bytesIn + bytesOut;
+
+        // ==============================
+        // RETURN
+        // ==============================
+
+        return {
+
+            success: true,
+
+            data: {
+
+                username:
+                    user.name || '-',
+
+                profile:
+                    user.profile || '-',
+
+                comment:
+                    user.comment || '-',
+
+                limitUptime:
+                    user['limit-uptime'] || '-',
+                
+                sessionUptime:
+                    active?.uptime || 'N/A',
+                
+                totalUptime:
+                    user.uptime || '0s',
+                
+                bytesIn,
+                
+                bytesOut,
+                
+                totalBytes,
+                
+                status,
+                
+                ip:
+                    active?.address || '-',
+                
+                mac:
+                    active?.['mac-address']
+                    ||
+                    userCookies?.[0]?.['mac-address']
+                    ||
+                    '-',
+                server:
+                    active?.server || '-',
+
+                loginBy:
+                    active?.['login-by'] || '-',
+
+                lastSeen,
+
+                lastLogin,
+
+                lastLogout,
+
+                multiLogin,
+
+                sharing,
+
+                deviceType
+            }
+        };
+
+    } catch (error) {
+
+        console.log(
+            'ERROR getHotspotVoucherDetail:',
+            error.message
+        );
+
+        return {
+            success: false,
+            message: error.message
+        };
+    }
+}
+
 module.exports = {
     setSock,
     getInterfaceTraffic,
@@ -1951,6 +2362,8 @@ module.exports = {
     getRouterResources,
     getResourceInfo,
     getActiveHotspotUsers,
+    getHotspotVoucherDetail,
+    getHotspotUserDetail,
     addHotspotUser,
     deleteHotspotUser,
     addPPPoESecret,

@@ -14,12 +14,17 @@ const {
     setPPPoEProfile,
     getResourceInfo,
     getActiveHotspotUsers,
+    getHotspotVoucherDetail,
+    getHotspotUserDetail,
     getActivePPPoEConnections,
     deleteHotspotUser,
     deletePPPoESecret,
     getInactivePPPoEUsers,
     getOfflinePPPoEUsers
 } = require('./mikrotik');
+
+//tambahan utk fungsi 
+const mikrotik = require('./mikrotik');
 
 // Import handler perintah MikroTik baru
 const mikrotikCommands = require('./mikrotik-commands');
@@ -70,6 +75,82 @@ function generatePhoneVariants(input) {
     const plus = norm.startsWith('62') ? '+62' + norm.slice(2) : raw;
     const shortLocal = local.startsWith('0') ? local.slice(1) : local;
     return Array.from(new Set([raw, norm, local, plus, shortLocal].filter(Boolean)));
+}
+
+//Fungsi format bytes
+function formatBytes(bytes) {
+    if (!bytes || bytes === 0) {
+        return '0 B';
+    }
+    const sizes =
+        ['B', 'KB', 'MB', 'GB', 'TB'];
+    const i =
+        parseInt(
+            Math.floor(
+                Math.log(bytes) /
+                Math.log(1024)
+            )
+        );
+    return (
+        (bytes / Math.pow(1024, i))
+        .toFixed(2)
+        + ' ' +
+        sizes[i]
+    );
+}
+
+//fungsi format hari di uptime cekhs
+function formatUptime(uptime) {
+
+    if (!uptime || uptime === 'N/A' || uptime === '-') {
+        return 'N/A';
+    }
+
+    const weeks =
+        parseInt(
+            uptime.match(/(\d+)w/)?.[1] || 0
+        );
+
+    const days =
+        parseInt(
+            uptime.match(/(\d+)d/)?.[1] || 0
+        );
+
+    const hours =
+        parseInt(
+            uptime.match(/(\d+)h/)?.[1] || 0
+        );
+
+    const minutes =
+        parseInt(
+            uptime.match(/(\d+)m/)?.[1] || 0
+        );
+
+    const seconds =
+        parseInt(
+            uptime.match(/(\d+)s/)?.[1] || 0
+        );
+
+    const parts = [];
+
+    if (weeks)
+        parts.push(`${weeks} minggu`);
+
+    if (days)
+        parts.push(`${days} hari`);
+
+    if (hours)
+        parts.push(`${hours} jam`);
+
+    if (minutes)
+        parts.push(`${minutes} menit`);
+
+    if (seconds)
+        parts.push(`${seconds} detik`);
+
+    return parts.length
+        ? parts.join(' ')
+        : '< 1 menit';
 }
 
 // Fungsi untuk mendekripsi nomor admin yang dienkripsi
@@ -251,7 +332,7 @@ function getDeviceStatus(lastInform) {
     return diffMinutes < 5; // Online jika last inform < 5 menit
 }
 
-// Fungsi untuk format uptime
+/* Fungsi untuk format uptime
 function formatUptime(uptime) {
     if (!uptime) return 'N/A';
 
@@ -266,7 +347,7 @@ function formatUptime(uptime) {
     if (minutes > 0) result += `${minutes} menit`;
 
     return result.trim() || '< 1 menit';
-}
+}*/
 
 // Update fungsi untuk mendapatkan nilai parameter
 function getParameterWithPaths(device, paths) {
@@ -401,27 +482,30 @@ async function connectToWhatsApp() {
             version = [2, 3000, 1023223821];
         }
 
+        // Buat socket dengan konfigurasi yang lebih baik
         sock = makeWASocket({
             auth: state,
             logger,
             browser: ['Ubuntu', 'Chrome', '1.0.0'],
-        
             connectTimeoutMs: 60000,
             qrTimeout: 40000,
-            defaultQueryTimeoutMs: 30000, // Timeout untuk query
+            defaultQueryTimeoutMs: 30000,
             retryRequestDelayMs: 1000,
-            version: version
+            version: version,
+            
+            // TAMBAHAN UNTUK STABILITAS KONEKSI
+            keepAliveIntervalMs: 10000, // Ping internal WebSocket setiap 10 detik
+            markOnlineOnConnect: true, // Otomatis online saat connect
+            emitOwnEvents: true,
+            getMessage: async (key) => {
+                return { conversation: 'hello' } // Fallback message ringan
+            }
         });
 
         // Tangani update koneksi
         sock.ev.on('connection.update', async (update) => {
             const { connection, lastDisconnect, qr } = update;
         
-            console.log('Connection update:', update);
-        
-            // ===============================
-            // QR HANDLING
-            // ===============================
             if (qr) {
                 console.log('QR Code tersedia, siap dipindai');
                 qrcode.generate(qr, { small: true });
@@ -436,44 +520,21 @@ async function connectToWhatsApp() {
                 };
             }
         
-            // ===============================
-            // CONNECTION OPEN
-            // ===============================
             if (connection === 'open') {
                 console.log('✅ WhatsApp terhubung!');
         
                 const connectedSince = new Date();
-                isConnecting = false;
+                isConnecting = false; // Pastikan flag direset
         
-                // clear reconnect timeout
                 if (reconnectTimeout) {
                     clearTimeout(reconnectTimeout);
                     reconnectTimeout = null;
                 }
+                
+                // HAPUS INTERVAL KEEPALIVE MANUAL DI SINI. 
+                // Jangan gunakan sock.sendPresenceUpdate() pakai setInterval!
         
-                // clear ping interval
-                if (pingInterval) {
-                    clearInterval(pingInterval);
-                }
-        
-                // ===============================
-                // KEEP ALIVE
-                // ===============================
-                pingInterval = setInterval(async () => {
-                    try {
-                        if (sock?.ws?.readyState === 1) {
-                            await sock.sendPresenceUpdate('available');
-                        }
-                    } catch (e) {
-                        console.log('⚠️ Keepalive failed:', e.message);
-                    }
-                }, 30000);
-        
-                // ===============================
-                // UPDATE GLOBAL STATUS
-                // ===============================
-                const phoneNumber =
-                    sock?.user?.id?.split(':')[0] || null;
+                const phoneNumber = sock?.user?.id?.split(':')[0] || null;
         
                 global.whatsappStatus = {
                     ...(global.whatsappStatus || {}),
@@ -486,9 +547,6 @@ async function connectToWhatsApp() {
         
                 setSock(sock);
         
-                // ===============================
-                // MODULE INJECTION (SAFE)
-                // ===============================
                 try {
                     require('./sendMessage').setSock(sock);
                     require('./mikrotik-commands').setSock(sock);
@@ -497,9 +555,9 @@ async function connectToWhatsApp() {
                     console.error('❌ Module setSock error:', error.message);
                 }
         
-                // ===============================
+                // =====================
                 // WELCOME MESSAGE (SAFE DELAY)
-                // ===============================
+                // =====================
                 setTimeout(async () => {
                     try {
                         const superAdminPath = path.join(__dirname, 'superadmin.txt');
@@ -519,9 +577,9 @@ async function connectToWhatsApp() {
                             sock?.user?.id?.split(':')[0] || 'Unknown';
         
                         const message =
-        `✅ *WhatsApp Bot Connected*
+        `✅ *WhatsApp Connected*
         
-        Bot berhasil terhubung dan siap digunakan.
+        Server berhasil terhubung dan siap digunakan.
         
         📱 Nomor:
         ${phone}
@@ -540,9 +598,9 @@ async function connectToWhatsApp() {
                     }
                 }, 8000);
         
-                // ===============================
+                // =================
                 // STARTUP LOG
-                // ===============================
+                // =================
                 try {
                     const activePort =
                         global.appSettings?.port ||
@@ -561,17 +619,14 @@ async function connectToWhatsApp() {
                 }
             }
         
-            // ===============================
+            // =================
             // CONNECTION CLOSE
-            // ===============================
+            // =================
             else if (connection === 'close') {
                 const statusCode = lastDisconnect?.error?.output?.statusCode;
-                const shouldReconnect =
-                    statusCode !== DisconnectReason.loggedOut;
+                const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
         
-                console.log(
-                    `❌ Koneksi terputus. Reconnect: ${shouldReconnect}`
-                );
+                console.log(`❌ Koneksi terputus. Status Code: ${statusCode}. Reconnect: ${shouldReconnect}`);
         
                 global.whatsappStatus = {
                     ...(global.whatsappStatus || {}),
@@ -582,12 +637,15 @@ async function connectToWhatsApp() {
                     status: 'disconnected'
                 };
         
-                if (shouldReconnect && !isConnecting) {
-                    isConnecting = true;
+                if (shouldReconnect) {
+                    // RESET FLAG isConnecting di sini agar tidak terjebak loop statis
+                    isConnecting = false; 
         
                     setTimeout(() => {
                         connectToWhatsApp();
                     }, getSetting('reconnect_interval', 5000));
+                } else {
+                    console.log('⚠️ Sesi telah dilogout dari device. Hapus folder sesi dan scan ulang.');
                 }
             }
         });
@@ -1677,12 +1735,12 @@ async function handleAdminCheckONUWithBilling(remoteJid, searchTerm) {
         } else {
             message += `• Tidak ada data user WiFi (2.4GHz) tersedia\n`;
         }
-        message += `\n`;
+        /*message += `\n`;
 
         if (rxPower) {
             message += `🔧 *KUALITAS SINYAL:*\n`;
             message += `• RX Power: ${rxPower} dBm (${rxPowerStatus})\n\n`;
-        }
+        }*/
 
         message += `💡 *TINDAKAN ADMIN:*\n`;
         const actionIdentifier = customer ? customer.phone : searchTerm;
@@ -5558,7 +5616,91 @@ Pesan GenieACS telah diaktifkan kembali.`);
                 await handleMemberCommand(remoteJid, params);
                 return;
             }
+            
+            // Perintah cek detail hotspot
+            if (
+                command.startsWith('cekhs ') ||
+                command.startsWith('!cekhs ') ||
+                command.startsWith('/cekhs ')
+            ) {
+            
+                const params = command.split(' ');
+            
+                const voucherCode = (params[1] || '').trim();
+            
+                console.log(
+                    `Menjalankan cek hotspot ${voucherCode}`
+                );
+            
+                if (!voucherCode) {
+            
+                    await sock.sendMessage(remoteJid, {
+                        text:
+            `❌ Voucher kosong
+            
+            Contoh:
+            cekhs ABC123`
+                    });
+            
+                    return;
+                }
+            
+                const result =
+                    await getHotspotVoucherDetail(
+                        voucherCode
+                    );
+            
+                console.log(
+                    'DEBUG RESULT:',
+                    result
+                );
+            
+                if (!result.success) {
+            
+                    await sock.sendMessage(remoteJid, {
+                        text: `❌ ${result.message}`
+                    });
+            
+                    return;
+                }
+            
+                const data = result.data;
+            
+                const response = [
+                    '📶 DETAIL VOUCHER *35K*',
+                    '',
+                    `🎫 Voucher : ${data.username}`,
+                    `👤 Profile : ${data.profile}`,
+                    `📝 Masa Aktif/Comment : ${data.comment}`,
+                    '',
+                    `🟢 Status : ${data.status}`,
+                    `📱 Device : ${data.deviceType || '-'}`,
+                    `🌐 IP : ${data.ip}`,
+                    `📡 MAC : ${data.mac}`,
+                    '',
+                    `⏳ Sesi Aktif : ${formatUptime(data.sessionUptime)}`,
+                    `⌛ Total Aktif : ${formatUptime(data.totalUptime)}`,
+                    `📥 Total Download : ${formatBytes(data.bytesOut)}`,
+                    `📤 Total Upload : ${formatBytes(data.bytesIn)}`,
+                    `📊 Total Traffic : ${formatBytes(data.totalBytes)}`,
+                    '',
+                    `👥 Multi Login : ${data.multiLogin}`,
+                    `🚨 Sharing : ${data.sharing}`,
+                    `🕓 Last Seen : ${data.lastSeen}`,
+                    `🕓 Last Login : ${data.lastLogin}`,
+                    `🕓 Last Logout : ${data.lastLogout}`,
+                    '',
+                    `*HEMAT - CEPAT - MERAKYAT*`
+                ].join('\n'); // Menggabungkan semua baris array dan memberikan enter (\n) di setiap barisnya
+                
+                await sock.sendMessage(remoteJid, {
+                    text: response
+                });
+                
+                return;
 
+            }
+            
             // Perintah user hotspot aktif
             if (command === 'hotspot' || command === '!hotspot' || command === '/hotspot') {
                 console.log(`Menjalankan perintah user hotspot aktif`);

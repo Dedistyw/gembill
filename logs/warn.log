@@ -11012,3 +11012,9 @@
 [2026-05-27T13:20:49.569Z] [WARN] WhatsApp socket not available for admin notification
 [2026-05-27T13:20:49.570Z] [WARN] WhatsApp socket not available for admin notification
 [2026-05-27T13:20:49.571Z] [WARN] WhatsApp socket not available for agent notification
+[2026-05-30T01:14:51.116Z] [WARN] Device not found by phone 081400817579, trying PPPoE...
+[2026-05-30T01:14:51.190Z] [WARN] Device not found by PPPoE pppoe_7579_1k
+[2026-05-30T01:14:51.192Z] [WARN] GenieACS: No device found for customer mt82
+[2026-05-30T01:15:47.308Z] [WARN] Device not found by phone 087880911994, trying PPPoE...
+[2026-05-30T01:15:47.379Z] [WARN] Device not found by PPPoE pppoe_1994_yc
+[2026-05-30T01:15:47.380Z] [WARN] GenieACS: No device found for customer ry69

@@ -18,7 +18,7 @@
   "whatsapp_restart_on_error": true,
   "rx_power_warning": "-26",
   "rx_power_critical": "-27",
-  "rx_power_notification_enable": true,
+  "rx_power_notification_enable": false,
   "rx_power_warning_interval": "864000000",
   "company_header": "35K",
   "footer_info": "Info Hubungi : 085894387669",
@@ -215,5 +215,6 @@
   "whatsapp_daily_count.2026-05-25": 3,
   "whatsapp_daily_count.2026-05-26": 1,
   "whatsapp_daily_count.2026-05-28": 3,
-  "whatsapp_daily_count.2026-05-29": 3
+  "whatsapp_daily_count.2026-05-29": 3,
+  "whatsapp_daily_count.2026-05-30": 2
 }

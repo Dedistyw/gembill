@@ -62,13 +62,20 @@ function getAdminHelpMessage() {
     message += `📶 *HOTSPOT & PPPoE*\n`;
     message += `• *vcr [username] [profile] [nomor]* — Buat voucher\n`;
     message += `• *hotspot* — User hotspot aktif\n`;
-    message += `• *pppoe* — User PPPoE aktif\n`;
-    message += `• *offline* — User PPPoE offline\n`;
+    message += `• *cekhs [kode/id]* — rincian id voucher\n`;
     message += `• *users* — Daftar semua user\n`;
     message += `• *addhotspot [user] [pass] [profile]* — Tambah user\n`;
-    message += `• *addpppoe [user] [pass] [profile] [ip]* — Tambah PPPoE\n`;
+    message += `• *offline* — User PPPoE offline\n`;
     message += `• *setprofile [user] [profile]* — Ubah profile\n`;
     message += `• *remove [username]* — Hapus user\n\n`;
+    message += `• *pppoe* — User PPPoE aktif\n`;
+    message += `• *pppoe [filter]* — Lihat daftar user PPPoE\n`;
+    message += `• *addpppoe [user] [pass] [profile] [ip]* — Tambah PPPoE\n`;
+    message += `• *editpppoe [user] [field] [value]* — Edit user PPPoE\n`;
+    message += `• *delpppoe [user] [alasan]* — Hapus user PPPoE\n`;
+    message += `• *checkpppoe [user]* — Cek status user PPPoE\n`;
+    message += `• *restartpppoe [user]* — Restart koneksi PPPoE\n`;
+    message += `• *help pppoe* — Bantuan PPPoE\n\n`;
 
     // OTP & Sistem Commands
     message += `🛡️ *OTP & SISTEM*\n`;
@@ -100,15 +107,6 @@ function getAdminHelpMessage() {
     message += `• *setujuirequest [id] [catatan]* — Setujui request saldo\n`;
     message += `• *tolakrequest [id] [alasan]* — Tolak request saldo\n`;
     message += `• *bantuanagent* — Bantuan perintah agent\n\n`;
-
-    message += `🌐 *PPPoE MANAGEMENT:*\n`;
-    message += `• *addpppoe [user] [pass] [profile] [ip] [info]* — Tambah user PPPoE\n`;
-    message += `• *editpppoe [user] [field] [value]* — Edit user PPPoE\n`;
-    message += `• *delpppoe [user] [alasan]* — Hapus user PPPoE\n`;
-    message += `• *pppoe [filter]* — Lihat daftar user PPPoE\n`;
-    message += `• *checkpppoe [user]* — Cek status user PPPoE\n`;
-    message += `• *restartpppoe [user]* — Restart koneksi PPPoE\n`;
-    message += `• *help pppoe* — Bantuan PPPoE\n\n`;
 
     message += `ℹ️ *SYSTEM INFO:*\n`;
     message += `• *version* — Info versi aplikasi\n`;
