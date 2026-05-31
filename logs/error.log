@@ -20590,3 +20590,82 @@
   "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
   "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
 }
+[2026-05-30T23:00:00.150Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-30T23:00:00.151Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T05:00:00.254Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T05:00:00.258Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T11:00:00.248Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T11:00:00.251Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T17:00:00.165Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T17:00:00.168Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T17:01:00.165Z] [ERROR] Error performing monthly reset:
+{
+  "name": "Error",
+  "message": "SQLITE_ERROR: no such table: collector_monthly_summary",
+  "stack": "Error: SQLITE_ERROR: no such table: collector_monthly_summary"
+}
+[2026-05-31T17:01:00.169Z] [ERROR] Error in performMonthlyReset:
+{
+  "name": "Error",
+  "message": "SQLITE_ERROR: no such table: collector_monthly_summary",
+  "stack": "Error: SQLITE_ERROR: no such table: collector_monthly_summary"
+}
+[2026-05-31T17:01:00.170Z] [ERROR] Error in monthly reset process:
+{
+  "name": "Error",
+  "message": "SQLITE_ERROR: no such table: collector_monthly_summary",
+  "stack": "Error: SQLITE_ERROR: no such table: collector_monthly_summary"
+}
+[2026-05-31T23:00:00.168Z] [ERROR] Error in cleanupExpiredVoucherInvoices:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T23:00:00.169Z] [ERROR] Error in voucher cleanup:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-05-31T23:09:22.011Z] [ERROR] Mikrotik PPPoE restoration failed for kg94: - missing =.id=

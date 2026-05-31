@@ -11018,3 +11018,6 @@
 [2026-05-30T01:15:47.308Z] [WARN] Device not found by phone 087880911994, trying PPPoE...
 [2026-05-30T01:15:47.379Z] [WARN] Device not found by PPPoE pppoe_1994_yc
 [2026-05-30T01:15:47.380Z] [WARN] GenieACS: No device found for customer ry69
+[2026-05-31T23:09:22.268Z] [WARN] Device not found by phone 082213981366, trying PPPoE...
+[2026-05-31T23:09:22.349Z] [WARN] Device not found by PPPoE pppoe_9294_zt
+[2026-05-31T23:09:22.350Z] [WARN] GenieACS: No device found for customer kg94

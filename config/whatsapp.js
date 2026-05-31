@@ -332,7 +332,7 @@ function getDeviceStatus(lastInform) {
     return diffMinutes < 5; // Online jika last inform < 5 menit
 }
 
-/* Fungsi untuk format uptime
+/* Fungsi untuk format uptime ACS
 function formatUptime(uptime) {
     if (!uptime) return 'N/A';
 
@@ -587,7 +587,10 @@ async function connectToWhatsApp() {
         🕒 Connected:
         ${connectedSince.toLocaleString('id-ID')}
         
-        🚀 Sistem berjalan normal`;
+        🚀 Sistem berjalan normal`
+        .split('\n')
+        .map(line => line.trim())
+        .join('\n');
         
                         await sock.sendMessage(jid, { text: message });
         
@@ -4437,12 +4440,30 @@ async function handleMemberCommand(remoteJid, params) {
             const header = settings.company_header || 'AKUN INTERNET ANDA';
             const footer = settings.footer_info || 'Terima kasih telah menggunakan layanan kami.';
 
-            const buyerMessage = `📋 *${header.toUpperCase()}*\n\n` +
-                `Berikut detail akses internet Anda:\n` +
-                `• Username: ${username}\n` +
-                `• Password: ${password}\n` +
-                `• Kecepatan: ${profile}\n\n` +
-                `_${footer}_`;
+            const buyerMessage = `📋 *${header.toUpperCase()}*
+
+                Berikut detail akses internet Anda:
+                • Username: ${username}
+                • Password: ${password}
+                • Kecepatan: ${profile}
+                
+                🌐 CARA PENGGUNAAN:
+                1. Hubungkan perangkat ke WiFi 35k/bln.
+                2. Pastikan kuota data dimatikan.
+                3. Login page akan muncul otomatis.
+                4. Jika tidak muncul, buka browser lalu ketik dsthh.com.
+                5. Masukkan Id/Username di atas.
+                6. Klik Login.
+                
+                ⏰ MASA AKTIF:
+                Cek secara berkala status dan penggunaan akun Anda di dsthh.com.
+                
+                📞 Menerima request pemasangan baru.
+                
+                🙏 Terima kasih telah menggunakan layanan *35K* 🚀
+                *HEMAT - CEPAT - MERAKYAT*
+                
+                _${footer}_`;
 
             try {
                 // Coba kirim pesan langsung tanpa cek nomor terdaftar
@@ -4537,12 +4558,34 @@ async function handleVoucherCommand(remoteJid, params) {
                 const header = settings.company_header || 'VOUCHER INTERNET ANDA';
                 const footer = settings.footer_info || 'Terima kasih telah menggunakan layanan kami.';
 
-                const buyerMessage = `📋 *${header.toUpperCase()}*\n\n` +
-                    `Berikut detail akses internet Anda:\n` +
-                    `• Username: ${username}\n` +
-                    `• Password: ${username}\n` +
-                    `• Harga: ${profile}\n\n` +
-                    `_${footer}_`;
+                const buyerMessage = `📋 *${header.toUpperCase()}*
+
+                    🛒 *35K - VOUCHER BERHASIL DIBELI*
+                    
+                    • Username: ${username}
+                    • Password: ${username}
+                    • Harga/Paket: ${profile}
+                    
+                    🌐 CARA PENGGUNAAN:
+                    1. Hubungkan perangkat ke WiFi 35k/bln.
+                    2. Pastikan kuota data dimatikan.
+                    3. Login page akan muncul otomatis.
+                    4. Jika tidak muncul, buka browser lalu ketik dsthh.com.
+                    5. Masukkan Id/Username di atas.
+                    6. Klik Login.
+                    
+                    ⏰ MASA AKTIF:
+                    Cek secara berkala status dan penggunaan akun Anda di dsthh.com.
+                    
+                    📞 Menerima request pemasangan baru.
+                    
+                    🙏 Terima kasih telah menggunakan layanan *35K* 🚀
+                    *HEMAT - CEPAT - MERAKYAT*
+                    
+                    _${footer}_`
+                    .split('\n')
+                    .map(line => line.trim())
+                    .join('\n');
 
                 try {
                     // Coba kirim pesan langsung tanpa cek nomor terdaftar
