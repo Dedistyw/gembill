@@ -20669,3 +20669,15 @@
   "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
 }
 [2026-05-31T23:09:22.011Z] [ERROR] Mikrotik PPPoE restoration failed for kg94: - missing =.id=
+[2026-06-01T01:00:03.859Z] [ERROR] Error creating invoice for customer hs59:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: UNIQUE constraint failed: invoices.invoice_number",
+  "stack": "Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: invoices.invoice_number"
+}
+[2026-06-01T01:00:04.101Z] [ERROR] Error creating invoice for customer hy91:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: UNIQUE constraint failed: invoices.invoice_number",
+  "stack": "Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: invoices.invoice_number"
+}

@@ -2489,11 +2489,7 @@ class BillingManager {
 
     // Utility functions
     generateInvoiceNumber() {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-        return `INV-${year}${month}-${random}`;
+    return `INV-${Date.now()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
     }
 
     // Generate username otomatis berdasarkan nomor telepon
@@ -2745,29 +2741,54 @@ class BillingManager {
                 }
 
                 if (deleteInvoices) {
-                    // Delete expired invoices
-                    const deleteSql = `
-                        DELETE FROM invoices 
-                        WHERE invoice_type = 'voucher' 
-                        AND status = 'unpaid' 
-                        AND created_at < ?
-                    `;
 
-                    this.db.run(deleteSql, [expiryTimeStr], function (err) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            const deletedCount = this.changes;
-                            if (logActions) {
-                                console.log(`🗑️  Deleted ${deletedCount} expired voucher invoices`);
-                            }
-                            resolve({
-                                success: true,
-                                message: `Cleaned up ${deletedCount} expired voucher invoices`,
-                                cleaned: deletedCount,
-                                expiredInvoices: expiredInvoices
-                            });
+                    // Hapus transaksi gateway terlebih dahulu
+                    const deleteGatewaySql = `
+                        DELETE FROM payment_gateway_transactions
+                        WHERE invoice_id IN (
+                            SELECT id
+                            FROM invoices
+                            WHERE invoice_type = 'voucher'
+                            AND status = 'unpaid'
+                            AND created_at < ?
+                        )
+                    `;
+                
+                    this.db.run(deleteGatewaySql, [expiryTimeStr], (gatewayErr) => {
+                
+                        if (gatewayErr) {
+                            reject(gatewayErr);
+                            return;
                         }
+                
+                        const deleteSql = `
+                            DELETE FROM invoices
+                            WHERE invoice_type = 'voucher'
+                            AND status = 'unpaid'
+                            AND created_at < ?
+                        `;
+                
+                        this.db.run(deleteSql, [expiryTimeStr], function (err) {
+                
+                            if (err) {
+                                reject(err);
+                            } else {
+                
+                                const deletedCount = this.changes;
+                
+                                if (logActions) {
+                                    console.log(`🗑️ Deleted ${deletedCount} expired voucher invoices`);
+                                }
+                
+                                resolve({
+                                    success: true,
+                                    message: `Cleaned up ${deletedCount} expired voucher invoices`,
+                                    cleaned: deletedCount,
+                                    expiredInvoices: expiredInvoices
+                                });
+                            }
+                        });
+                
                     });
                 } else {
                     // Just mark as expired without deleting
@@ -2950,6 +2971,8 @@ class BillingManager {
             const prevYear = currentMonth === 1 ? currentYear - 1 : currentYear;
 
             logger.info(`🔄 Starting monthly reset for ${currentYear}-${currentMonth}`);
+            // Ensure collector monthly summary table exists before processing
+            await this.ensureCollectorMonthlySummaryTable();
 
             // 1. Save admin monthly summary for previous month
             const adminStats = await this.getBillingStats();
@@ -2968,9 +2991,6 @@ class BillingManager {
                 await this.saveCollectorMonthlySummary(collector.id, prevYear, prevMonth, collectorStats);
                 logger.info(`✅ Collector ${collector.name} monthly summary saved for ${prevYear}-${prevMonth}`);
             }
-
-            // 3. Create collector_monthly_summary table if not exists
-            await this.ensureCollectorMonthlySummaryTable();
 
             logger.info(`🎉 Monthly reset completed successfully for ${currentYear}-${currentMonth}`);
 
