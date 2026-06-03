@@ -1,17 +1,17 @@
 {
   "invoice_created": {
     "title": "Tagihan Baru",
-    "template": "\n📋 *TAGIHAN BARU*\n\nHay kaka {customer_name},\n\n⏰Tagihan bulanan Anda telah dibuat:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount} sesuaikan kode bayar\n📅 *Tempo  :* {due_date}\n📦 *Paket   :* {package_name} ({package_speed})\n📝 *Catatan:* {notes}\n\n💥Agar layanan tetap *optimal* , silahkan melakukan pembayaran sebelum tanggal jatuh tempo untuk menghindari *isolir* keterlambatan.\nLink pembayaran 35k.dsthh.web.id \nKetik : menu , untuk melihat layanan.\n\nTerima kasih atas kepercayaan Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
+    "template": "\n📋 *TAGIHAN BARU*\n\nHay kaka {customer_name},\n\n⏰Tagihan bulanan Anda telah dibuat:\n\n👤 *Username:* {username}\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount} sesuaikan kode bayar\n📅 *Tempo  :* {due_date}\n📦 *Paket   :* {package_name} ({package_speed})\n📝 *Catatan:* {notes}\n\n💥Agar layanan tetap *optimal* , silahkan melakukan pembayaran sebelum tanggal jatuh tempo untuk menghindari *isolir* keterlambatan.\nLink pembayaran 35k.dsthh.web.id \nKetik : menu , untuk melihat layanan.\n\nTerima kasih atas kepercayaan Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
     "enabled": false
   },
   "due_date_reminder": {
     "title": "Peringatan Jatuh Tempo",
-    "template": "\n⚠️ *PENGINGAT JATUH TEMPO*\n\nHay kaka {customer_name},\n\n⏰Tagihan Anda akan jatuh tempo dalam {days_remaining} hari:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount} sesuaikan kode bayar\n📅 *Tempo  :* {due_date}\n📦 *Paket   :* {package_name} ({package_speed})\n\n💥Agar layanan tetap *optimal* , silahkan melakukan pembayaran segera untuk menghindari *isolir*.\n\n📸*Simpan* bukti pembayaran.\nPembayaran dianggap *sah* apabila melampirkan bukti transaksi dan terkonfirmasi by sistem.\nAbaikan pesan ini apabila sudah melakukan pembayaran sebelumnya.\n\n🌐 *Cek tagihan dan pembayaran* 35k.dsthh.web.id \n📞 Ketik : menu , untuk melihat layanan\n\n\nTerima kasih atas kepercayaan Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
+    "template": "\n⚠️ *PENGINGAT JATUH TEMPO*\n\nHay kaka {customer_name},\n\n⏰Tagihan Anda akan jatuh tempo dalam {days_remaining} hari:\n\n👤 *Username:* {username}\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount} sesuaikan kode bayar\n📅 *Tempo  :* {due_date}\n📦 *Paket   :* {package_name} ({package_speed})\n\n💥Agar layanan tetap *optimal* , silahkan melakukan pembayaran segera untuk menghindari *isolir*.\n\n📸*Simpan* bukti pembayaran.\nPembayaran dianggap *sah* apabila melampirkan bukti transaksi dan terkonfirmasi by sistem.\nAbaikan pesan ini apabila sudah melakukan pembayaran sebelumnya.\n\n🌐 *Cek tagihan dan pembayaran* 35k.dsthh.web.id \n📞 Ketik : menu , untuk melihat layanan\n\n\nTerima kasih atas kepercayaan Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
     "enabled": true
   },
   "payment_received": {
     "title": "Pembayaran Diterima",
-    "template": "\n✅ *PEMBAYARAN DITERIMA*\n\nHay kaka {customer_name},\n\nTerima kasih! Pembayaran Anda telah kami terima🙏:\n\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount}\n💳 *Metode Payment:* {payment_method}\n📅 *Tanggal Payment:* {payment_date}\n🔢  *Catatan:* {notes}\n\n📸Download invoice di halaman 35k.dsthh.web.id \n\n⚡️⚡️Layanan internet Anda tetap aktif *optimal*.\n📞 Ketik : menu , untuk melihat layanan.\n\nTerima kasih atas kepercayaan Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
+    "template": "\n✅ *PEMBAYARAN DITERIMA*\n\nHay kaka {customer_name},\n\nTerima kasih! Pembayaran Anda telah kami terima🙏:\n\n👤 *Username:* {username}\n📄 *Invoice:* {invoice_number}\n💰 *Jumlah:* Rp {amount}\n💳 *Metode Payment:* {payment_method}\n📅 *Tanggal Payment:* {payment_date}\n🔢  *Catatan:* {notes}\n\n📸Download invoice di halaman 35k.dsthh.web.id \n\n⚡️⚡️Layanan internet Anda tetap aktif *optimal*.\n📞 Ketik : menu , untuk melihat layanan.\n\nTerima kasih atas kepercayaan Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
     "enabled": true
   },
   "service_disruption": {
@@ -26,17 +26,17 @@
   },
   "service_suspension": {
     "title": "Service Suspension",
-    "template": "⚠️ *LAYANAN INTERNET DINONAKTIFKAN*\n\nHalo {customer_name},\n\nLayanan internet Anda telah dinonaktifkan karena:\n📋 *Alasan:* {reason}\n\n💡 *Cara Mengaktifkan Kembali:*\n1. Lakukan pembayaran tagihan yang tertunggak\n2. Layanan akan aktif otomatis setelah pembayaran dikonfirmasi\n\n📞 *Butuh Bantuan?*\nHubungi kami di: {contact_whatsapp}\nKetik : menu , untuk melihat layanan\n\nTerima kasih atas perhatian Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
+    "template": "⚠️ *LAYANAN INTERNET DINONAKTIFKAN*\n\nHalo {customer_name},\n👤 *Username:* {username}\n\nLayanan internet Anda telah dinonaktifkan karena:\n📋 *Alasan:* {reason}\n\n💡 *Cara Mengaktifkan Kembali:*\n1. Lakukan pembayaran tagihan yang tertunggak\n2. Layanan akan aktif otomatis setelah pembayaran dikonfirmasi\n\n📞 *Butuh Bantuan?*\nHubungi kami di: {contact_whatsapp}\nKetik : menu , untuk melihat layanan\n\nTerima kasih atas perhatian Anda.\n*35K HEMAT - CEPAT - MERAKYAT*",
     "enabled": false
   },
   "service_restoration": {
     "title": "Service Restoration",
-    "template": "✅ *LAYANAN INTERNET DIAKTIFKAN*\n\nHalo {customer_name},\n\nSelamat! Layanan internet Anda telah diaktifkan kembali.\n\n📋 *Informasi:*\n• Status: AKTIF ✅\n• Paket: {package_name}\n• Kecepatan: {package_speed}\nKetik : menu , untuk melihat layanan\n\nTerima kasih telah melakukan pembayaran tepat waktu.\n\nInfo: {contact_whatsapp}\n*35K HEMAT - CEPAT - MERAKYAT*",
+    "template": "✅ *LAYANAN INTERNET DIAKTIFKAN*\n\nHalo {customer_name},\n\nSelamat! Layanan internet Anda telah diaktifkan kembali.\n\n📋 *Informasi:*\n👤 *Username:* {username}\n• Status: AKTIF ✅\n• Paket: {package_name}\n• Kecepatan: {package_speed}\nKetik : menu , untuk melihat layanan\n\nTerima kasih telah melakukan pembayaran tepat waktu.\n\nInfo: {contact_whatsapp}\n*35K HEMAT - CEPAT - MERAKYAT*",
     "enabled": false
   },
   "welcome_message": {
     "title": "Welcome Message",
-    "template": "👋 *SELAMAT DATANG*\n\nHalo {customer_name},\n\nSelamat datang di layanan internet kami!\n\n📦 *Paket:* {package_name} ({package_speed})\n📞 *Support:* {support_phone}\n\n📱 *Untuk menggunakan layanan WhatsApp:*\nKetik: REG {customer_name}\nKetik: Menu , untuk melihat layanan\n\nTerima kasih telah memilih layanan kami.\n*35K HEMAT - CEPAT - MERAKYAT* ",
+    "template": "👋 *SELAMAT DATANG*\n\nHalo {customer_name},\n\nSelamat datang di layanan internet kami!\n\n👤 *Username:* {username}\n📦 *Paket:* {package_name} ({package_speed})\n📞 *Support:* {support_phone}\n\n📱 *Untuk menggunakan layanan WhatsApp:*\nKetik: REG {customer_name}\nKetik: Menu , untuk melihat layanan\n\nTerima kasih telah memilih layanan kami.\n*35K HEMAT - CEPAT - MERAKYAT* ",
     "enabled": false
   },
   "installation_job_assigned": {

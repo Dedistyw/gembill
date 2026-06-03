@@ -181,7 +181,7 @@ Anda telah ditugaskan untuk instalasi baru:
 *Status:* Ditugaskan
 *Prioritas:* {priority}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 📱 *MENU KONFIRMASI:*
 
@@ -200,7 +200,7 @@ Balas dengan: *BANTU* atau *HELP*
 5️⃣ *LAPOR MASALAH*
 Balas dengan: *MASALAH* atau *ISSUE*
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 💡 *HELPER RESPONS CEPAT:*
 • *TERIMA* - Konfirmasi menerima tugas
@@ -232,7 +232,7 @@ Status instalasi telah diperbarui:
 
 📝 *Catatan:* {notes}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 📱 *MENU KONFIRMASI:*
 
@@ -245,7 +245,7 @@ Balas dengan: *BANTU* atau *HELP*
 3️⃣ *LAPOR MASALAH*
 Balas dengan: *MASALAH* atau *ISSUE*
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 *${getCompanyHeader()}*`,
                 enabled: true
@@ -266,7 +266,7 @@ Selamat! Instalasi telah berhasil diselesaikan:
 
 📝 *Catatan Penyelesaian:* {completion_notes}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 📱 *MENU KONFIRMASI:*
 
@@ -279,7 +279,7 @@ Balas dengan: *LAPOR* atau *REPORT*
 3️⃣ *BUTUH BANTUAN*
 Balas dengan: *BANTU* atau *HELP*
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━
 
 💡 *HELPER RESPONS CEPAT:*
 • *KONFIRM* - Konfirmasi penyelesaian
@@ -415,7 +415,7 @@ Balas dengan: *BANTU* atau *HELP*
 
             // Add header and footer
             const companyHeader = getSetting('company_header', '📱 SISTEM BILLING 📱\n\n');
-            const footerSeparator = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+            const footerSeparator = '\n\n━━━━━━━━━━━━━━\n\n';
             const footerInfo = footerSeparator + getSetting('footer_info', 'Powered by Alijaya Digital Network');
             
             const fullMessage = `${companyHeader}${message}${footerInfo}`;
@@ -569,7 +569,7 @@ Balas dengan: *BANTU* atau *HELP*
             let failed = 0;
 
             const companyHeader = getSetting('company_header', '📱 SISTEM BILLING 📱\n\n');
-            const footerSeparator = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+            const footerSeparator = '\n\n━━━━━━━━━━━━━━\n\n';
             const footerInfo = footerSeparator + getSetting('footer_info', 'Powered by Alijaya Digital Network');
             const fullMessage = `${companyHeader}${message}${footerInfo}`;
 
@@ -677,12 +677,13 @@ Balas dengan: *BANTU* atau *HELP*
 
             const data = {
                 customer_name: customer.name,
+                username: customer.username || '-',
                 invoice_number: invoice.invoice_number,
                 amount: this.formatCurrency(invoice.amount),
                 due_date: this.formatDate(invoice.due_date),
                 package_name: packageData.name,
                 package_speed: packageData.speed,
-                notes: invoice.notes || 'Tagihan bulanan'
+                notes: invoice.notes || '-'
             };
 
             const message = this.replaceTemplateVariables(
@@ -723,7 +724,9 @@ Balas dengan: *BANTU* atau *HELP*
 
             const data = {
                 customer_name: customer.name,
+                username: customer.username || '-',
                 invoice_number: invoice.invoice_number,
+                notes: invoice.notes || '-',
                 amount: this.formatCurrency(invoice.amount),
                 due_date: this.formatDate(invoice.due_date),
                 days_remaining: daysRemaining,
@@ -766,11 +769,13 @@ Balas dengan: *BANTU* atau *HELP*
 
             const data = {
                 customer_name: customer.name,
+                username: customer.username || '-',
                 invoice_number: invoice.invoice_number,
                 amount: this.formatCurrency(payment.amount),
                 payment_method: payment.payment_method,
                 payment_date: this.formatDate(payment.payment_date),
-                reference_number: payment.reference_number || 'N/A'
+                reference_number: payment.reference_number || 'N/A',
+                notes: invoice.notes || '-'
             };
 
             const message = this.replaceTemplateVariables(
@@ -1002,6 +1007,7 @@ Balas dengan: *BANTU* atau *HELP*
                 this.templates.service_suspension.template,
                 {
                     customer_name: customer.name,
+                    username: customer.username || '-',
                     reason: reason,
                     contact_whatsapp: getSetting('contact_whatsapp', '081947215703')
                 }
@@ -1039,6 +1045,7 @@ Balas dengan: *BANTU* atau *HELP*
                 this.templates.service_restoration.template,
                 {
                     customer_name: customer.name,
+                    username: customer.username || '-',
                     package_name: customer.package_name || 'N/A',
                     package_speed: customer.package_speed || 'N/A',
                     reason: reason || '',
@@ -1078,6 +1085,7 @@ Balas dengan: *BANTU* atau *HELP*
                 this.templates.welcome_message.template,
                 {
                     customer_name: customer.name,
+                    username: customer.username || '-',
                     package_name: customer.package_name || 'N/A',
                     package_speed: customer.package_speed || 'N/A',
                     wifi_password: customer.wifi_password || 'N/A',

@@ -77,7 +77,7 @@ router.get('/dashboard', adminAuth, async (req, res) => {
   // Cek apakah perlu menjalankan validasi konfigurasi ulang
   const shouldRevalidate = !req.session.configValidation || 
                           !req.session.configValidation.hasValidationRun ||
-                          req.session.configValidation.lastValidationTime < (Date.now() - 30000); // 30 detik cache
+                          req.session.configValidation.lastValidationTime < (Date.now() - 300000); // 30 detik cache
 
   if (shouldRevalidate) {
     console.log('🔍 [DASHBOARD] Menjalankan validasi konfigurasi ulang...');

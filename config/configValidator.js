@@ -94,16 +94,39 @@ class ConfigValidator {
             }
 
             // Test koneksi dengan timeout sangat pendek untuk login
-            const response = await axios.get(`${genieacsUrl}/devices`, {
-                auth: {
-                    username: genieacsUsername,
-                    password: genieacsPassword
-                },
-                timeout: 3000, // 3 detik timeout untuk login yang cepat
-                headers: {
-                    'Accept': 'application/json'
+            let response;
+
+            for (let i = 1; i <= 3; i++) {
+                try {
+                    response = await axios.get(
+                        `${genieacsUrl}/devices?limit=1`,
+                        {
+                            auth: {
+                                username: genieacsUsername,
+                                password: genieacsPassword
+                            },
+                            timeout: 30000,
+                            headers: {
+                                Accept: 'application/json'
+                            }
+                        }
+                    );
+            
+                    break;
+            
+                } catch (err) {
+            
+                    if (i === 3) throw err;
+            
+                    console.log(
+                        `[CONFIG_VALIDATOR] Retry GenieACS ${i}/3`
+                    );
+            
+                    await new Promise(resolve =>
+                        setTimeout(resolve, 2000)
+                    );
                 }
-            });
+            }
 
             return {
                 success: true,
@@ -121,7 +144,10 @@ class ConfigValidator {
             } else if (error.code === 'ENOTFOUND') {
                 errorMessage = 'Host GenieACS tidak ditemukan';
                 errorDetails = `Alamat IP ${genieacsUrl} tidak dapat dijangkau. Periksa koneksi jaringan.`;
-            } else if (error.code === 'ETIMEDOUT') {
+            } else if (
+                error.code === 'ETIMEDOUT' ||
+                error.code === 'ECONNABORTED'
+                ) {
                 errorMessage = 'GenieACS timeout';
                 errorDetails = `Koneksi ke ${genieacsUrl} timeout. Server mungkin lambat atau tidak aktif.`;
             } else if (error.response) {

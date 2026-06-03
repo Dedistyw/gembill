@@ -41,7 +41,7 @@ class AgentWhatsAppManager {
             const settings = getSettingsWithCache();
             const companyHeader = settings.company_header || settings.app_name || 'GEMBOK-BILLING';
             const formattedHeader = companyHeader.includes('📱') ? companyHeader + '\n\n' : `📱 ${companyHeader} 📱\n\n`;
-            const footerInfo = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
+            const footerInfo = '\n\n━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
 
             // Message untuk agent
             const agentMessage = `${formattedHeader}🎫 **VOUCHER BERHASIL DIJUAL**
@@ -103,7 +103,7 @@ class AgentWhatsAppManager {
             const settings = getSettingsWithCache();
             const companyHeader = settings.company_header || settings.app_name || 'GEMBOK-BILLING';
             const formattedHeader = companyHeader.includes('📱') ? companyHeader + '\n\n' : `📱 ${companyHeader} 📱\n\n`;
-            const footerInfo = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
+            const footerInfo = '\n\n━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
 
             // Create agent info text
             let agentInfoText = '';
@@ -153,7 +153,7 @@ class AgentWhatsAppManager {
             const settings = getSettingsWithCache();
             const companyHeader = settings.company_header || settings.app_name || 'GEMBOK-BILLING';
             const formattedHeader = companyHeader.includes('📱') ? companyHeader + '\n\n' : `📱 ${companyHeader} 📱\n\n`;
-            const footerInfo = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
+            const footerInfo = '\n\n━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
 
             // Message untuk agent
             const agentMessage = `${formattedHeader}💰 **PEMBAYARAN BERHASIL DIPROSES**
@@ -212,7 +212,7 @@ class AgentWhatsAppManager {
             const settings = getSettingsWithCache();
             const companyHeader = settings.company_header || settings.app_name || 'GEMBOK-BILLING';
             const formattedHeader = companyHeader.includes('📱') ? companyHeader + '\n\n' : `📱 ${companyHeader} 📱\n\n`;
-            const footerInfo = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
+            const footerInfo = '\n\n━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
 
             const message = `${formattedHeader}💰 **SALDO TELAH DIUPDATE**
 
@@ -249,7 +249,7 @@ class AgentWhatsAppManager {
             const settings = getSettingsWithCache();
             const companyHeader = settings.company_header || settings.app_name || 'GEMBOK-BILLING';
             const formattedHeader = companyHeader.includes('📱') ? companyHeader + '\n\n' : `📱 ${companyHeader} 📱\n\n`;
-            const footerInfo = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
+            const footerInfo = '\n\n━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
 
             const message = `${formattedHeader}✅ **REQUEST SALDO DISETUJUI**
 
@@ -288,7 +288,7 @@ class AgentWhatsAppManager {
             const settings = getSettingsWithCache();
             const companyHeader = settings.company_header || settings.app_name || 'GEMBOK-BILLING';
             const formattedHeader = companyHeader.includes('📱') ? companyHeader + '\n\n' : `📱 ${companyHeader} 📱\n\n`;
-            const footerInfo = '\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
+            const footerInfo = '\n\n━━━━━━━━━━━\n\n' + (settings.footer_info || 'Powered by Alijaya Digital Network');
 
             const message = `${formattedHeader}❌ **REQUEST SALDO DITOLAK**
 
