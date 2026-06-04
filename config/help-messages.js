@@ -5,9 +5,7 @@ const { getSetting, getSettingsWithCache } = require('./settingsManager');
 // Footer info dari settings
 const FOOTER_INFO = getSetting('footer_info', 'Juragan Pulsa Wifi Hotspot');
 
-/**
- * Pesan help untuk admin
- */
+// Pesan help untuk admin
 function getAdminHelpMessage() {
     let message = `👨‍💼 *MENU ADMIN LENGKAP*\n\n`;
 
@@ -25,19 +23,6 @@ function getAdminHelpMessage() {
     message += `• *tags [nomor]* — Lihat tags\n`;
     message += `• *addtag [device_id] [nomor]* — Tambah tag device\n`;
     message += `• *addpppoe_tag [user] [nomor]* — Tambah tag PPPoE\n\n`;
-
-    // Search Commands
-    message += `🔍 *PENCARIAN*\n`;
-    message += `• *cari [nama/pppoe_username]* — Cari data pelanggan\n`;
-    message += `• *cari andi* — Cari pelanggan dengan nama "andi"\n`;
-    message += `• *cari leha* — Cari pelanggan dengan PPPoE username "leha"\n\n`;
-
-    // Debug Commands
-    message += `🔧 *DEBUG*\n`;
-    message += `• *debuggenieacs [nomor]* — Debug data GenieACS pelanggan\n`;
-    message += `• *debug [nomor]* — Debug data GenieACS (singkat)\n`;
-    message += `• *debuggenieacs 087786722675* — Debug data GenieACS\n`;
-    message += `• *listdevices* — List semua perangkat di GenieACS\n\n`;
 
     // Mikrotik Commands
     message += `🌐 *MIKROTIK*\n`;
@@ -76,6 +61,21 @@ function getAdminHelpMessage() {
     message += `• *checkpppoe [user]* — Cek status user PPPoE\n`;
     message += `• *restartpppoe [user]* — Restart koneksi PPPoE\n`;
     message += `• *help pppoe* — Bantuan PPPoE\n\n`;
+    message += `• *isolir [user] [alasan]* — on isolir\n`;
+    message += `• *buka [user] [alasan]* — off isolir\n\n`;
+
+    // Search Commands
+    message += `🔍 *PENCARIAN*\n`;
+    message += `• *cari [nama/pppoe_username]* — Cari data pelanggan\n`;
+    message += `• *cari andi* — Cari pelanggan dengan nama "andi"\n`;
+    message += `• *cari leha* — Cari pelanggan dengan PPPoE username "leha"\n\n`;
+
+    // Debug Commands
+    message += `🔧 *DEBUG*\n`;
+    message += `• *debuggenieacs [nomor]* — Debug data GenieACS pelanggan\n`;
+    message += `• *debug [nomor]* — Debug data GenieACS (singkat)\n`;
+    message += `• *debuggenieacs 087786722675* — Debug data GenieACS\n`;
+    message += `• *listdevices* — List semua perangkat di GenieACS\n\n`;
 
     // OTP & Sistem Commands
     message += `🛡️ *OTP & SISTEM*\n`;
@@ -122,9 +122,7 @@ function getAdminHelpMessage() {
     return message;
 }
 
-/**
- * Pesan help untuk teknisi (fokus pada tugas sehari-hari)
- */
+// Pesan help untuk teknisi (fokus pada tugas sehari-hari)
 function getTechnicianHelpMessage() {
     let message = `🔧 *MENU KHUSUS TEKNISI*\n\n`;
 

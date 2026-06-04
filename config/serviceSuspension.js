@@ -39,11 +39,7 @@ class ServiceSuspensionManager {
             // Buat profile dengan nama sesuai setting (bisa 'isolir' atau 'ISOLIR')
             const newProfile = await mikrotik.write('/ppp/profile/add', [
                 `=name=${selectedProfile}`,
-                '=local-address=0.0.0.0',
-                '=remote-address=0.0.0.0',
-                '=rate-limit=0/0',
-                '=comment=SUSPENDED_PROFILE',
-                '=shared-users=1'
+                '=comment=SUSPENDED_PROFILE'
             ]);
 
             const profileId = newProfile[0]['ret'];
@@ -75,9 +71,19 @@ class ServiceSuspensionManager {
             const hasPPPoE = customer.pppoe_username && customer.pppoe_username.trim();
             const hasStaticIP = customer.static_ip || customer.ip_address || customer.assigned_ip;
             const hasMacAddress = customer.mac_address;
+            
+            // Manual override dari command bot
+            const connectionType = customer.connection_type || 'auto';
+            
+            logger.info(
+                `[SUSPEND] connection_type=${connectionType} username=${customer.username}`
+            );
 
             // 1. Prioritas suspend PPPoE jika tersedia
-            if (hasPPPoE) {
+            if (
+                connectionType === 'pppoe' ||
+                (connectionType === 'auto' && hasPPPoE)
+            ) {
                 results.suspension_type = 'pppoe';
                 try {
                     const mikrotik = await getMikrotikConnection();
@@ -128,7 +134,13 @@ class ServiceSuspensionManager {
                 }
             }
             // 2. Jika tidak ada PPPoE, coba suspend IP statik
-            else if (hasStaticIP || hasMacAddress) {
+            else if (
+                    connectionType === 'static' ||
+                    (
+                        connectionType === 'auto' &&
+                        (hasStaticIP || hasMacAddress)
+                    )
+                ) {
                 results.suspension_type = 'static_ip';
                 try {
                     // Tentukan metode suspend dari setting (default: address_list)
@@ -151,6 +163,81 @@ class ServiceSuspensionManager {
                     logger.error(`Static IP suspension failed for ${customer.username}:`, staticIPError.message);
                 }
             }
+            // cek HOTSPOT dulu
+            else if (connectionType === 'hotspot') {
+                results.suspension_type = 'hotspot';
+            
+                try {
+                    const mikrotik = await getMikrotikConnection();
+            
+                    const selectedProfile = getSetting(
+                        'isolir_profile',
+                        'isolir'
+                    );
+            
+                    const users = await mikrotik.write(
+                        '/ip/hotspot/user/print',
+                        [
+                            `?name=${customer.username}`
+                        ]
+                    );
+            
+                    if (users.length > 0) {
+                        await mikrotik.write(
+                            '/ip/hotspot/user/set',
+                            [
+                                `=.id=${users[0]['.id']}`,
+                                `=profile=${selectedProfile}`
+                            ]
+                        );
+            
+                        // Putuskan sesi aktif agar isolir langsung berlaku
+                        try {
+                            const activeUsers =
+                                await mikrotik.write(
+                                    '/ip/hotspot/active/print',
+                                    [
+                                        `?user=${customer.username}`
+                                    ]
+                                );
+            
+                            for (const active of activeUsers) {
+                                await mikrotik.write(
+                                    '/ip/hotspot/active/remove',
+                                    [
+                                        `=.id=${active['.id']}`
+                                    ]
+                                );
+                            }
+            
+                            logger.info(
+                                `Disconnected ${activeUsers.length} hotspot session(s) for ${customer.username}`
+                            );
+                        } catch (activeErr) {
+                            logger.warn(
+                                `Failed disconnect hotspot session ${customer.username}: ${activeErr.message}`
+                            );
+                        }
+            
+                        results.mikrotik = true;
+            
+                        logger.info(
+                            `Hotspot user ${customer.username} suspended with profile ${selectedProfile}`
+                        );
+                    } else {
+                        logger.warn(
+                            `Hotspot user ${customer.username} not found`
+                        );
+                    }
+            
+                } catch (err) {
+                    logger.error(
+                        `Hotspot suspension failed for ${customer.username}:`,
+                        err.message
+                    );
+                }
+            }
+            
             // 3. Jika tidak ada PPPoE atau IP statik, coba cari device untuk suspend WAN
             else {
                 results.suspension_type = 'wan_disable';
@@ -272,9 +359,14 @@ class ServiceSuspensionManager {
             const hasPPPoE = customer.pppoe_username && customer.pppoe_username.trim();
             const hasStaticIP = customer.static_ip || customer.ip_address || customer.assigned_ip;
             const hasMacAddress = customer.mac_address;
+            const connectionType = customer.connection_type || 'auto';
 
             // 1. Prioritas restore PPPoE jika tersedia
-            if (hasPPPoE) {
+            // PPPoE
+            if (
+                connectionType === 'pppoe' ||
+                (connectionType === 'auto' && hasPPPoE)
+            ) {
                 results.restoration_type = 'pppoe';
                 try {
                     const mikrotik = await getMikrotikConnection();
@@ -329,7 +421,13 @@ class ServiceSuspensionManager {
                 }
             }
             // 2. Jika tidak ada PPPoE, coba restore IP statik
-            else if (hasStaticIP || hasMacAddress) {
+            else if (
+                connectionType === 'static' ||
+                (
+                    connectionType === 'auto' &&
+                    (hasStaticIP || hasMacAddress)
+                )
+            ) {
                 results.restoration_type = 'static_ip';
                 try {
                     const staticResult = await staticIPSuspension.restoreStaticIPCustomer(customer, reason);
@@ -345,6 +443,45 @@ class ServiceSuspensionManager {
                     logger.error(`Static IP restoration failed for ${customer.username}:`, staticIPError.message);
                 }
             }
+            // cek hotspot dulu
+            else if (connectionType === 'hotspot') {
+                results.restoration_type = 'hotspot';
+            
+                try {
+                    const mikrotik = await getMikrotikConnection();
+            
+                    const users = await mikrotik.write(
+                        '/ip/hotspot/user/print',
+                        [
+                            `?name=${customer.username}`
+                        ]
+                    );
+            
+                    if (users.length > 0) {
+            
+                        await mikrotik.write(
+                            '/ip/hotspot/user/set',
+                            [
+                                `=.id=${users[0]['.id']}`,
+                                '=profile=default'
+                            ]
+                        );
+            
+                        results.mikrotik = true;
+            
+                        logger.info(
+                            `Hotspot user ${customer.username} restored`
+                        );
+                    }
+            
+                } catch (err) {
+                    logger.error(
+                        `Hotspot restore failed for ${customer.username}:`,
+                        err.message
+                    );
+                }
+            }
+            
             // 3. Jika tidak ada PPPoE atau IP statik, coba enable WAN
             else {
                 results.restoration_type = 'wan_enable';
