@@ -20743,3 +20743,20 @@
 [2026-06-04 11:43:30] [ERROR] GenieACS suspension failed for ds09: - socket hang up
 [2026-06-04 11:51:31] [ERROR] Mikrotik PPPoE restoration failed for ds09: - missing =.id=
 [2026-06-04 11:51:53] [ERROR] GenieACS restoration failed for ds09: - socket hang up
+[2026-06-05 16:46:05] [ERROR] Error adding PPPoE secret: input does not match any value of profile
+[2026-06-05 19:55:01] [ERROR] Mikrotik PPPoE restoration failed for ce89: - missing =.id=
+[2026-06-06 15:28:09] [ERROR] Error creating customer:
+{
+  "name": "ReferenceError",
+  "message": "pppoeCreate is not defined",
+  "stack": "ReferenceError: pppoeCreate is not defined\n    at /root/gembill/routes/adminBilling.js:2978:13"
+}
+[2026-06-06 16:58:40] [ERROR] Error finding device with phone number 6285694994550: No device found with phone number: 6285694994550
+[2026-06-07 06:17:24] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone",
+  "stack": "Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: customers.phone"
+}
+[2026-06-07 10:50:42] [ERROR] Mikrotik PPPoE restoration failed for coba_ppedit2: - missing =.id=
+[2026-06-07 22:24:34] [ERROR] Error adding hotspot user: input does not match any value of profile

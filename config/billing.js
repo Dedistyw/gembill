@@ -737,8 +737,21 @@ class BillingManager {
 
     async getPackages() {
         return new Promise((resolve, reject) => {
-            const sql = `SELECT * FROM packages WHERE is_active = 1 ORDER BY price ASC`;
-
+            const sql = `
+                SELECT 
+                    id,
+                    name,
+                    speed,
+                    price,
+                    tax_rate,
+                    description,
+                    pppoe_profile,
+                    image_filename
+                FROM packages
+                WHERE is_active = 1
+                ORDER BY price ASC
+            `;
+    
             this.db.all(sql, [], (err, rows) => {
                 if (err) {
                     reject(err);

@@ -123,11 +123,20 @@ async function getPPPoEUserByUsername(username) {
         const conn = await getMikrotikConnection();
         if (!conn) throw new Error('Koneksi ke Mikrotik gagal');
 
-        const response = await conn.write('/ppp/secret/print', ['?.name=' + username]);
-        if (response && response.length > 0) {
-            return response[0];
-        }
-        return null;
+        const secrets = await conn.write('/ppp/secret/print');
+
+        const user = secrets.find(
+            s => s.name === username
+        );
+
+        logger.info('[GET-PPPOE-BY-USERNAME]', {
+            username,
+            found: !!user,
+            id: user?.['.id']
+        });
+
+        return user || null;
+
     } catch (error) {
         logger.error(`Error getting PPPoE user by username: ${error.message}`);
         return null;

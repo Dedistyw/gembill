@@ -636,7 +636,7 @@
                                                             <th>Nama</th>
                                                             <th>Username</th>
                                                             <th>Telepon</th>
-                                                            <th>PPPoE Username</th>
+                                                            <th>Tipe Koneksi</th>
                                                             <th>Paket</th>
                                                             <th>PPPoE Profile</th>
                                                             <th>Auto Suspension</th>
@@ -667,8 +667,10 @@
                                                                             <%= customer.phone %>
                                                                         </a></td>
                                                                     <td>
-                                                                        <%= customer.pppoe_username || '-' %>
-                                                                    </td>
+                            <span class="badge bg-primary">
+                                <%= customer.connection_type ? customer.connection_type.toUpperCase() : 'PPPOE' %>
+                            </span>
+                        </td>
                                                                     <td>
                                                                         <%= customer.package_name || '-' %>
                                                                     </td>
@@ -804,9 +806,18 @@
                             <label for="username" class="form-label">Username *</label>
                             <input type="text" class="form-control" id="username" name="username" required
                                 placeholder="Akan otomatis terisi dari nama + tanggal (contoh: test_280825)">
-                            <small class="form-text text-muted">Username akan digunakan untuk login pelanggan dan
-                                payment gateway. Format otomatis: nama_DDMMYY</small>
+                            <small class="form-text text-muted">Username akan digunakan untuk login pelanggan dan payment gateway.</small>
                         </div>
+                        
+                        <div class="mb-3">
+                            <label for="connection_type" class="form-label">Tipe Koneksi *</label>
+                            <select class="form-select" id="connection_type" name="connection_type" required>
+                                <option value="pppoe" selected>PPPoE</option>
+                                <option value="hotspot">Hotspot</option>
+                                <option value="static">Statik (IP/DHCP)</option>
+                            </select>
+                        </div>
+                        
                         <div class="mb-3">
                             <label for="phone" class="form-label">Telepon *</label>
                             <input type="text" class="form-control" id="phone" name="phone" required>
@@ -816,29 +827,28 @@
                             <input type="email" class="form-control" id="email" name="email"
                                 placeholder="Akan otomatis terisi dari nama (contoh: test@gembok.com)">
                             <small class="form-text text-muted">Email akan digunakan untuk notifikasi. Format otomatis:
-                                nama@gembok.com</small>
+                                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddb3bcb0bc9dbab8b0bfb2b6f3beb2b0">[email&#160;protected]</a></small>
                         </div>
+                        <div id="container_pppoe" style="display: none;">
                         <div class="mb-3">
                             <label for="pppoe_username" class="form-label">PPPoE Username (opsional)</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="pppoe_username" name="pppoe_username"
-                                    placeholder="Ketik untuk mencari PPPoE username..." autocomplete="off">
-                                <button class="btn btn-outline-secondary" type="button" id="loadPppoeUsers"
-                                    title="Load PPPoE users from Mikrotik">
+                                <input type="text" class="form-control" id="pppoe_username" name="pppoe_username" placeholder="Ketik untuk mencari PPPoE username..." autocomplete="off">
+                                <button class="btn btn-outline-secondary" type="button" id="loadPppoeUsers" title="Load PPPoE users from Mikrotik">
                                     <i class="bi bi-arrow-clockwise"></i>
                                 </button>
                             </div>
                             <div id="pppoe_dropdown" class="pppoe-dropdown" style="display: none;">
-                                <!-- Custom dropdown will be loaded here -->
-                            </div>
-                            <small class="form-text text-muted">Klik tombol refresh untuk mengambil daftar PPPoE users
-                                dari Mikrotik</small>
+                                </div>
+                            <small class="form-text text-muted">Klik tombol refresh untuk mengambil daftar PPPoE users dari Mikrotik</small>
                         </div>
+                        
+                        </div> 
                         <div class="form-check mb-2">
                             <input class="form-check-input" type="checkbox" id="create_pppoe_user"
                                 name="create_pppoe_user">
                             <label class="form-check-label" for="create_pppoe_user">
-                                Buat user PPPoE di Mikrotik sekarang (pakai profile dari paket)
+                                Buat user di Mikrotik sekarang
                             </label>
                         </div>
                         <div class="row g-2 align-items-end mb-3" id="pppoe_password_row" style="display:none;">
@@ -855,7 +865,7 @@
                         </div>
 
                         <!-- Static IP Configuration Section -->
-                        <div class="card border-info mb-3">
+                        <div class="card border-info mb-3" id="container_static" style="display: none;">
                             <div class="card-header bg-light">
                                 <h6 class="mb-0"><i class="bi bi-ethernet me-2"></i>Konfigurasi IP Statik (Opsional)
                                 </h6>
@@ -1041,11 +1051,13 @@
                                 bisa ditambahkan nanti). Sub ODP ditandai dengan └─</small>
                         </div>
                         <div class="mb-3">
-                            <label for="pppoe_profile" class="form-label">PPPoE Profile</label>
-                            <input type="text" class="form-control" id="pppoe_profile" name="pppoe_profile"
-                                placeholder="Profile akan otomatis terisi sesuai paket">
-                            <small class="form-text text-muted">Profile PPPoE yang akan digunakan untuk pelanggan
-                                ini</small>
+                            <label for="pppoe_profile" class="form-label">PPPoE / Hotspot Profile</label>
+                        
+                            <select class="form-select" id="pppoe_profile" name="pppoe_profile"></select>
+                        
+                            <small class="form-text text-muted">
+                                Profile diambil langsung dari Mikrotik
+                            </small>
                         </div>
                         <div class="mb-3">
                             <label for="auto_suspension" class="form-label">Auto Suspension</label>
@@ -1089,11 +1101,18 @@
                         </div>
                         <div class="mb-3">
                             <label for="edit_username" class="form-label">Username *</label>
-                            <input type="text" class="form-control" id="edit_username" name="username" required
-                                placeholder="username untuk login dan payment gateway">
-                            <small class="form-text text-muted">Username akan digunakan untuk login pelanggan dan
-                                payment gateway. Harus unik dan tanpa spasi.</small>
+                            <input type="text" class="form-control" id="edit_username" name="username" required>
                         </div>
+                        
+                        <div class="mb-3">
+                            <label for="edit_connection_type" class="form-label">Tipe Koneksi *</label>
+                            <select class="form-select" id="edit_connection_type" name="connection_type" required>
+                                <option value="pppoe">PPPoE</option>
+                                <option value="hotspot">Hotspot</option>
+                                <option value="static">Statik (IP/DHCP)</option>
+                            </select>
+                        </div>
+                        
                         <div class="mb-3">
                             <label for="edit_phone" class="form-label">Telepon *</label>
                             <input type="text" class="form-control" id="edit_phone" name="phone" required>
@@ -1104,25 +1123,23 @@
                             <input type="email" class="form-control" id="edit_email" name="email"
                                 placeholder="customer@example.com">
                         </div>
+                        <div id="container_edit_pppoe" style="display: none;">
                         <div class="mb-3">
                             <label for="edit_pppoe_username" class="form-label">PPPoE Username</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="edit_pppoe_username" name="pppoe_username"
-                                    autocomplete="off" placeholder="Ketik untuk mencari PPPoE username...">
-                                <button class="btn btn-outline-secondary" type="button" id="loadEditPppoeUsers"
-                                    title="Load PPPoE users from Mikrotik">
+                                <input type="text" class="form-control" id="edit_pppoe_username" name="pppoe_username" autocomplete="off" placeholder="Ketik untuk mencari PPPoE username...">
+                                <button class="btn btn-outline-secondary" type="button" id="loadEditPppoeUsers" title="Load PPPoE users from Mikrotik">
                                     <i class="bi bi-arrow-clockwise"></i>
                                 </button>
                             </div>
                             <div id="edit_pppoe_dropdown" class="pppoe-dropdown" style="display: none;">
-                                <!-- Custom dropdown will be loaded here -->
-                            </div>
-                            <small class="form-text text-muted">Klik tombol refresh untuk mengambil daftar PPPoE users
-                                dari Mikrotik</small>
+                                </div>
+                            <small class="form-text text-muted">Klik tombol refresh untuk mengambil daftar PPPoE users dari Mikrotik</small>
                         </div>
-
+                    </div>
+                    
                         <!-- Static IP Configuration Section for Edit -->
-                        <div class="card border-info mb-3">
+                        <div class="card border-info mb-3" id="container_edit_static" style="display: none;">
                             <div class="card-header bg-light">
                                 <h6 class="mb-0"><i class="bi bi-ethernet me-2"></i>Konfigurasi IP Statik (Opsional)
                                 </h6>
@@ -1248,11 +1265,13 @@
                                 Sub ODP ditandai dengan └─</small>
                         </div>
                         <div class="mb-3">
-                            <label for="edit_pppoe_profile" class="form-label">PPPoE Profile</label>
-                            <input type="text" class="form-control" id="edit_pppoe_profile" name="pppoe_profile"
-                                placeholder="Profile akan otomatis terisi sesuai paket">
-                            <small class="form-text text-muted">Profile PPPoE yang akan digunakan untuk pelanggan
-                                ini</small>
+                            <label for="edit_pppoe_profile" class="form-label">PPPoE / Hotspot Profile</label>
+                        
+                            <select class="form-select" id="edit_pppoe_profile" name="pppoe_profile"></select>
+                        
+                            <small class="form-text text-muted">
+                                Profile diambil langsung dari Mikrotik
+                            </small>
                         </div>
                         <div class="mb-3">
                             <label for="edit_auto_suspension" class="form-label">Auto Suspension</label>
@@ -1382,7 +1401,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
@@ -1654,22 +1673,51 @@
         // Function to update profile field when package is selected
         function updateProfileField() {
             const packageSelect = document.getElementById('package_id');
-            const profileInput = document.getElementById('pppoe_profile');
-            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
-
+            const profileSelect = document.getElementById('pppoe_profile');
+        
+            if (!packageSelect || !profileSelect) return;
+        
+            const selectedOption =
+                packageSelect.options[packageSelect.selectedIndex];
+        
             if (selectedOption && selectedOption.dataset.profile) {
-                profileInput.value = selectedOption.dataset.profile;
+        
+                const targetProfile =
+                    selectedOption.dataset.profile;
+        
+                console.log('[PACKAGE->PROFILE]', {
+                    package: selectedOption.text,
+                    profile: targetProfile
+                });
+        
+                profileSelect.value = targetProfile;
             }
         }
 
         // Function to update profile field in edit modal
         function updateEditProfileField() {
-            const packageSelect = document.getElementById('edit_package_id');
-            const profileInput = document.getElementById('edit_pppoe_profile');
-            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
-
+            const packageSelect =
+                document.getElementById('edit_package_id');
+        
+            const profileSelect =
+                document.getElementById('edit_pppoe_profile');
+        
+            if (!packageSelect || !profileSelect) return;
+        
+            const selectedOption =
+                packageSelect.options[packageSelect.selectedIndex];
+        
             if (selectedOption && selectedOption.dataset.profile) {
-                profileInput.value = selectedOption.dataset.profile;
+        
+                const targetProfile =
+                    selectedOption.dataset.profile;
+        
+                console.log('[EDIT-PACKAGE->PROFILE]', {
+                    package: selectedOption.text,
+                    profile: targetProfile
+                });
+        
+                profileSelect.value = targetProfile;
             }
         }
 
@@ -1847,8 +1895,9 @@
         $('#addCustomerModal').on('shown.bs.modal', function () {
             console.log('🔄 Add customer modal opened, loading PPPoE users...');
             loadPppoeUsers();
+            loadPPPoEProfiles('#pppoe_profile', 'default');
         });
-
+        
         // Load PPPoE users for edit form
         function loadEditPppoeUsers() {
             const loadBtn = $('#loadEditPppoeUsers');
@@ -1994,66 +2043,16 @@
             console.log('📋 Dropdown position:', dropdown.position());
             console.log('📋 Dropdown offset:', dropdown.offset());
         };
-
-        // Force show dropdown for debugging
-        window.forceShowDropdown = function () {
-            console.log('🧪 Force showing dropdown...');
-
-            const dropdown = $('#pppoe_dropdown');
-            const input = $('#pppoe_username');
-
-            // Add some test content
-            dropdown.html(`
-                <div class="pppoe-dropdown-item" style="background: yellow; padding: 10px;">
-                    <strong>TEST DROPDOWN - SHOULD BE VISIBLE</strong>
-                </div>
-                <div class="pppoe-dropdown-item" style="background: lightgreen; padding: 10px;">
-                    <span class="username">test-user-1</span>
-                    <span class="status active">Aktif</span>
-                </div>
-                <div class="pppoe-dropdown-item" style="background: lightblue; padding: 10px;">
-                    <span class="username">test-user-2</span>
-                    <span class="status inactive">Tidak Aktif</span>
-                </div>
-            `);
-
-            // Calculate position
-            const inputOffset = input.offset();
-            const inputHeight = input.outerHeight();
-
-            // Force show with fixed positioning
-            dropdown.css({
-                'position': 'fixed',
-                'top': (inputOffset.top + inputHeight + 5) + 'px',
-                'left': inputOffset.left + 'px',
-                'width': input.outerWidth() + 'px',
-                'display': 'block',
-                'z-index': '99999',
-                'background': 'red',
-                'border': '5px solid blue',
-                'height': '200px'
-            });
-
-            console.log('📋 Dropdown forced visible with test content');
-            console.log('📋 Position:', {
-                top: inputOffset.top + inputHeight + 5,
-                left: inputOffset.left,
-                width: input.outerWidth()
-            });
-            console.log('📋 Check if you can see a red box with blue border below the input field');
-        };
-
         // Load PPPoE users button click for edit form
         $('#loadEditPppoeUsers').on('click', function () {
             loadEditPppoeUsers();
         });
-
-        // Auto-load PPPoE users when edit modal opens
+        // EDIT modal → saat dibuka
         $('#editCustomerModal').on('shown.bs.modal', function () {
+            const current = $('#edit_pppoe_profile').data('selected') || 'default';
             console.log('🔄 Edit modal opened, loading PPPoE users...');
-            loadEditPppoeUsers();
+            loadPPPoEProfiles('#edit_pppoe_profile', current);
         });
-
         // Edit Customer Form - PPPoE Username Input Events
         $('#edit_pppoe_username').on('input focus', function () {
             if (pppoeUsers.length > 0) {
@@ -2161,7 +2160,13 @@
                 showToast('error', 'Username hanya boleh berisi huruf kecil, angka, dan underscore');
                 return;
             }
-            if (createPppoe && !pppoeUser) {
+            const connectionType = $('#connection_type').val();
+
+            if (
+                createPppoe &&
+                connectionType === 'pppoe' &&
+                !pppoeUser
+            ) {
                 showToast('error', 'Isi PPPoE Username jika ingin membuat user di Mikrotik');
                 return;
             }
@@ -2175,6 +2180,7 @@
                 name: name,
                 username: username,
                 phone: phone,
+                connection_type: $('#connection_type').val(),
                 email: $('#email').val().trim(),
                 pppoe_username: pppoeUser,
                 address: $('#address').val().trim(),
@@ -2253,12 +2259,26 @@
                         $('#edit_phone').val(customer.phone).data('original-phone', customer.phone);
                         $('#edit_email').val(customer.email || '');
                         $('#edit_pppoe_username').val(customer.pppoe_username || '');
+                        $('#edit_connection_type')
+                        .val(customer.connection_type || 'pppoe')
+                        .trigger('change');
                         $('#edit_address').val(customer.address || '');
                         $('#edit_latitude').val(customer.latitude || '');
                         $('#edit_longitude').val(customer.longitude || '');
                         $('#edit_package_id').val(customer.package_id || '');
+                        console.log('[EDIT-CUSTOMER]', {
+                                package_id: customer.package_id,
+                                profile: customer.pppoe_profile
+                            });
+                        loadPPPoEProfiles(
+                            '#edit_pppoe_profile',
+                            customer.pppoe_profile || 'default'
+                        );
+                        
                         $('#edit_odp_id').val(customer.odp_id || '');
-                        $('#edit_pppoe_profile').val(customer.pppoe_profile || '');
+                        $('#edit_connection_type')
+                        .val(customer.connection_type || 'pppoe')
+                        .trigger('change');
                         $('#edit_auto_suspension').val(customer.auto_suspension !== undefined ? customer.auto_suspension : 1);
                         $('#edit_status').val(customer.status);
                         $('#edit_billing_day').val((function () {
@@ -2331,6 +2351,7 @@
             const formData = {
                 name: name,
                 username: username,
+                connection_type: $('#edit_connection_type').val(),
                 phone: phone,
                 email: safeVal('#edit_email'),
                 pppoe_username: safeVal('#edit_pppoe_username'),
@@ -3083,13 +3104,172 @@
                 emailInput.value = processedName + '@gembok.com';
             }
         }
+        
+        // Fetch and populate PPPoE Profiles from Mikrotik
+        function loadPPPoEProfiles(selectSelector, selectedValue = 'default') {
+            const sel = document.querySelector(selectSelector);
+            if (!sel) return;
+        
+            sel.innerHTML = '<option>Loading...</option>';
+        
+            Promise.all([
+                fetch('/admin/mikrotik/profiles/api').then(r => r.json()),
+                fetch('/admin/mikrotik/hotspot-profiles/api').then(r => r.json())
+            ])
+            .then(([pppoeData, hotspotData]) => {
+            
+                // 🔥 DEBUG LOG RAW RESPONSE
+                console.log('[PPPOE API RAW]', pppoeData);
+                console.log('[HOTSPOT API RAW]', hotspotData);
+            
+                // 🔥 SAFETY CHECK PPPoE
+                const pppoe = (pppoeData && pppoeData.success && Array.isArray(pppoeData.profiles))
+                    ? pppoeData.profiles : [];
+            
+                if (!pppoeData || !pppoeData.success) {
+                    console.warn('[PPPOE API INVALID]', pppoeData);
+                }
+            
+                // 🔥 SAFETY CHECK HOTSPOT
+                const hotspot = (hotspotData && hotspotData.success && Array.isArray(hotspotData.profiles))
+                    ? hotspotData.profiles : [];
+            
+                if (!hotspotData || !hotspotData.success) {
+                    console.warn('[HOTSPOT API INVALID]', hotspotData);
+                }
+            
+                // 🔥 COMBINE NAMES
+                const all = [
+                    ...pppoe.map(p => p.name),
+                    ...hotspot.map(p => p.name)
+                ].filter(Boolean);
+            
+                const names = Array.from(new Set(all));
+            
+                // fallback default wajib ada
+                if (!names.includes('default')) names.unshift('default');
+            
+                console.log('[PPPOE+HOTSPOT PROFILES MERGED]', names);
+                sel.innerHTML = '';
+        
+                names.forEach(name => {
+                    const opt = document.createElement('option');
+                    opt.value = name;
+                    opt.textContent = name;
+                    sel.appendChild(opt);
+                });
+        
+                sel.value = selectedValue || 'default';
+            })
+            .catch(err => {
+                console.error('Gagal load profiles:', err);
+                sel.innerHTML = '<option value="default">default</option>';
+            });
+        }
     </script>
-
-
-
-
     <!-- Mobile Bottom Navbar -->
     <%- include('../../partials/admin-mobile-navbar', { currentPage: 'customers' }) %>
-</body>
+    <script>
+        $(document).ready(function() {
+            
+            // Load profile Mikrotik saat halaman dibuka
+            loadPPPoEProfiles('#pppoe_profile');
+            loadPPPoEProfiles('#edit_pppoe_profile');
+            // ==========================
+            // LOGIKA UNTUK FORM TAMBAH PELANGGAN
+            // ==========================
+            function handleAddFormFlow() {
+                const type = $('#connection_type').val();
+                const mainUsername = $('#username').val();
 
+                if (type === 'pppoe') {
+
+                    $('#container_pppoe').show();
+                    $('#container_static').hide();
+                
+                    $('#pppoe_username').val(mainUsername);
+                
+                }
+                else if (type === 'hotspot') {
+                
+                    $('#container_pppoe').hide();
+                    $('#container_static').hide();
+                
+                    $('#pppoe_username').val('');
+                
+                }
+                else if (type === 'static') {
+                
+                    $('#container_pppoe').hide();
+                    $('#container_static').show();
+                
+                    $('#pppoe_username').val('');
+                
+                }
+            }
+
+            // Trigger saat tipe koneksi diubah
+            $('#connection_type').on('change', function() {
+                handleAddFormFlow();
+                loadPPPoEProfiles('#pppoe_profile');
+
+                setTimeout(() => {
+                    updateProfileField();
+                }, 500);
+            });
+
+            // Jalankan sinkronisasi secara real-time saat username utama diketik (jika PPPoE)
+            $('#username').on('input', function() {
+                if ($('#connection_type').val() === 'pppoe') {
+                    $('#pppoe_username').val($(this).val());
+                }
+            });
+
+            // Jalankan fungsi awal saat halaman selesai dimuat
+            handleAddFormFlow();
+
+
+            // ==========================================
+            // LOGIKA UNTUK FORM EDIT PELANGGAN
+            // ==========================================
+            function handleEditFormFlow() {
+                const type = $('#edit_connection_type').val();
+                const mainUsername = $('#edit_username').val();
+
+                if (type === 'pppoe') {
+                    $('#container_edit_pppoe').show();
+                    $('#container_edit_static').hide();
+                    $('#edit_pppoe_username').val(mainUsername);
+                } else if (type === 'hotspot') {
+                    $('#container_edit_pppoe').hide();
+                    $('#container_edit_static').hide();
+                    $('#edit_pppoe_username').val('');
+                    $('#container_edit_static input').val('');
+                } else if (type === 'static') {
+                    $('#container_edit_pppoe').hide();
+                    $('#container_edit_static').show();
+                    $('#edit_pppoe_username').val('');
+                }
+            }
+
+            // Trigger saat tipe koneksi di modal edit diubah
+            $('#edit_connection_type').on('change', function() {
+                handleEditFormFlow();
+            });
+
+            // Jalankan sinkronisasi saat edit_username diketik
+            $('#edit_username').on('input', function() {
+                if ($('#edit_connection_type').val() === 'pppoe') {
+                    $('#edit_pppoe_username').val($(this).val());
+                }
+            });
+        });
+    </script>
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+</body>
 </html>

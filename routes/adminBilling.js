@@ -2856,8 +2856,21 @@ router.get('/customers', getAppSettings, async (req, res) => {
 
 router.post('/customers', async (req, res) => {
     try {
-        const { name, username, phone, pppoe_username, email, address, package_id, odp_id, pppoe_profile, auto_suspension, billing_day, create_pppoe_user, pppoe_password, static_ip, assigned_ip, mac_address, latitude, longitude, cable_type, cable_length, port_number, cable_status, cable_notes } = req.body;
-
+        // 1. BONGKAR DATA MURNI SAJA (Tanpa Logika)
+        const { 
+            name, username, phone, pppoe_username, connection_type, 
+            email, address, package_id, odp_id, pppoe_profile, 
+            auto_suspension, billing_day, create_pppoe_user, pppoe_password, 
+            static_ip, assigned_ip, mac_address, latitude, longitude, 
+            cable_type, cable_length, port_number, cable_status, cable_notes 
+        } = req.body;
+        logger.info('[HOTSPOT DEBUG]', {
+            username,
+            connection_type,
+            create_pppoe_user,
+            pppoe_username,
+            pppoe_profile
+        });
         // Validate required fields
         if (!name || !username || !phone || !package_id) {
             return res.status(400).json({
@@ -2881,11 +2894,15 @@ router.post('/customers', async (req, res) => {
             profileToUse = packageData?.pppoe_profile || 'default';
         }
 
+        // 2. TERAPKAN LOGIKANYA DI SINI
         const customerData = {
             name,
             username,
             phone,
-            pppoe_username,
+            // Beri default 'pppoe' jika kosong
+            connection_type: connection_type || 'pppoe', 
+            // Paksa pppoe_username menjadi null jika tipenya hotspot/static
+            pppoe_username: (connection_type === 'hotspot' || connection_type === 'static') ? null : pppoe_username,
             email,
             address,
             package_id,
@@ -2923,34 +2940,95 @@ router.post('/customers', async (req, res) => {
             logger.error('Error sending welcome message:', notificationError);
             // Don't fail customer creation if notification fails
         }
-
-        // Optional: create PPPoE user in Mikrotik
-        let pppoeCreate = { attempted: false, created: false, message: '' };
+        // Optional: create user in Mikrotik (PPPoE / Hotspot)
+        // Catatan: Kita tetap menggunakan nama variabel pppoeCreate agar tidak merusak res.json di bawahnya
+        let pppoeCreate = { attempted: false, created: false, message: '' }; 
+        
         try {
             const shouldCreate = create_pppoe_user === 1 || create_pppoe_user === '1' || create_pppoe_user === true || create_pppoe_user === 'true';
-            if (shouldCreate && pppoe_username) {
+            
+            logger.info('[CREATE-USER-DEBUG]', {
+                create_pppoe_user,
+                connection_type,
+                username,
+                pppoe_username
+            });
+            if (shouldCreate) {
                 pppoeCreate.attempted = true;
-                // determine profile (already computed as profileToUse)
-                const passwordToUse = (pppoe_password && String(pppoe_password).trim())
-                    ? String(pppoe_password).trim()
-                    : (Math.random().toString(36).slice(-8) + Math.floor(Math.random() * 10));
-
-                const { addPPPoEUser } = require('../config/mikrotik');
-                const addRes = await addPPPoEUser({ username: pppoe_username, password: passwordToUse, profile: profileToUse });
-                if (addRes && addRes.success) {
-                    pppoeCreate.created = true;
-                    pppoeCreate.message = 'User PPPoE berhasil dibuat di Mikrotik';
+                
+                const {
+                    addPPPoEUser,
+                    addHotspotUser
+                } = require('../config/mikrotik');
+                // Generate password pppoe
+                const passwordToUse =
+                    connection_type === 'pppoe'
+                        ? pppoe_username
+                        : username;
+                // Percabangan berdasarkan Tipe Koneksi
+                // log sementara cek conn_type
+                logger.info('[DEBUG]', {
+                    connection_type,
+                    username,
+                    pppoe_username,
+                    profileToUse,
+                    shouldCreate
+                });
+                if (connection_type === 'hotspot') {
+                    logger.info('[HOTSPOT-CREATE]', {
+                        username,
+                        passwordToUse,
+                        profileToUse
+                    });
+                
+                    const addRes = await addHotspotUser(
+                        username,
+                        passwordToUse,
+                        profileToUse
+                    );
+                
+                    logger.info('[HOTSPOT-RESULT]', addRes);
+                
+                    if (addRes && addRes.success) {
+                        pppoeCreate.created = true;
+                        pppoeCreate.message = 'User Hotspot berhasil dibuat di Mikrotik';
+                    } else {
+                        pppoeCreate.message =
+                            addRes?.message || 'Gagal membuat user Hotspot';
+                    }
                 } else {
-                    pppoeCreate.created = false;
-                    pppoeCreate.message = (addRes && addRes.message) ? addRes.message : 'Gagal membuat user PPPoE';
+                    // Eksekusi PPPoE (Sebagai default fallback)
+                    if (pppoe_username) {
+                        logger.info('[PPPOE-CREATE]', {
+                            username: pppoe_username,
+                            password: passwordToUse,
+                            profile: profileToUse
+                        });
+                    
+                        const addRes = await addPPPoEUser({
+                            username: pppoe_username,
+                            password: passwordToUse,
+                            profile: profileToUse
+                        });
+                    
+                        logger.info('[PPPOE-RESULT]', addRes);
+                    
+                        if (addRes && addRes.success) {
+                            pppoeCreate.created = true;
+                            pppoeCreate.message = 'User PPPoE berhasil dibuat di Mikrotik';
+                        } else {
+                            pppoeCreate.message =
+                                addRes?.message || 'Gagal membuat user PPPoE';
+                        }
+                    }
                 }
             }
         } catch (e) {
-            logger.warn('Gagal membuat user PPPoE di Mikrotik (opsional): ' + e.message);
+            logger.warn('Gagal membuat user di Mikrotik (opsional): ' + e.message);
             pppoeCreate.created = false;
             pppoeCreate.message = e.message;
         }
-
+        
         res.json({
             success: true,
             message: 'Pelanggan berhasil ditambahkan',
@@ -3102,7 +3180,12 @@ router.get('/customers/:username/debug', getAppSettings, async (req, res) => {
             success: true,
             customer: customer,
             invoices: invoices,
-            packages: packages,
+            packages: packages.map(p => ({
+                id: p.id,
+                name: p.name,
+                price: p.price,
+                pppoe_profile: p.pppoe_profile || 'default'
+            })),
             message: 'Debug data loaded successfully'
         });
     } catch (error) {
@@ -3156,7 +3239,7 @@ router.get('/customers/:username/test', async (req, res) => {
 router.put('/customers/:phone', async (req, res) => {
     try {
         const { phone } = req.params;
-        const { name, username, pppoe_username, email, address, package_id, odp_id, pppoe_profile, status, auto_suspension, billing_day, latitude, longitude, static_ip, assigned_ip, mac_address, cable_type, cable_length, port_number, cable_status, cable_notes } = req.body;
+        const { name, username, pppoe_username, connection_type, email, address, package_id, odp_id, pppoe_profile, status, auto_suspension, billing_day, latitude, longitude, static_ip, assigned_ip, mac_address, cable_type, cable_length, port_number, cable_status, cable_notes } = req.body;
 
 
         // Validate required fields
@@ -3200,8 +3283,11 @@ router.put('/customers/:phone', async (req, res) => {
             name: name,
             username: username,
             phone: newPhone,
-            pppoe_username: pppoe_username || currentCustomer.pppoe_username,
-            email: email || currentCustomer.email,
+            pppoe_username:
+            connection_type === 'pppoe'
+                ? (pppoe_username || currentCustomer.pppoe_username)
+                : null,
+            connection_type: connection_type || 'pppoe', email: email || currentCustomer.email,
             address: address || currentCustomer.address,
             package_id: package_id,
             odp_id: odp_id !== undefined ? odp_id : currentCustomer.odp_id,
@@ -3229,22 +3315,71 @@ router.put('/customers/:phone', async (req, res) => {
         // Use current phone for lookup, allow phone to be updated in customerData
         const result = await billingManager.updateCustomerByPhone(phone, customerData);
 
-        // Jika update berhasil dan customer memiliki PPPoE, update profil di Mikrotik
-        if (result && customerData.pppoe_username) {
+        // Jika update database berhasil, sinkronisasi data ke Mikrotik
+        if (result) {
             try {
-                // Cek apakah paket benar-benar berubah
                 const updatedCustomer = await billingManager.getCustomerByPhone(customerData.phone || phone);
-                if (updatedCustomer && updatedCustomer.package_id !== currentCustomer.package_id) {
-                    logger.info(`[BILLING] Package changed for ${updatedCustomer.username}, updating Mikrotik PPPoE profile...`);
-                    await serviceSuspension.restoreCustomerService(updatedCustomer, 'Package changed');
-                    logger.info(`[BILLING] Mikrotik PPPoE profile updated successfully for ${updatedCustomer.username}`);
+                
+                // Kita hanya memproses sinkronisasi Mikrotik jika data memiliki pppoe_username
+                if (updatedCustomer && updatedCustomer.pppoe_username) {
+                    logger.info(`[BILLING] Syncing Mikrotik PPPoE data for ${updatedCustomer.username}...`);
+                    
+                    const mikrotik = require('../config/mikrotik');
+                    
+                    // 1. Definisikan username lama dan username baru
+                    const oldUsername = currentCustomer.pppoe_username;
+                    const newUsername = updatedCustomer.pppoe_username;
+                    const targetProfile = updatedCustomer.pppoe_profile;
+        
+                    if (oldUsername) {
+                        const mkUser = await mikrotik.getPPPoEUserByUsername(oldUsername);
+                    
+                        logger.info('[PPPOE-LOOKUP]', {
+                            oldUsername,
+                            newUsername,
+                            mkUser
+                        });
+                    
+                        if (mkUser && (mkUser.id || mkUser['.id'])) {
+                    
+                            logger.info('[PPPOE-EDIT]', {
+                                id: mkUser.id || mkUser['.id'],
+                                oldUsername,
+                                newUsername,
+                                targetProfile
+                            });
+                    
+                            const editRes = await mikrotik.editPPPoEUser({
+                            id: mkUser.id || mkUser['.id'],
+                            username: newUsername,
+                            password: newUsername,
+                            profile: targetProfile
+                        });
+                        
+                        logger.info('[PPPOE-EDIT-RESULT]', editRes);
+                    
+                        } else {
+                    
+                            logger.info('[PPPOE-CREATE-BARU]', {
+                                newUsername,
+                                targetProfile
+                            });
+                    
+                            const addRes = await mikrotik.addPPPoEUser({
+                            username: newUsername,
+                            password: newUsername,
+                            profile: targetProfile
+                        });
+                        
+                        logger.info('[PPPOE-CREATE-RESULT]', addRes);
+                    
+                        }
+                    }
                 }
             } catch (mikrotikError) {
-                logger.error(`[BILLING] Failed to update Mikrotik profile for ${customerData.username}:`, mikrotikError.message);
-                // Jangan gagal kan update customer jika Mikrotik error
+                logger.error(`[BILLING] Failed to sync Mikrotik for ${customerData.username}:`, mikrotikError.message);
             }
         }
-
         res.json({
             success: true,
             message: 'Pelanggan berhasil diupdate',
