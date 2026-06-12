@@ -20760,3 +20760,81 @@
 }
 [2026-06-07 10:50:42] [ERROR] Mikrotik PPPoE restoration failed for coba_ppedit2: - missing =.id=
 [2026-06-07 22:24:34] [ERROR] Error adding hotspot user: input does not match any value of profile
+[2026-06-09 07:09:20] [ERROR] Error updating customer:
+{
+  "name": "ReferenceError",
+  "message": "connection_type is not defined",
+  "stack": "ReferenceError: connection_type is not defined\n    at /root/gembill/config/billing.js:1417:21"
+}
+[2026-06-09 10:21:49] [ERROR] Error updating customer:
+{
+  "name": "ReferenceError",
+  "message": "connection_type is not defined",
+  "stack": "ReferenceError: connection_type is not defined\n    at /root/gembill/config/billing.js:1417:21"
+}
+[2026-06-09 10:22:40] [ERROR] Error updating customer:
+{
+  "name": "ReferenceError",
+  "message": "connection_type is not defined",
+  "stack": "ReferenceError: connection_type is not defined\n    at /root/gembill/config/billing.js:1417:21"
+}
+[2026-06-10 06:18:00] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-06-10 06:18:09] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-06-10 06:18:27] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-06-10 06:26:08] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-06-10 10:06:28] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-06-10 15:07:12] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-06-10 15:17:53] [ERROR] Error deleting invoice:
+{
+  "name": "TypeError",
+  "message": "Cannot read properties of undefined (reading 'invoice_number')",
+  "stack": "TypeError: Cannot read properties of undefined (reading 'invoice_number')\n    at /root/gembill/routes/adminBilling.js:3699:56"
+}
+[2026-06-10 15:20:47] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "SQLITE_CONSTRAINT: FOREIGN KEY constraint failed",
+  "stack": "Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed"
+}
+[2026-06-10 22:43:29] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "Invoice sudah memiliki pembayaran dan tidak dapat dihapus",
+  "stack": "Error: Invoice sudah memiliki pembayaran dan tidak dapat dihapus\n    at Statement.<anonymous> (/root/gembill/config/billing.js:1941:29)\n    at Statement.replacement (/root/gembill/node_modules/sqlite3/lib/trace.js:25:27)\n    at Statement.replacement (/root/gembill/node_modules/sqlite3/lib/trace.js:25:27)"
+}
+[2026-06-10 22:44:27] [ERROR] Error deleting invoice:
+{
+  "name": "Error",
+  "message": "Invoice sudah memiliki pembayaran dan tidak dapat dihapus",
+  "stack": "Error: Invoice sudah memiliki pembayaran dan tidak dapat dihapus\n    at Statement.<anonymous> (/root/gembill/config/billing.js:1941:29)\n    at Statement.replacement (/root/gembill/node_modules/sqlite3/lib/trace.js:25:27)\n    at Statement.replacement (/root/gembill/node_modules/sqlite3/lib/trace.js:25:27)"
+}

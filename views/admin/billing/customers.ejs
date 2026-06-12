@@ -638,7 +638,7 @@
                                                             <th>Telepon</th>
                                                             <th>Tipe Koneksi</th>
                                                             <th>Paket</th>
-                                                            <th>PPPoE Profile</th>
+                                                            <th>Mikrotik Profile</th>
                                                             <th>Auto Suspension</th>
                                                             <th>Status Pelanggan</th>
                                                             <th>Status Pembayaran</th>
@@ -745,7 +745,6 @@
                                 </main>
         </div>
     </div>
-
     <script>
         // Update summary cards dynamically
         function updateSummaryCards(data) {
@@ -767,7 +766,6 @@
                 console.warn('Failed to update summary cards:', e);
             }
         }
-
         async function fetchSummary() {
             try {
                 const resp = await fetch('/admin/billing/customers/summary');
@@ -779,13 +777,11 @@
                 console.warn('Failed to fetch summary:', e);
             }
         }
-
         document.addEventListener('DOMContentLoaded', () => {
             fetchSummary();
             setInterval(fetchSummary, 5000);
         });
     </script>
-
     <!-- Add Customer Modal -->
     <div class="modal fade" id="addCustomerModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -808,7 +804,17 @@
                                 placeholder="Akan otomatis terisi dari nama + tanggal (contoh: test_280825)">
                             <small class="form-text text-muted">Username akan digunakan untuk login pelanggan dan payment gateway.</small>
                         </div>
-                        
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Telepon *</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Akan otomatis terisi dari nama (contoh: test@35K.com)">
+                            <small class="form-text text-muted">Email akan digunakan untuk notifikasi. Format otomatis:
+                                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddb3bcb0bc9dbab8b0bfb2b6f3beb2b0">[email&#160;protected]</a></small>
+                        </div>
                         <div class="mb-3">
                             <label for="connection_type" class="form-label">Tipe Koneksi *</label>
                             <select class="form-select" id="connection_type" name="connection_type" required>
@@ -817,17 +823,24 @@
                                 <option value="static">Statik (IP/DHCP)</option>
                             </select>
                         </div>
-                        
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Telepon *</label>
-                            <input type="text" class="form-control" id="phone" name="phone" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Akan otomatis terisi dari nama (contoh: test@gembok.com)">
-                            <small class="form-text text-muted">Email akan digunakan untuk notifikasi. Format otomatis:
-                                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddb3bcb0bc9dbab8b0bfb2b6f3beb2b0">[email&#160;protected]</a></small>
+                            <label for="package_id" class="form-label">Paket *</label>
+                            <select class="form-control" id="package_id" name="package_id"
+                                onchange="updateProfileField()" required>
+                                <option value="">Pilih Paket</option>
+                                <% if (packages && packages.length> 0) { %>
+                                    <% packages.forEach(function(package) { %>
+                                        <option value="<%= package.id %>"
+                                            data-profile="<%= package.pppoe_profile || 'default' %>">
+                                            <%= package.name %> - Rp <%=
+                                                    parseFloat(package.price).toLocaleString('id-ID') %>
+                                        </option>
+                                        <% }); %>
+                                            <% } %>
+                            </select>
+                            <small class="form-text text-muted">
+                                Profile diambil langsung dari Mikrotik
+                            </small>
                         </div>
                         <div id="container_pppoe" style="display: none;">
                         <div class="mb-3">
@@ -842,8 +855,7 @@
                                 </div>
                             <small class="form-text text-muted">Klik tombol refresh untuk mengambil daftar PPPoE users dari Mikrotik</small>
                         </div>
-                        
-                        </div> 
+                        </div>
                         <div class="form-check mb-2">
                             <input class="form-check-input" type="checkbox" id="create_pppoe_user"
                                 name="create_pppoe_user">
@@ -863,7 +875,6 @@
                                     id="genPppoePassBtn">Generate</button>
                             </div>
                         </div>
-
                         <!-- Static IP Configuration Section -->
                         <div class="card border-info mb-3" id="container_static" style="display: none;">
                             <div class="card-header bg-light">
@@ -913,7 +924,67 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Alamat</label>
+                            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="latitude" class="form-label">Latitude (Koordinat)</label>
+                                    <input type="number" class="form-control" id="latitude" name="latitude"
+                                        step="0.00000001" placeholder="-6.2088">
+                                    <small class="text-muted">Contoh: -6.2088 (Jakarta)</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="longitude" class="form-label">Longitude (Koordinat)</label>
+                                    <input type="number" class="form-control" id="longitude" name="longitude"
+                                        step="0.00000001" placeholder="106.8456">
+                                    <small class="text-muted">Contoh: 106.8456 (Jakarta)</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                                <button type="button" class="btn btn-success" onclick="getCurrentLocation()"
+                                    id="gpsButton">
+                                    <i class="bx bx-location-plus me-1"></i> <span class="btn-text">Ambil Lokasi
+                                        GPS</span>
+                                </button>
+                                <button type="button" class="btn btn-outline-primary" onclick="openMapPicker()">
+                                    <i class="bx bx-map me-1"></i> Pilih dari Peta
+                                </button>
+                            </div>
+                            <small class="text-muted mt-1 d-block">
+                                <i class="bi bi-info-circle me-1"></i>
+                                GPS: Pastikan perangkat di area terbuka untuk akurasi terbaik
+                            </small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="odp_id" class="form-label">ODP (Optical Distribution Point)</label>
+                            <select class="form-control" id="odp_id" name="odp_id">
+                                <option value="">Pilih ODP (Opsional)</option>
+                                <% if (odps && odps.length> 0) { %>
+                                    <% odps.forEach(function(odp) { %>
+                                        <option value="<%= odp.id %>" data-capacity="<%= odp.capacity %>"
+                                            data-used="<%= odp.used_ports %>">
+                                            <% if (odp.parent_name) { %>
+                                                └─ <%= odp.name %> (<%= odp.code %>) - <%= odp.used_ports %>/<%=
+                                                                odp.capacity %> ports
+                                                                <% } else { %>
+                                                                    <%= odp.name %> (<%= odp.code %>) - <%=
+                                                                                odp.used_ports %>/<%= odp.capacity %>
+                                                                                    ports
+                                                                                    <% } %>
+                                        </option>
+                                        <% }); %>
+                                            <% } %>
+                            </select>
+                            <small class="form-text text-muted">Pilih ODP tempat pelanggan akan disambungkan (opsional,
+                                bisa ditambahkan nanti). Sub ODP ditandai dengan └─</small>
+                        </div>
                         <!-- Cable Connection Section -->
                         <div class="card border-success mb-3">
                             <div class="card-header bg-light">
@@ -972,93 +1043,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Alamat</label>
-                            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="latitude" class="form-label">Latitude (Koordinat)</label>
-                                    <input type="number" class="form-control" id="latitude" name="latitude"
-                                        step="0.00000001" placeholder="-6.2088">
-                                    <small class="text-muted">Contoh: -6.2088 (Jakarta)</small>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="longitude" class="form-label">Longitude (Koordinat)</label>
-                                    <input type="number" class="form-control" id="longitude" name="longitude"
-                                        step="0.00000001" placeholder="106.8456">
-                                    <small class="text-muted">Contoh: 106.8456 (Jakarta)</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                                <button type="button" class="btn btn-success" onclick="getCurrentLocation()"
-                                    id="gpsButton">
-                                    <i class="bx bx-location-plus me-1"></i> <span class="btn-text">Ambil Lokasi
-                                        GPS</span>
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" onclick="openMapPicker()">
-                                    <i class="bx bx-map me-1"></i> Pilih dari Peta
-                                </button>
-                            </div>
-                            <small class="text-muted mt-1 d-block">
-                                <i class="bi bi-info-circle me-1"></i>
-                                GPS: Pastikan perangkat di area terbuka untuk akurasi terbaik
-                            </small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="package_id" class="form-label">Paket *</label>
-                            <select class="form-control" id="package_id" name="package_id"
-                                onchange="updateProfileField()" required>
-                                <option value="">Pilih Paket</option>
-                                <% if (packages && packages.length> 0) { %>
-                                    <% packages.forEach(function(package) { %>
-                                        <option value="<%= package.id %>"
-                                            data-profile="<%= package.pppoe_profile || 'default' %>">
-                                            <%= package.name %> - Rp <%=
-                                                    parseFloat(package.price).toLocaleString('id-ID') %>
-                                        </option>
-                                        <% }); %>
-                                            <% } %>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="odp_id" class="form-label">ODP (Optical Distribution Point)</label>
-                            <select class="form-control" id="odp_id" name="odp_id">
-                                <option value="">Pilih ODP (Opsional)</option>
-                                <% if (odps && odps.length> 0) { %>
-                                    <% odps.forEach(function(odp) { %>
-                                        <option value="<%= odp.id %>" data-capacity="<%= odp.capacity %>"
-                                            data-used="<%= odp.used_ports %>">
-                                            <% if (odp.parent_name) { %>
-                                                └─ <%= odp.name %> (<%= odp.code %>) - <%= odp.used_ports %>/<%=
-                                                                odp.capacity %> ports
-                                                                <% } else { %>
-                                                                    <%= odp.name %> (<%= odp.code %>) - <%=
-                                                                                odp.used_ports %>/<%= odp.capacity %>
-                                                                                    ports
-                                                                                    <% } %>
-                                        </option>
-                                        <% }); %>
-                                            <% } %>
-                            </select>
-                            <small class="form-text text-muted">Pilih ODP tempat pelanggan akan disambungkan (opsional,
-                                bisa ditambahkan nanti). Sub ODP ditandai dengan └─</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pppoe_profile" class="form-label">PPPoE / Hotspot Profile</label>
-                        
-                            <select class="form-select" id="pppoe_profile" name="pppoe_profile"></select>
-                        
-                            <small class="form-text text-muted">
-                                Profile diambil langsung dari Mikrotik
-                            </small>
-                        </div>
                         <div class="mb-3">
                             <label for="auto_suspension" class="form-label">Auto Suspension</label>
                             <select class="form-control" id="auto_suspension" name="auto_suspension">
@@ -1069,11 +1053,11 @@
                                 bayar</small>
                         </div>
                         <div class="mb-3">
-                            <label for="billing_day" class="form-label">Tanggal Penagihan (1-28)</label>
+                            <label for="billing_day" class="form-label">Tanggal Penagihan (1-30)</label>
                             <input type="number" class="form-control" id="billing_day" name="billing_day" min="1"
-                                max="28" value="15">
+                                max="30" value="10">
                             <small class="form-text text-muted">Tanggal jatuh tempo tagihan setiap bulan. Nilai di luar
-                                28 akan disesuaikan.</small>
+                                30 akan disesuaikan.</small>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -1084,7 +1068,6 @@
             </div>
         </div>
     </div>
-
     <!-- Edit Customer Modal -->
     <div class="modal fade" id="editCustomerModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -1103,16 +1086,6 @@
                             <label for="edit_username" class="form-label">Username *</label>
                             <input type="text" class="form-control" id="edit_username" name="username" required>
                         </div>
-                        
-                        <div class="mb-3">
-                            <label for="edit_connection_type" class="form-label">Tipe Koneksi *</label>
-                            <select class="form-select" id="edit_connection_type" name="connection_type" required>
-                                <option value="pppoe">PPPoE</option>
-                                <option value="hotspot">Hotspot</option>
-                                <option value="static">Statik (IP/DHCP)</option>
-                            </select>
-                        </div>
-                        
                         <div class="mb-3">
                             <label for="edit_phone" class="form-label">Telepon *</label>
                             <input type="text" class="form-control" id="edit_phone" name="phone" required>
@@ -1122,6 +1095,33 @@
                             <label for="edit_email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="edit_email" name="email"
                                 placeholder="customer@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit_connection_type" class="form-label">Tipe Koneksi *</label>
+                            <select class="form-select" id="edit_connection_type" name="connection_type" required>
+                                <option value="pppoe">PPPoE</option>
+                                <option value="hotspot">Hotspot</option>
+                                <option value="static">Statik (IP/DHCP)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit_package_id" class="form-label">Paket *</label>
+                            <select class="form-control" id="edit_package_id" name="package_id"
+                                onchange="updateEditProfileField()" required>
+                                <option value="">Pilih Paket</option>
+                                <% if (packages && packages.length> 0) { %>
+                                    <% packages.forEach(function(package) { %>
+                                        <option value="<%= package.id %>"
+                                            data-profile="<%= package.pppoe_profile || 'default' %>">
+                                            <%= package.name %> - Rp <%=
+                                                    parseFloat(package.price).toLocaleString('id-ID') %>
+                                        </option>
+                                        <% }); %>
+                                            <% } %>
+                            </select>
+                            <small class="form-text text-muted">
+                                Profile diambil langsung dari Mikrotik
+                            </small>
                         </div>
                         <div id="container_edit_pppoe" style="display: none;">
                         <div class="mb-3">
@@ -1226,22 +1226,6 @@
                             </small>
                         </div>
                         <div class="mb-3">
-                            <label for="edit_package_id" class="form-label">Paket *</label>
-                            <select class="form-control" id="edit_package_id" name="package_id"
-                                onchange="updateEditProfileField()" required>
-                                <option value="">Pilih Paket</option>
-                                <% if (packages && packages.length> 0) { %>
-                                    <% packages.forEach(function(package) { %>
-                                        <option value="<%= package.id %>"
-                                            data-profile="<%= package.pppoe_profile || 'default' %>">
-                                            <%= package.name %> - Rp <%=
-                                                    parseFloat(package.price).toLocaleString('id-ID') %>
-                                        </option>
-                                        <% }); %>
-                                            <% } %>
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <label for="edit_odp_id" class="form-label">ODP (Optical Distribution Point)</label>
                             <select class="form-control" id="edit_odp_id" name="odp_id">
                                 <option value="">Pilih ODP (Opsional)</option>
@@ -1264,32 +1248,6 @@
                             <small class="form-text text-muted">Pilih ODP tempat pelanggan akan disambungkan (opsional).
                                 Sub ODP ditandai dengan └─</small>
                         </div>
-                        <div class="mb-3">
-                            <label for="edit_pppoe_profile" class="form-label">PPPoE / Hotspot Profile</label>
-                        
-                            <select class="form-select" id="edit_pppoe_profile" name="pppoe_profile"></select>
-                        
-                            <small class="form-text text-muted">
-                                Profile diambil langsung dari Mikrotik
-                            </small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit_auto_suspension" class="form-label">Auto Suspension</label>
-                            <select class="form-control" id="edit_auto_suspension" name="auto_suspension">
-                                <option value="1">Ya - Isolir otomatis saat telat bayar</option>
-                                <option value="0">Tidak - Tidak diisolir otomatis</option>
-                            </select>
-                            <small class="form-text text-muted">Pilih apakah pelanggan akan diisolir otomatis saat telat
-                                bayar</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit_billing_day" class="form-label">Tanggal Penagihan (1-28)</label>
-                            <input type="number" class="form-control" id="edit_billing_day" name="billing_day" min="1"
-                                max="28" value="15">
-                            <small class="form-text text-muted">Tanggal jatuh tempo tagihan setiap bulan. Nilai di luar
-                                28 akan disesuaikan.</small>
-                        </div>
-
                         <!-- Cable Connection Section for Edit -->
                         <div class="card border-success mb-3">
                             <div class="card-header bg-light">
@@ -1349,7 +1307,22 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="edit_auto_suspension" class="form-label">Auto Suspension</label>
+                            <select class="form-control" id="edit_auto_suspension" name="auto_suspension">
+                                <option value="1">Ya - Isolir otomatis saat telat bayar</option>
+                                <option value="0">Tidak - Tidak diisolir otomatis</option>
+                            </select>
+                            <small class="form-text text-muted">Pilih apakah pelanggan akan diisolir otomatis saat telat
+                                bayar</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit_billing_day" class="form-label">Tanggal Penagihan (1-30)</label>
+                            <input type="number" class="form-control" id="edit_billing_day" name="billing_day" min="1"
+                                max="30" value="10">
+                            <small class="form-text text-muted">Tanggal jatuh tempo tagihan setiap bulan. Nilai di luar
+                                30 akan disesuaikan.</small>
+                        </div>
                         <div class="mb-3">
                             <label for="edit_status" class="form-label">Status</label>
                             <select class="form-control" id="edit_status" name="status">
@@ -1562,7 +1535,7 @@
             if (nameField && usernameField && emailField) {
                 const testValue = "jajaltest";
                 usernameField.value = testValue + "_280825";
-                emailField.value = testValue + "@gembok.com";
+                emailField.value = testValue + "@35K.com";
                 console.log("Manually set test values");
             }
         }
@@ -1640,7 +1613,7 @@
                             cleanEmail = 'user';
                         }
 
-                        const finalEmail = cleanEmail + '@gembok.com';
+                        const finalEmail = cleanEmail + '@35K.com';
                         emailField.value = finalEmail;
                     }
                 }
@@ -1768,11 +1741,11 @@
         // Load test PPPoE users for testing
         function loadTestPppoeUsers() {
             const testUsers = [
-                { username: 'test1@gembok.com', profile: 'default', active: true },
-                { username: 'test2@gembok.com', profile: 'premium', active: false },
-                { username: 'test3@gembok.com', profile: 'basic', active: true },
-                { username: 'admin@gembok.com', profile: 'admin', active: true },
-                { username: 'user1@gembok.com', profile: 'default', active: false }
+                { username: 'test1@35K.com', profile: 'default', active: true },
+                { username: 'test2@35K.com', profile: 'premium', active: false },
+                { username: 'test3@35K.com', profile: 'basic', active: true },
+                { username: 'admin@35K.com', profile: 'admin', active: true },
+                { username: 'user1@35K.com', profile: 'default', active: false }
             ];
 
             pppoeUsers = testUsers;
@@ -1941,11 +1914,11 @@
         // Load test PPPoE users for edit form
         function loadTestEditPppoeUsers() {
             const testUsers = [
-                { username: 'test1@gembok.com', profile: 'default', active: true },
-                { username: 'test2@gembok.com', profile: 'premium', active: false },
-                { username: 'test3@gembok.com', profile: 'basic', active: true },
-                { username: 'admin@gembok.com', profile: 'admin', active: true },
-                { username: 'user1@gembok.com', profile: 'default', active: false }
+                { username: 'test1@35K.com', profile: 'default', active: true },
+                { username: 'test2@35K.com', profile: 'premium', active: false },
+                { username: 'test3@35K.com', profile: 'basic', active: true },
+                { username: 'admin@35K.com', profile: 'admin', active: true },
+                { username: 'user1@35K.com', profile: 'default', active: false }
             ];
 
             pppoeUsers = testUsers;
@@ -1962,7 +1935,7 @@
 
             // Test 1: Check if elements exist
             console.log('📋 Edit PPPoE username field exists:', $('#edit_pppoe_username').length);
-            console.log('📋 Edit PPPoE profile field exists:', $('#edit_pppoe_profile').length);
+            console.log('📋 Edit Mikrotik Profile field exists:', $('#edit_pppoe_profile').length);
             console.log('📋 Edit dropdown exists:', $('#edit_pppoe_dropdown').length);
 
             // Test 2: Load test data
@@ -1971,8 +1944,8 @@
             // Test 3: Test dropdown
             setTimeout(() => {
                 console.log('🧪 Testing dropdown...');
-                $('#edit_pppoe_username').val('test1@gembok.com').trigger('input');
-                console.log('📋 Username should be filled with: test1@gembok.com');
+                $('#edit_pppoe_username').val('test1@35K.com').trigger('input');
+                console.log('📋 Username should be filled with: test1@35K.com');
             }, 1000);
         };
 
@@ -2186,7 +2159,6 @@
                 address: $('#address').val().trim(),
                 package_id: package_id,
                 odp_id: $('#odp_id').val() || null,
-                pppoe_profile: $('#pppoe_profile').val().trim() || 'default',
                 auto_suspension: $('#auto_suspension').val(),
                 create_pppoe_user: createPppoe ? 1 : 0,
                 pppoe_password: $('#pppoe_password').val().trim(),
@@ -2258,10 +2230,25 @@
                         $('#edit_username').val(customer.username || '');
                         $('#edit_phone').val(customer.phone).data('original-phone', customer.phone);
                         $('#edit_email').val(customer.email || '');
-                        $('#edit_pppoe_username').val(customer.pppoe_username || '');
+                        if (customer.connection_type === 'pppoe') {
+                            $('#edit_pppoe_username').val(
+                                customer.pppoe_username || customer.username || ''
+                            );
+                        } else {
+                            $('#edit_pppoe_username').val(
+                                customer.username || ''
+                            );
+                        }
                         $('#edit_connection_type')
                         .val(customer.connection_type || 'pppoe')
                         .trigger('change');
+                        setTimeout(() => {
+                            if ($('#edit_connection_type').val() !== 'pppoe') {
+                                $('#edit_pppoe_username').val(
+                                    $('#edit_username').val()
+                                );
+                            }
+                        }, 100);
                         $('#edit_address').val(customer.address || '');
                         $('#edit_latitude').val(customer.latitude || '');
                         $('#edit_longitude').val(customer.longitude || '');
@@ -2358,7 +2345,6 @@
                 address: safeVal('#edit_address'),
                 package_id: package_id,
                 odp_id: $('#edit_odp_id').length ? ($('#edit_odp_id').val() || null) : null,
-                pppoe_profile: safeVal('#edit_pppoe_profile') || 'default',
                 auto_suspension: $('#edit_auto_suspension').length ? $('#edit_auto_suspension').val() : undefined,
                 status: $('#edit_status').length ? $('#edit_status').val() : undefined,
                 billing_day: (function () {
@@ -2809,62 +2795,49 @@
                     </div>
                 </div>
             `;
-
             // Remove existing modal if any
             $('#mapPickerModal').remove();
-
             // Add modal to body
             $('body').append(modalHtml);
-
             // Show modal
             const modal = new bootstrap.Modal(document.getElementById('mapPickerModal'));
             modal.show();
-
             // Initialize map after modal is shown
             setTimeout(() => {
                 initMapPicker();
             }, 500);
         }
-
         // Initialize map picker with enhanced features
         function initMapPicker() {
             // Default location (Jakarta)
             const defaultLat = -6.2088;
             const defaultLng = 106.8456;
-
             // Create map using Leaflet and store globally
             window.mapPickerMap = L.map('map').setView([defaultLat, defaultLng], 12);
-
             // Define tile layers (same as mapping-new.ejs)
             const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                 attribution: '© OpenStreetMap contributors © CARTO',
                 subdomains: 'abcd',
                 maxZoom: 20
             });
-
             const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
                 attribution: '© OpenStreetMap contributors © CARTO',
                 subdomains: 'abcd',
                 maxZoom: 20
             });
-
             const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                 attribution: '© Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
                 maxZoom: 20
             });
-
             // Add default satellite layer
             satelliteLayer.addTo(window.mapPickerMap);
-
             // Create layer control
             const baseMaps = {
                 "Light": lightLayer,
                 "Dark": darkLayer,
                 "Satellite": satelliteLayer
             };
-
             L.control.layers(baseMaps).addTo(window.mapPickerMap);
-
             // Create custom marker icon
             const createCustomMarker = (lat, lng) => {
                 return L.marker([lat, lng], {
@@ -2876,30 +2849,23 @@
                     })
                 });
             };
-
             // Add initial marker and store globally
             window.mapPickerMarker = createCustomMarker(defaultLat, defaultLng).addTo(window.mapPickerMap);
-
             // Update coordinates display
             document.getElementById('selectedLat').textContent = defaultLat.toFixed(8);
             document.getElementById('selectedLng').textContent = defaultLng.toFixed(8);
-
             // Handle map click
             window.mapPickerMap.on('click', function (e) {
                 const lat = e.latlng.lat;
                 const lng = e.latlng.lng;
-
                 // Remove existing marker
                 window.mapPickerMap.removeLayer(window.mapPickerMarker);
-
                 // Add new marker
                 window.mapPickerMarker = createCustomMarker(lat, lng).addTo(window.mapPickerMap);
-
                 // Update coordinates display
                 document.getElementById('selectedLat').textContent = lat.toFixed(8);
                 document.getElementById('selectedLng').textContent = lng.toFixed(8);
             });
-
             // Handle search with enhanced geocoding
             document.getElementById('mapSearch').addEventListener('input', function (e) {
                 const query = e.target.value;
@@ -2911,18 +2877,13 @@
                             if (data.length > 0) {
                                 const lat = parseFloat(data[0].lat);
                                 const lng = parseFloat(data[0].lon);
-
                                 window.mapPickerMap.setView([lat, lng], 15);
-
                                 // Remove existing marker
                                 window.mapPickerMap.removeLayer(window.mapPickerMarker);
-
                                 // Add new marker
                                 window.mapPickerMarker = createCustomMarker(lat, lng).addTo(window.mapPickerMap);
-
                                 document.getElementById('selectedLat').textContent = lat.toFixed(8);
                                 document.getElementById('selectedLng').textContent = lng.toFixed(8);
-
                                 // Show success message
                                 showToast(`Lokasi ditemukan: ${data[0].display_name}`, 'success');
                             }
@@ -2933,31 +2894,24 @@
                         });
                 }
             });
-
         }
-
         // Get current GPS location
         function getCurrentLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
-
                     // Update map view
                     if (window.mapPickerMap) {
                         window.mapPickerMap.setView([lat, lng], 15);
-
                         // Remove existing marker
                         if (window.mapPickerMarker) {
                             window.mapPickerMap.removeLayer(window.mapPickerMarker);
                         }
-
                         // Add new marker
                         window.mapPickerMarker = createCustomMarker(lat, lng).addTo(window.mapPickerMap);
-
                         document.getElementById('selectedLat').textContent = lat.toFixed(8);
                         document.getElementById('selectedLng').textContent = lng.toFixed(8);
-
                         showToast('Lokasi GPS berhasil diambil', 'success');
                     }
                 }, function (error) {
@@ -2967,30 +2921,23 @@
                 showToast('GPS tidak tersedia di browser ini', 'error');
             }
         }
-
         // Reset map to default location
         function resetMapLocation() {
             const defaultLat = -6.2088;
             const defaultLng = 106.8456;
-
             if (window.mapPickerMap) {
                 window.mapPickerMap.setView([defaultLat, defaultLng], 12);
-
                 // Remove existing marker
                 if (window.mapPickerMarker) {
                     window.mapPickerMap.removeLayer(window.mapPickerMarker);
                 }
-
                 // Add new marker
                 window.mapPickerMarker = createCustomMarker(defaultLat, defaultLng).addTo(window.mapPickerMap);
-
                 document.getElementById('selectedLat').textContent = defaultLat.toFixed(8);
                 document.getElementById('selectedLng').textContent = defaultLng.toFixed(8);
-
                 showToast('Peta direset ke lokasi default', 'info');
             }
         }
-
         // Create custom marker function (global)
         function createCustomMarker(lat, lng) {
             return L.marker([lat, lng], {
@@ -3002,36 +2949,29 @@
                 })
             });
         }
-
         // Apply selected map location to form
         function applyMapLocation() {
             const lat = document.getElementById('selectedLat').textContent;
             const lng = document.getElementById('selectedLng').textContent;
-
             if (lat !== '-' && lng !== '-') {
                 // Update add form
                 $('#latitude').val(lat);
                 $('#longitude').val(lng);
-
                 // Update edit form if open
                 if ($('#edit_latitude').length) {
                     $('#edit_latitude').val(lat);
                     $('#edit_longitude').val(lng);
                 }
-
                 showToast('Lokasi berhasil diterapkan!', 'success');
-
                 // Close modal
                 bootstrap.Modal.getInstance(document.getElementById('mapPickerModal')).hide();
             } else {
                 showToast('Pilih lokasi terlebih dahulu', 'error');
             }
         }
-
         // Toast notification function
         function showToast(message, type) {
             const toastContainer = document.getElementById('toastContainer') || createToastContainer();
-
             const toastHtml = `
                 <div class="toast align-items-center text-white bg-${type === 'success' ? 'success' : type === 'error' ? 'danger' : 'info'} border-0" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
@@ -3042,18 +2982,15 @@
                     </div>
                 </div>
             `;
-
             toastContainer.insertAdjacentHTML('beforeend', toastHtml);
             const toastElement = toastContainer.lastElementChild;
             const toast = new bootstrap.Toast(toastElement);
             toast.show();
-
             // Remove toast element after it's hidden
             toastElement.addEventListener('hidden.bs.toast', () => {
                 toastElement.remove();
             });
         }
-
         function createToastContainer() {
             const container = document.createElement('div');
             container.id = 'toastContainer';
@@ -3062,103 +2999,86 @@
             document.body.appendChild(container);
             return container;
         }
-
         // Function to generate username and email from name
         function generateCredentialsFromName() {
             const nameInput = document.getElementById('name');
             const usernameInput = document.getElementById('username');
             const emailInput = document.getElementById('email');
-
             if (!nameInput || !usernameInput) return;
-
             const name = nameInput.value.trim();
             if (!name) {
                 usernameInput.value = '';
+                $('#pppoe_username').val('');
                 if (emailInput) emailInput.value = '';
                 return;
             }
-
             // Get current date in DDMMYY format
             const now = new Date();
             const day = String(now.getDate()).padStart(2, '0');
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const year = String(now.getFullYear()).slice(-2);
             const dateStr = day + month + year;
-
             // Process name: remove special characters, replace spaces with underscores
             let processedName = name.toLowerCase()
                 .replace(/[^a-z0-9\s]/g, '')  // Remove special characters
                 .replace(/\s+/g, '_')         // Replace spaces with underscores
                 .replace(/_+/g, '_')          // Replace multiple underscores with single
                 .replace(/^_|_$/g, '');       // Remove leading/trailing underscores
-
             // If processed name is empty, use 'user'
             if (!processedName) processedName = 'user';
-
             // Generate username
             const baseUsername = processedName + '_' + dateStr;
             usernameInput.value = baseUsername;
-
+            
+            if ($('#connection_type').val() === 'pppoe') {
+                $('#pppoe_username').val(baseUsername);
+            }
             // Generate email if email field exists
             if (emailInput) {
-                emailInput.value = processedName + '@gembok.com';
+                emailInput.value = processedName + '@35K.com';
             }
         }
-        
-        // Fetch and populate PPPoE Profiles from Mikrotik
+        // Fetch and populate Mikrotik Profiles from Mikrotik
         function loadPPPoEProfiles(selectSelector, selectedValue = 'default') {
             const sel = document.querySelector(selectSelector);
             if (!sel) return;
-        
             sel.innerHTML = '<option>Loading...</option>';
-        
             Promise.all([
                 fetch('/admin/mikrotik/profiles/api').then(r => r.json()),
                 fetch('/admin/mikrotik/hotspot-profiles/api').then(r => r.json())
             ])
             .then(([pppoeData, hotspotData]) => {
-            
                 // 🔥 DEBUG LOG RAW RESPONSE
                 console.log('[PPPOE API RAW]', pppoeData);
                 console.log('[HOTSPOT API RAW]', hotspotData);
-            
                 // 🔥 SAFETY CHECK PPPoE
                 const pppoe = (pppoeData && pppoeData.success && Array.isArray(pppoeData.profiles))
                     ? pppoeData.profiles : [];
-            
                 if (!pppoeData || !pppoeData.success) {
                     console.warn('[PPPOE API INVALID]', pppoeData);
                 }
-            
                 // 🔥 SAFETY CHECK HOTSPOT
                 const hotspot = (hotspotData && hotspotData.success && Array.isArray(hotspotData.profiles))
                     ? hotspotData.profiles : [];
-            
                 if (!hotspotData || !hotspotData.success) {
                     console.warn('[HOTSPOT API INVALID]', hotspotData);
                 }
-            
                 // 🔥 COMBINE NAMES
                 const all = [
                     ...pppoe.map(p => p.name),
                     ...hotspot.map(p => p.name)
                 ].filter(Boolean);
-            
                 const names = Array.from(new Set(all));
-            
                 // fallback default wajib ada
                 if (!names.includes('default')) names.unshift('default');
-            
                 console.log('[PPPOE+HOTSPOT PROFILES MERGED]', names);
                 sel.innerHTML = '';
-        
                 names.forEach(name => {
                     const opt = document.createElement('option');
                     opt.value = name;
                     opt.textContent = name;
                     sel.appendChild(opt);
                 });
-        
                 sel.value = selectedValue || 'default';
             })
             .catch(err => {
@@ -3171,7 +3091,6 @@
     <%- include('../../partials/admin-mobile-navbar', { currentPage: 'customers' }) %>
     <script>
         $(document).ready(function() {
-            
             // Load profile Mikrotik saat halaman dibuka
             loadPPPoEProfiles('#pppoe_profile');
             loadPPPoEProfiles('#edit_pppoe_profile');
@@ -3181,65 +3100,51 @@
             function handleAddFormFlow() {
                 const type = $('#connection_type').val();
                 const mainUsername = $('#username').val();
-
                 if (type === 'pppoe') {
-
                     $('#container_pppoe').show();
                     $('#container_static').hide();
-                
                     $('#pppoe_username').val(mainUsername);
-                
                 }
                 else if (type === 'hotspot') {
-                
                     $('#container_pppoe').hide();
                     $('#container_static').hide();
-                
                     $('#pppoe_username').val('');
-                
                 }
                 else if (type === 'static') {
-                
                     $('#container_pppoe').hide();
                     $('#container_static').show();
-                
                     $('#pppoe_username').val('');
-                
                 }
             }
-
             // Trigger saat tipe koneksi diubah
             $('#connection_type').on('change', function() {
                 handleAddFormFlow();
                 loadPPPoEProfiles('#pppoe_profile');
-
                 setTimeout(() => {
                     updateProfileField();
                 }, 500);
             });
-
             // Jalankan sinkronisasi secara real-time saat username utama diketik (jika PPPoE)
             $('#username').on('input', function() {
                 if ($('#connection_type').val() === 'pppoe') {
                     $('#pppoe_username').val($(this).val());
                 }
             });
-
             // Jalankan fungsi awal saat halaman selesai dimuat
             handleAddFormFlow();
-
-
-            // ==========================================
+            // ================================
             // LOGIKA UNTUK FORM EDIT PELANGGAN
-            // ==========================================
+            // ================================
             function handleEditFormFlow() {
                 const type = $('#edit_connection_type').val();
                 const mainUsername = $('#edit_username').val();
-
                 if (type === 'pppoe') {
                     $('#container_edit_pppoe').show();
                     $('#container_edit_static').hide();
-                    $('#edit_pppoe_username').val(mainUsername);
+                
+                    if (!$('#edit_pppoe_username').val()) {
+                        $('#edit_pppoe_username').val(mainUsername);
+                    }
                 } else if (type === 'hotspot') {
                     $('#container_edit_pppoe').hide();
                     $('#container_edit_static').hide();
@@ -3251,12 +3156,10 @@
                     $('#edit_pppoe_username').val('');
                 }
             }
-
             // Trigger saat tipe koneksi di modal edit diubah
             $('#edit_connection_type').on('change', function() {
                 handleEditFormFlow();
             });
-
             // Jalankan sinkronisasi saat edit_username diketik
             $('#edit_username').on('input', function() {
                 if ($('#edit_connection_type').val() === 'pppoe') {
@@ -3265,11 +3168,10 @@
             });
         });
     </script>
-
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

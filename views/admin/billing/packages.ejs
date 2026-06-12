@@ -79,7 +79,7 @@
                                             <th>Harga (Sebelum PPN)</th>
                                             <th>PPN</th>
                                             <th>Harga (Setelah PPN)</th>
-                                            <th>PPPoE Profile</th>
+                                            <th>Mikrotik Profile</th>
                                             <th>Deskripsi</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -219,7 +219,9 @@
                             <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="pppoe_profile" class="form-label">PPPoE Profile</label>
+                            <label for="pppoe_profile">
+                                Mikrotik Profile
+                            </label>
                             <div class="input-group">
                                 <select class="form-select" id="pppoe_profile" name="pppoe_profile">
                                     <option value="default">default</option>
@@ -227,7 +229,7 @@
                                 <button class="btn btn-outline-secondary" type="button"
                                     id="reloadProfilesAdd">Reload</button>
                             </div>
-                            <small class="form-text text-muted">Pilih profile PPPoE dari Mikrotik. Klik Reload bila
+                            <small class="form-text text-muted">Pilih profile PPPoE atau Hotspot dari Mikrotik. Klik Reload bila
                                 daftar belum muncul.</small>
                         </div>
                         <div class="mb-3">
@@ -299,7 +301,9 @@
                             <textarea class="form-control" id="edit_description" name="description" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="edit_pppoe_profile" class="form-label">PPPoE Profile</label>
+                            <label for="edit_pppoe_profile">
+                                Mikrotik Profile
+                            </label>
                             <div class="input-group">
                                 <select class="form-select" id="edit_pppoe_profile" name="pppoe_profile">
                                     <option value="default">default</option>
@@ -494,48 +498,67 @@
             console.log('Tax rate set to 0% by default (no PPN)');
         }
 
-        // Fetch and populate PPPoE Profiles from Mikrotik
+        // Fetch and populate Mikrotik Profiles from Mikrotik
         function loadPPPoEProfiles(selectSelector, selectedValue = 'default') {
             const sel = document.querySelector(selectSelector);
             if (!sel) return;
-            // show loading option
+        
             sel.innerHTML = '<option>Loading...</option>';
-            fetch('/admin/mikrotik/profiles/api')
-                .then(r => r.json())
-                .then(data => {
-                    const profiles = (data && data.success && Array.isArray(data.profiles)) ? data.profiles : [];
-                    // Build unique name list
-                    const names = Array.from(new Set(profiles.map(p => p.name).filter(Boolean)));
-                    // Fallback ensure 'default' exists
-                    if (!names.includes('default')) names.unshift('default');
-                    sel.innerHTML = '';
-                    names.forEach(name => {
-                        const opt = document.createElement('option');
-                        opt.value = name;
-                        opt.textContent = name;
-                        sel.appendChild(opt);
-                    });
-                    sel.value = selectedValue || 'default';
-                    // if selected not in list, append and select it
-                    if (sel.value !== (selectedValue || 'default')) {
-                        const opt = document.createElement('option');
-                        opt.value = selectedValue;
-                        opt.textContent = selectedValue;
-                        sel.appendChild(opt);
-                        sel.value = selectedValue;
-                    }
-                })
-                .catch(err => {
-                    console.error('Gagal load PPPoE profiles:', err);
-                    if (typeof showAlert === 'function') {
-                        showAlert('danger', 'Gagal memuat PPPoE profiles dari Mikrotik');
-                    }
-                    // minimal fallback
-                    sel.innerHTML = '<option value="default">default</option>';
-                    sel.value = selectedValue || 'default';
+        
+            Promise.all([
+                fetch('/admin/mikrotik/profiles/api').then(r => r.json()),
+                fetch('/admin/mikrotik/hotspot-profiles/api').then(r => r.json())
+            ])
+            .then(([pppoeData, hotspotData]) => {
+        
+                const pppoe =
+                    (pppoeData &&
+                     pppoeData.success &&
+                     Array.isArray(pppoeData.profiles))
+                        ? pppoeData.profiles
+                        : [];
+        
+                const hotspot =
+                    (hotspotData &&
+                     hotspotData.success &&
+                     Array.isArray(hotspotData.profiles))
+                        ? hotspotData.profiles
+                        : [];
+        
+                const names = Array.from(new Set([
+                    ...pppoe.map(p => p.name),
+                    ...hotspot.map(p => p.name)
+                ]));
+        
+                if (!names.includes('default')) {
+                    names.unshift('default');
+                }
+        
+                sel.innerHTML = '';
+        
+                names.forEach(name => {
+                    const opt = document.createElement('option');
+                    opt.value = name;
+                    opt.textContent = name;
+                    sel.appendChild(opt);
                 });
+        
+                sel.value = selectedValue || 'default';
+        
+                if (sel.value !== (selectedValue || 'default')) {
+                    const opt = document.createElement('option');
+                    opt.value = selectedValue;
+                    opt.textContent = selectedValue;
+                    sel.appendChild(opt);
+                    sel.value = selectedValue;
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                sel.innerHTML =
+                    '<option value="default">default</option>';
+            });
         }
-
         // Add Package Form
         $('#addPackageForm').on('submit', function (e) {
             e.preventDefault();
@@ -763,7 +786,7 @@
                                 'Rp ' + ((parseFloat(package.price) * (1 + taxRate / 100)).toFixed(0)).toLocaleString('id-ID')
                             }
                                     </p>
-                                    <p><strong>PPPoE Profile:</strong> ${package.pppoe_profile || 'default'}</p>
+                                    <p><strong>Mikrotik Profile:</strong> ${package.pppoe_profile || 'default'}</p>
                                 </div>
                                 <div class="col-md-6">
                                     <p><strong>Deskripsi:</strong></p>
@@ -851,6 +874,8 @@
 
         <!-- Mobile Bottom Navbar -->
         <%- include('../../partials/admin-mobile-navbar', { currentPage: 'customers' }) %>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 
 </html>

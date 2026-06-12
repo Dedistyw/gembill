@@ -70,17 +70,60 @@ class BillingManager {
             throw err;
         }
     }
-
     async updateCustomerById(id, customerData) {
         return new Promise(async (resolve, reject) => {
-            const { name, username, pppoe_username, email, address, latitude, longitude, package_id, odp_id, pppoe_profile, status, auto_suspension, billing_day, cable_type, cable_length, port_number, cable_status, cable_notes } = customerData;
+            const {
+                name,
+                username,
+                phone,
+                pppoe_username,
+                connection_type,
+                email,
+                address,
+                package_id,
+                odp_id,
+                pppoe_profile,
+                status,
+                auto_suspension,
+                billing_day,
+                static_ip,
+                assigned_ip,
+                mac_address,
+                latitude,
+                longitude,
+                cable_type,
+                cable_length,
+                port_number,
+                cable_status,
+                cable_notes
+            } = customerData;
             try {
                 const oldCustomer = await this.getCustomerById(id);
                 if (!oldCustomer) return reject(new Error('Customer not found'));
 
                 const normBillingDay = Math.min(Math.max(parseInt(billing_day !== undefined ? billing_day : (oldCustomer?.billing_day ?? 15), 10) || 15, 1), 28);
-
-                const sql = `UPDATE customers SET name = ?, username = ?, pppoe_username = ?, email = ?, address = ?, latitude = ?, longitude = ?, package_id = ?, odp_id = ?, pppoe_profile = ?, status = ?, auto_suspension = ?, billing_day = ?, cable_type = ?, cable_length = ?, port_number = ?, cable_status = ?, cable_notes = ? WHERE id = ?`;
+                const sql = `UPDATE customers SET
+                  name = ?,
+                  username = ?,
+                  phone = ?,
+                  pppoe_username = ?,
+                  connection_type = ?,
+                  email = ?,
+                  address = ?,
+                  package_id = ?,
+                  odp_id = ?,
+                  pppoe_profile = ?,
+                  status = ?,
+                  auto_suspension = ?,
+                  billing_day = ?,
+                  latitude = ?,
+                  longitude = ?,
+                  cable_type = ?,
+                  cable_length = ?,
+                  port_number = ?,
+                  cable_status = ?,
+                  cable_notes = ?
+                  WHERE id = ?`;
                 this.db.run(sql, [
                     name ?? oldCustomer.name,
                     username ?? oldCustomer.username,
@@ -119,7 +162,6 @@ class BillingManager {
                                         else resolve(row);
                                     });
                                 });
-
                                 if (existingRoute) {
                                     // Update cable route yang ada
                                     console.log(`📝 Found existing cable route for customer ${oldCustomer.username}, updating...`);
@@ -129,7 +171,6 @@ class BillingManager {
                                         SET odp_id = ?, cable_type = ?, cable_length = ?, port_number = ?, status = ?, notes = ?, updated_at = CURRENT_TIMESTAMP
                                         WHERE customer_id = ?
                                     `;
-
                                     db.run(updateSql, [
                                         odp_id !== undefined ? odp_id : existingRoute.odp_id,
                                         cable_type !== undefined ? cable_type : existingRoute.cable_type,
@@ -152,7 +193,6 @@ class BillingManager {
                                         INSERT INTO cable_routes (customer_id, odp_id, cable_type, cable_length, port_number, status, notes)
                                         VALUES (?, ?, ?, ?, ?, ?, ?)
                                     `;
-
                                     db.run(cableRouteSql, [
                                         customerId,
                                         odp_id,
@@ -174,7 +214,6 @@ class BillingManager {
                                 // Jangan reject, karena customer sudah berhasil diupdate di billing
                             }
                         }
-
                         resolve({ username: oldCustomer.username, id, ...customerData });
                     }
                 });
@@ -183,16 +222,13 @@ class BillingManager {
             }
         });
     }
-
     // Update customer coordinates untuk mapping
     async updateCustomerCoordinates(id, coordinates) {
         return new Promise((resolve, reject) => {
             const { latitude, longitude } = coordinates;
-
             if (latitude === undefined || longitude === undefined) {
                 return reject(new Error('Latitude dan longitude wajib diisi'));
             }
-
             const sql = `UPDATE customers SET latitude = ?, longitude = ? WHERE id = ?`;
             this.db.run(sql, [latitude, longitude, id], function (err) {
                 if (err) {
@@ -203,7 +239,6 @@ class BillingManager {
             });
         });
     }
-
     // Get customer by serial number (untuk mapping device)
     async getCustomerBySerialNumber(serialNumber) {
         return new Promise((resolve, reject) => {
@@ -217,7 +252,6 @@ class BillingManager {
             });
         });
     }
-
     // Get customer by PPPoE username (untuk mapping device)
     async getCustomerByPPPoE(pppoeUsername) {
         return new Promise((resolve, reject) => {
@@ -231,7 +265,6 @@ class BillingManager {
             });
         });
     }
-
     createTables() {
         const tables = [
             // Tabel paket internet
@@ -246,7 +279,6 @@ class BillingManager {
                 is_active BOOLEAN DEFAULT 1,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )`,
-
             // Tabel pelanggan
             `CREATE TABLE IF NOT EXISTS customers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -272,7 +304,6 @@ class BillingManager {
                 cable_notes TEXT,
                 FOREIGN KEY (package_id) REFERENCES packages (id)
             )`,
-
             // Tabel tagihan
             `CREATE TABLE IF NOT EXISTS invoices (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -293,7 +324,6 @@ class BillingManager {
                 FOREIGN KEY (customer_id) REFERENCES customers (id),
                 FOREIGN KEY (package_id) REFERENCES packages (id)
             )`,
-
             // Tabel pembayaran
             `CREATE TABLE IF NOT EXISTS payments (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -305,7 +335,6 @@ class BillingManager {
                 notes TEXT,
                 FOREIGN KEY (invoice_id) REFERENCES invoices (id)
             )`,
-
             // Tabel transaksi payment gateway
             `CREATE TABLE IF NOT EXISTS payment_gateway_transactions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -322,7 +351,6 @@ class BillingManager {
                 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (invoice_id) REFERENCES invoices (id)
             )`,
-
             // Tabel expenses untuk pengeluaran
             `CREATE TABLE IF NOT EXISTS expenses (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -335,7 +363,6 @@ class BillingManager {
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )`,
-
             // Tabel ODP (Optical Distribution Point)
             `CREATE TABLE IF NOT EXISTS odps (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -352,7 +379,6 @@ class BillingManager {
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )`,
-
             // Tabel Cable Routes (Jalur Kabel dari ODP ke Pelanggan)
             `CREATE TABLE IF NOT EXISTS cable_routes (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -369,7 +395,6 @@ class BillingManager {
                 FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
                 FOREIGN KEY (odp_id) REFERENCES odps(id) ON DELETE CASCADE
             )`,
-
             // Tabel Network Segments (Segmen Jaringan)
             `CREATE TABLE IF NOT EXISTS network_segments (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -386,7 +411,6 @@ class BillingManager {
                 FOREIGN KEY (start_odp_id) REFERENCES odps(id) ON DELETE CASCADE,
                 FOREIGN KEY (end_odp_id) REFERENCES odps(id) ON DELETE CASCADE
             )`,
-
             // Tabel ODP Connections (Backbone Network)
             `CREATE TABLE IF NOT EXISTS odp_connections (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -404,7 +428,6 @@ class BillingManager {
                 FOREIGN KEY (to_odp_id) REFERENCES odps(id) ON DELETE CASCADE,
                 UNIQUE(from_odp_id, to_odp_id)
             )`,
-
             // Tabel Cable Maintenance Log
             `CREATE TABLE IF NOT EXISTS cable_maintenance_logs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -422,17 +445,14 @@ class BillingManager {
                 FOREIGN KEY (network_segment_id) REFERENCES network_segments(id) ON DELETE CASCADE
             )`
         ];
-
         // Create tables sequentially to ensure proper order
         this.createTablesSequentially(tables);
-
         // Tambahkan kolom payment_status jika belum ada
         this.db.run("ALTER TABLE invoices ADD COLUMN payment_status TEXT DEFAULT 'pending'", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
                 console.error('Error adding payment_status column:', err);
             }
         });
-
         // Tambahkan kolom pppoe_profile ke packages jika belum ada
         this.db.run("ALTER TABLE packages ADD COLUMN pppoe_profile TEXT DEFAULT 'default'", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -441,7 +461,6 @@ class BillingManager {
                 console.log('Added pppoe_profile column to packages table');
             }
         });
-
         // Tambahkan kolom pppoe_profile ke customers jika belum ada
         this.db.run("ALTER TABLE customers ADD COLUMN pppoe_profile TEXT", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -450,10 +469,8 @@ class BillingManager {
                 console.log('Added pppoe_profile column to customers table');
             }
         });
-
         // Tambahkan kolom cable connection ke customers jika belum ada
         this.addCableFieldsToCustomers();
-
         // Tambahkan kolom auto_suspension ke customers jika belum ada
         this.db.run("ALTER TABLE customers ADD COLUMN auto_suspension BOOLEAN DEFAULT 1", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -462,7 +479,6 @@ class BillingManager {
                 console.log('Added auto_suspension column to customers table');
             }
         });
-
         // Tambahkan kolom billing_day ke customers jika belum ada
         this.db.run("ALTER TABLE customers ADD COLUMN billing_day INTEGER DEFAULT 15", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -471,7 +487,6 @@ class BillingManager {
                 console.log('Added billing_day column to customers table');
             }
         });
-
         // Tambahkan kolom tax_rate ke packages jika belum ada
         this.db.run("ALTER TABLE packages ADD COLUMN tax_rate DECIMAL(5,2) DEFAULT 11.00", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -480,7 +495,6 @@ class BillingManager {
                 console.log('Added tax_rate column to packages table');
             }
         });
-
         // Tambahkan kolom latitude dan longitude ke customers jika belum ada
         this.db.run("ALTER TABLE customers ADD COLUMN latitude DECIMAL(10,8)", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -496,7 +510,6 @@ class BillingManager {
                 console.log('Added longitude column to customers table');
             }
         });
-
         // Tambahkan kolom odp_id ke customers jika belum ada
         this.db.run("ALTER TABLE customers ADD COLUMN odp_id INTEGER", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -505,7 +518,6 @@ class BillingManager {
                 console.log('Added odp_id column to customers table');
             }
         });
-
         // Tambahkan kolom parent_odp_id ke odps jika belum ada
         this.db.run("ALTER TABLE odps ADD COLUMN parent_odp_id INTEGER", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -514,7 +526,6 @@ class BillingManager {
                 console.log('Added parent_odp_id column to odps table');
             }
         });
-
         // Update existing customers to have username if null (for backward compatibility)
         this.db.run("UPDATE customers SET username = 'cust_' || substr(phone, -4, 4) || '_' || strftime('%s','now') WHERE username IS NULL OR username = ''", (err) => {
             if (err) {
@@ -524,7 +535,6 @@ class BillingManager {
             }
         });
     }
-
     addCableFieldsToCustomers() {
         // Add cable connection fields to customers table
         const cableFields = [
@@ -534,7 +544,6 @@ class BillingManager {
             { name: 'cable_status', type: 'TEXT DEFAULT "connected"' },
             { name: 'cable_notes', type: 'TEXT' }
         ];
-
         cableFields.forEach(field => {
             this.db.run(`ALTER TABLE customers ADD COLUMN ${field.name} ${field.type}`, (err) => {
                 if (err && !err.message.includes('duplicate column name')) {
@@ -545,17 +554,14 @@ class BillingManager {
             });
         });
     }
-
     createTablesSequentially(tables) {
         let currentIndex = 0;
-
         const createNextTable = () => {
             if (currentIndex >= tables.length) {
                 // All tables created, now add columns and create indexes/triggers
                 this.addColumnsAndCreateIndexes();
                 return;
             }
-
             const tableSQL = tables[currentIndex];
             this.db.run(tableSQL, (err) => {
                 if (err) {
@@ -568,7 +574,6 @@ class BillingManager {
 
         createNextTable();
     }
-
     addColumnsAndCreateIndexes() {
         // Tambahkan kolom pppoe_username jika belum ada
         this.db.run("ALTER TABLE customers ADD COLUMN pppoe_username TEXT", (err) => {
@@ -576,7 +581,6 @@ class BillingManager {
                 console.error('Error adding pppoe_username column:', err);
             }
         });
-
         // Tambahkan kolom password jika belum ada
         this.db.run("ALTER TABLE customers ADD COLUMN password TEXT", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
@@ -585,49 +589,42 @@ class BillingManager {
                 console.log('✅ Added password column to customers table');
             }
         });
-
         // Tambahkan kolom payment_gateway jika belum ada
         this.db.run("ALTER TABLE invoices ADD COLUMN payment_gateway TEXT", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
                 console.error('Error adding payment_gateway column:', err);
             }
         });
-
         // Tambahkan kolom payment_token jika belum ada
         this.db.run("ALTER TABLE invoices ADD COLUMN payment_token TEXT", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
                 console.error('Error adding payment_token column:', err);
             }
         });
-
         // Tambahkan kolom payment_url jika belum ada
         this.db.run("ALTER TABLE invoices ADD COLUMN payment_url TEXT", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
                 console.error('Error adding payment_url column:', err);
             }
         });
-
         // Tambahkan kolom invoice_type jika belum ada
         this.db.run("ALTER TABLE invoices ADD COLUMN invoice_type TEXT DEFAULT 'monthly'", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
                 console.error('Error adding invoice_type column:', err);
             }
         });
-
         // Tambahkan kolom package_name jika belum ada
         this.db.run("ALTER TABLE invoices ADD COLUMN package_name TEXT", (err) => {
             if (err && !err.message.includes('duplicate column name')) {
                 console.error('Error adding package_name column:', err);
             }
         });
-
         // Buat index untuk tabel ODP dan Cable Network
         this.createODPIndexes();
 
         // Buat trigger untuk tabel ODP dan Cable Network
         this.createODPTriggers();
     }
-
     createODPIndexes() {
         const indexes = [
             // Indexes untuk performa ODP dan Cable Network
@@ -643,7 +640,6 @@ class BillingManager {
             'CREATE INDEX IF NOT EXISTS idx_maintenance_logs_segment ON cable_maintenance_logs(network_segment_id)',
             'CREATE INDEX IF NOT EXISTS idx_maintenance_logs_date ON cable_maintenance_logs(maintenance_date)'
         ];
-
         indexes.forEach(indexSQL => {
             this.db.run(indexSQL, (err) => {
                 if (err) {
@@ -652,7 +648,6 @@ class BillingManager {
             });
         });
     }
-
     createODPTriggers() {
         const triggers = [
             // Triggers untuk update timestamp
@@ -669,21 +664,18 @@ class BillingManager {
             BEGIN
                 UPDATE cable_routes SET updated_at = CURRENT_TIMESTAMP WHERE id = NEW.id;
             END`,
-
             `CREATE TRIGGER IF NOT EXISTS update_network_segments_updated_at 
                 AFTER UPDATE ON network_segments
                 FOR EACH ROW
             BEGIN
                 UPDATE network_segments SET updated_at = CURRENT_TIMESTAMP WHERE id = NEW.id;
             END`,
-
             `CREATE TRIGGER IF NOT EXISTS update_odp_connections_updated_at 
                 AFTER UPDATE ON odp_connections
                 FOR EACH ROW
             BEGIN
                 UPDATE odp_connections SET updated_at = CURRENT_TIMESTAMP WHERE id = NEW.id;
             END`,
-
             // Triggers untuk update used_ports di ODP
             `CREATE TRIGGER IF NOT EXISTS update_odp_used_ports_insert
                 AFTER INSERT ON cable_routes
@@ -691,14 +683,12 @@ class BillingManager {
             BEGIN
                 UPDATE odps SET used_ports = used_ports + 1 WHERE id = NEW.odp_id;
             END`,
-
             `CREATE TRIGGER IF NOT EXISTS update_odp_used_ports_delete
                 AFTER DELETE ON cable_routes
                 FOR EACH ROW
             BEGIN
                 UPDATE odps SET used_ports = used_ports - 1 WHERE id = OLD.odp_id;
             END`,
-
             // Trigger untuk memutakhirkan used_ports saat cable_routes berpindah ODP
             `CREATE TRIGGER IF NOT EXISTS update_odp_used_ports_change
                 AFTER UPDATE OF odp_id ON cable_routes
@@ -709,7 +699,6 @@ class BillingManager {
                 UPDATE odps SET used_ports = used_ports + 1 WHERE id = NEW.odp_id;
             END`
         ];
-
         triggers.forEach(triggerSQL => {
             this.db.run(triggerSQL, (err) => {
                 if (err) {
@@ -718,7 +707,6 @@ class BillingManager {
             });
         });
     }
-
     // Paket Management
     async createPackage(packageData) {
         return new Promise((resolve, reject) => {
@@ -734,7 +722,6 @@ class BillingManager {
             });
         });
     }
-
     async getPackages() {
         return new Promise((resolve, reject) => {
             const sql = `
@@ -751,7 +738,6 @@ class BillingManager {
                 WHERE is_active = 1
                 ORDER BY price ASC
             `;
-    
             this.db.all(sql, [], (err, rows) => {
                 if (err) {
                     reject(err);
@@ -761,11 +747,9 @@ class BillingManager {
             });
         });
     }
-
     async getPackageById(id) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT * FROM packages WHERE id = ?`;
-
             this.db.get(sql, [id], (err, row) => {
                 if (err) {
                     reject(err);
@@ -775,7 +759,6 @@ class BillingManager {
             });
         });
     }
-
     async updatePackage(id, packageData) {
         return new Promise((resolve, reject) => {
             const { name, speed, price, tax_rate, description, pppoe_profile, image_filename } = packageData;
@@ -790,7 +773,6 @@ class BillingManager {
             });
         });
     }
-
     async deletePackage(id) {
         return new Promise((resolve, reject) => {
             const sql = `UPDATE packages SET is_active = 0 WHERE id = ?`;
@@ -804,7 +786,6 @@ class BillingManager {
             });
         });
     }
-
     // Customer Management
     async createCustomer(customerData) {
         return new Promise(async (resolve, reject) => {
@@ -813,31 +794,74 @@ class BillingManager {
                 console.error('❌ Database not initialized');
                 return reject(new Error('Database not initialized'));
             }
-
             // Simpan reference database untuk digunakan di callback
             const db = this.db;
-
-            const { name, username, phone, pppoe_username, email, address, package_id, odp_id, pppoe_profile, status, auto_suspension, billing_day, static_ip, assigned_ip, mac_address, latitude, longitude, cable_type, cable_length, port_number, cable_status, cable_notes } = customerData;
-
+            const {
+                name,
+                username,
+                phone,
+                pppoe_username,
+                connection_type,
+                email,
+                address,
+                package_id,
+                odp_id,
+                pppoe_profile,
+                status,
+                auto_suspension,
+                billing_day,
+                static_ip,
+                assigned_ip,
+                mac_address,
+                latitude,
+                longitude,
+                cable_type,
+                cable_length,
+                port_number,
+                cable_status,
+                cable_notes
+            } = customerData;
             // Use provided username, fallback to auto-generate if not provided
             const finalUsername = username || this.generateUsername(phone);
             const autoPPPoEUsername = pppoe_username || this.generatePPPoEUsername(phone);
-
             // Normalisasi billing_day (1-28)
             const normBillingDay = Math.min(Math.max(parseInt(billing_day ?? 15, 10) || 15, 1), 28);
-
-            const sql = `INSERT INTO customers (username, name, phone, pppoe_username, email, address, package_id, odp_id, pppoe_profile, status, auto_suspension, billing_day, static_ip, assigned_ip, mac_address, latitude, longitude, cable_type, cable_length, port_number, cable_status, cable_notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-
+            const sql = `
+                INSERT INTO customers (
+                 username,
+                 name,
+                 phone,
+                 pppoe_username,
+                 connection_type,
+                 email,
+                 address,
+                 package_id,
+                 odp_id,
+                 pppoe_profile,
+                 status,
+                 auto_suspension,
+                 billing_day,
+                 static_ip,
+                 assigned_ip,
+                 mac_address,
+                 latitude,
+                 longitude,
+                 cable_type,
+                 cable_length,
+                 port_number,
+                 cable_status,
+                 cable_notes
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                `;
             // Default coordinates untuk Jakarta jika tidak ada koordinat
             const finalLatitude = latitude !== undefined ? parseFloat(latitude) : -6.2088;
             const finalLongitude = longitude !== undefined ? parseFloat(longitude) : 106.8456;
-
-            db.run(sql, [finalUsername, name, phone, autoPPPoEUsername, email, address, package_id, customerData.odp_id || null, pppoe_profile, status || 'active', auto_suspension !== undefined ? auto_suspension : 1, normBillingDay, static_ip || null, assigned_ip || null, mac_address || null, finalLatitude, finalLongitude, cable_type || null, cable_length || null, port_number || null, cable_status || 'connected', cable_notes || null], async function (err) {
+            db.run(sql, [finalUsername, name, phone, autoPPPoEUsername, connection_type || 'pppoe', email, address, package_id, customerData.odp_id || null, pppoe_profile, status || 'active', auto_suspension !== undefined ? auto_suspension : 1, normBillingDay, static_ip || null, assigned_ip || null, mac_address || null, finalLatitude, finalLongitude, cable_type || null, cable_length || null, port_number || null, cable_status || 'connected', cable_notes || null], async function (err) {
                 if (err) {
                     reject(err);
                 } else {
                     const customer = { id: this.lastID, ...customerData };
-
                     // Jika ada data ODP, buat cable route otomatis
                     if (odp_id) {
                         console.log(`🔧 Creating cable route for new customer ${finalUsername}, odp_id: ${odp_id}, cable_type: ${cable_type}`);
@@ -868,7 +892,6 @@ class BillingManager {
                             // Jangan reject, karena customer sudah berhasil dibuat di billing
                         }
                     }
-
                     // Jika ada nomor telepon dan PPPoE username, coba tambahkan tag ke GenieACS
                     // Tambahkan timeout dan error handling untuk mencegah delay
                     if (phone && autoPPPoEUsername) {
@@ -876,7 +899,6 @@ class BillingManager {
                             // Timeout untuk operasi GenieACS
                             const genieacsPromise = new Promise(async (resolve, reject) => {
                                 const timeout = setTimeout(() => reject(new Error('GenieACS operation timeout')), 3000); // 3 second timeout
-
                                 try {
                                     const genieacs = require('./genieacs');
                                     // Cari device berdasarkan PPPoE Username
@@ -896,7 +918,6 @@ class BillingManager {
                                     reject(genieacsError);
                                 }
                             });
-
                             await genieacsPromise;
                         } catch (genieacsError) {
                             console.log(`⚠️ GenieACS integration skipped for customer ${finalUsername} (timeout or error): ${genieacsError.message}`);
@@ -908,11 +929,9 @@ class BillingManager {
                             // Timeout untuk operasi GenieACS
                             const genieacsPromise = new Promise(async (resolve, reject) => {
                                 const timeout = setTimeout(() => reject(new Error('GenieACS operation timeout')), 3000); // 3 second timeout
-
                                 try {
                                     const genieacs = require('./genieacs');
                                     const device = await genieacs.findDeviceByPPPoE(finalUsername);
-
                                     if (device) {
                                         await genieacs.addTagToDevice(device._id, phone);
                                         console.log(`✅ Successfully added phone tag ${phone} to device ${device._id} for customer ${finalUsername} (using username as PPPoE)`);
@@ -926,19 +945,16 @@ class BillingManager {
                                     reject(genieacsError);
                                 }
                             });
-
                             await genieacsPromise;
                         } catch (genieacsError) {
                             console.log(`⚠️ GenieACS integration skipped for customer ${finalUsername} (timeout or error): ${genieacsError.message}`);
                         }
                     }
-
                     resolve(customer);
                 }
             });
         });
     }
-
     async getCustomers() {
         return new Promise((resolve, reject) => {
             const sql = `
@@ -967,7 +983,6 @@ class BillingManager {
                 LEFT JOIN packages p ON c.package_id = p.id 
                 ORDER BY c.name ASC
             `;
-
             this.db.all(sql, [], (err, rows) => {
                 if (err) {
                     reject(err);
@@ -977,7 +992,6 @@ class BillingManager {
             });
         });
     }
-
     async getCustomerByUsername(username) {
         return new Promise((resolve, reject) => {
             const sql = `
@@ -986,7 +1000,6 @@ class BillingManager {
                 LEFT JOIN packages p ON c.package_id = p.id 
                 WHERE c.username = ?
             `;
-
             this.db.get(sql, [username], (err, row) => {
                 if (err) {
                     reject(err);
@@ -996,12 +1009,10 @@ class BillingManager {
             });
         });
     }
-
     // Search customers by name, phone, or username
     async searchCustomers(searchTerm) {
         return new Promise((resolve, reject) => {
             const searchPattern = `%${searchTerm}%`;
-
             const sql = `
                 SELECT id, username, name, phone, email, address, pppoe_username, 
                        package_id, status, created_at, updated_at
@@ -1010,7 +1021,6 @@ class BillingManager {
                 ORDER BY name ASC
                 LIMIT 20
             `;
-
             this.db.all(sql, [searchPattern, searchPattern, searchPattern, searchPattern], (err, rows) => {
                 if (err) {
                     reject(err);
@@ -1020,7 +1030,6 @@ class BillingManager {
             });
         });
     }
-
     // Get customer by ID
     async getCustomerById(id) {
         return new Promise((resolve, reject) => {
@@ -1030,7 +1039,6 @@ class BillingManager {
                 LEFT JOIN packages p ON c.package_id = p.id
                 WHERE c.id = ?
             `;
-
             this.db.get(sql, [id], (err, row) => {
                 if (err) {
                     reject(err);
@@ -1040,7 +1048,6 @@ class BillingManager {
             });
         });
     }
-
     async getCustomerByPhone(phone) {
         return new Promise((resolve, reject) => {
             try {
@@ -1078,7 +1085,6 @@ class BillingManager {
                 LEFT JOIN packages p ON c.package_id = p.id 
                 WHERE c.phone = ? OR c.phone = ? OR c.phone = ?
             `;
-
                 // Prioritaskan pencarian berdasarkan varian yang umum: intl, local, original digits
                 this.db.get(sql, [intl, local08, digitsOnly], (err, row) => {
                     if (err) {
@@ -1092,14 +1098,12 @@ class BillingManager {
             }
         });
     }
-
     async getCustomerByWhatsAppLid(lid) {
         return new Promise((resolve, reject) => {
             try {
                 if (!lid) {
                     return resolve(null);
                 }
-
                 const sql = `
                 SELECT c.*, p.name as package_name, p.price as package_price, p.speed as package_speed, p.image_filename as package_image,
                        CASE 
@@ -1125,7 +1129,6 @@ class BillingManager {
                 LEFT JOIN packages p ON c.package_id = p.id 
                 WHERE c.whatsapp_lid = ?
             `;
-
                 this.db.get(sql, [lid], (err, row) => {
                     if (err) {
                         reject(err);
@@ -1138,14 +1141,12 @@ class BillingManager {
             }
         });
     }
-
     async updateCustomerWhatsAppLid(customerId, lid) {
         return new Promise((resolve, reject) => {
             try {
                 if (!customerId || !lid) {
                     return reject(new Error('Customer ID and WhatsApp LID are required'));
                 }
-
                 // First check if LID is already used by another customer
                 const checkSql = `SELECT id, name FROM customers WHERE whatsapp_lid = ? AND id != ?`;
 
@@ -1153,14 +1154,11 @@ class BillingManager {
                     if (err) {
                         return reject(err);
                     }
-
                     if (existingCustomer) {
                         return reject(new Error(`WhatsApp LID sudah terdaftar untuk pelanggan: ${existingCustomer.name}`));
                     }
-
                     // Update the customer's WhatsApp LID
                     const updateSql = `UPDATE customers SET whatsapp_lid = ? WHERE id = ?`;
-
                     this.db.run(updateSql, [lid, customerId], function (err) {
                         if (err) {
                             reject(err);
@@ -1178,12 +1176,10 @@ class BillingManager {
             }
         });
     }
-
     async getCustomerByNameOrPhone(searchTerm) {
         return new Promise((resolve, reject) => {
             // Bersihkan nomor telefon (hapus karakter non-digit)
             const cleanPhone = searchTerm.replace(/\D/g, '');
-
             const sql = `
                 SELECT c.*, p.name as package_name, p.price as package_price, p.speed as package_speed, p.image_filename as package_image,
                        CASE 
@@ -1220,7 +1216,6 @@ class BillingManager {
                     END
                 LIMIT 1
             `;
-
             const likeTerm = `%${searchTerm}%`;
             const params = [
                 cleanPhone,           // Exact phone match
@@ -1231,7 +1226,6 @@ class BillingManager {
                 `${searchTerm}%`,    // ORDER BY name starts with
                 likeTerm             // ORDER BY username LIKE
             ];
-
             this.db.get(sql, params, (err, row) => {
                 if (err) {
                     reject(err);
@@ -1241,12 +1235,10 @@ class BillingManager {
             });
         });
     }
-
     async findCustomersByNameOrPhone(searchTerm) {
         return new Promise((resolve, reject) => {
             // Bersihkan nomor telefon (hapus karakter non-digit) 
             const cleanPhone = searchTerm.replace(/\D/g, '');
-
             const sql = `
                 SELECT c.*, p.name as package_name, p.price as package_price, p.speed as package_speed,
                        CASE 
@@ -1283,7 +1275,6 @@ class BillingManager {
                     END
                 LIMIT 5
             `;
-
             const likeTerm = `%${searchTerm}%`;
             const params = [
                 cleanPhone,           // Exact phone match
@@ -1294,7 +1285,6 @@ class BillingManager {
                 `${searchTerm}%`,    // ORDER BY name starts with
                 likeTerm             // ORDER BY username LIKE
             ];
-
             this.db.all(sql, params, (err, rows) => {
                 if (err) {
                     reject(err);
@@ -1304,11 +1294,9 @@ class BillingManager {
             });
         });
     }
-
     async updateCustomer(phone, customerData) {
         return this.updateCustomerByPhone(phone, customerData);
     }
-
     async updateCustomerByPhone(oldPhone, customerData) {
         return new Promise(async (resolve, reject) => {
             // Pastikan database sudah siap
@@ -1316,12 +1304,30 @@ class BillingManager {
                 console.error('Database not initialized');
                 return reject(new Error('Database not initialized'));
             }
-
             // Simpan reference database untuk digunakan di callback
             const db = this.db;
-
-            const { name, username, phone, pppoe_username, email, address, package_id, odp_id, pppoe_profile, status, auto_suspension, billing_day, latitude, longitude, cable_type, cable_length, port_number, cable_status, cable_notes } = customerData;
-
+            const {
+                name,
+                username,
+                phone,
+                pppoe_username,
+                connection_type,
+                email,
+                address,
+                package_id,
+                odp_id,
+                pppoe_profile,
+                status,
+                auto_suspension,
+                billing_day,
+                latitude,
+                longitude,
+                cable_type,
+                cable_length,
+                port_number,
+                cable_status,
+                cable_notes
+            } = customerData;
             // Dapatkan data customer lama untuk membandingkan nomor telepon
             try {
                 const oldCustomer = await this.getCustomerByPhone(oldPhone);
@@ -1334,13 +1340,34 @@ class BillingManager {
                 // Normalisasi billing_day (1-28) dengan fallback ke nilai lama atau 15
                 const normBillingDay = Math.min(Math.max(parseInt(billing_day !== undefined ? billing_day : (oldCustomer?.billing_day ?? 15), 10) || 15, 1), 28);
 
-                const sql = `UPDATE customers SET name = ?, username = ?, phone = ?, pppoe_username = ?, email = ?, address = ?, package_id = ?, odp_id = ?, pppoe_profile = ?, status = ?, auto_suspension = ?, billing_day = ?, latitude = ?, longitude = ?, cable_type = ?, cable_length = ?, port_number = ?, cable_status = ?, cable_notes = ? WHERE id = ?`;
-
+                const sql = `UPDATE customers SET
+                  name = ?,
+                  username = ?,
+                  phone = ?,
+                  pppoe_username = ?,
+                  connection_type = ?,
+                  email = ?,
+                  address = ?,
+                  package_id = ?,
+                  odp_id = ?,
+                  pppoe_profile = ?,
+                  status = ?,
+                  auto_suspension = ?,
+                  billing_day = ?,
+                  latitude = ?,
+                  longitude = ?,
+                  cable_type = ?,
+                  cable_length = ?,
+                  port_number = ?,
+                  cable_status = ?,
+                  cable_notes = ?
+                  WHERE id = ?`;
                 db.run(sql, [
                     name,
                     username || oldCustomer.username,
                     phone || oldPhone,
                     pppoe_username,
+                    connection_type || 'pppoe',
                     email,
                     address,
                     package_id,
@@ -1894,19 +1921,49 @@ class BillingManager {
         });
     }
 
+    // hapus invoice
     async deleteInvoice(id) {
         return new Promise((resolve, reject) => {
-            // First get the invoice details before deleting
-            this.getInvoiceById(id).then(invoice => {
-                const sql = `DELETE FROM invoices WHERE id = ?`;
-                this.db.run(sql, [id], function (err) {
+    
+            this.db.get(
+                `SELECT COUNT(*) AS total
+                 FROM payments
+                 WHERE invoice_id = ?`,
+                [id],
+                (err, row) => {
+    
                     if (err) {
-                        reject(err);
-                    } else {
-                        resolve(invoice);
+                        return reject(err);
                     }
-                });
-            }).catch(reject);
+    
+                    if (row.total > 0) {
+                        return reject(
+                            new Error(
+                                'Invoice sudah memiliki pembayaran dan tidak dapat dihapus'
+                            )
+                        );
+                    }
+    
+                    this.getInvoiceById(id)
+                        .then(invoice => {
+    
+                            this.db.run(
+                                `DELETE FROM invoices WHERE id = ?`,
+                                [id],
+                                function(err) {
+    
+                                    if (err) {
+                                        reject(err);
+                                    } else {
+                                        resolve(invoice);
+                                    }
+                                }
+                            );
+    
+                        })
+                        .catch(reject);
+                }
+            );
         });
     }
 

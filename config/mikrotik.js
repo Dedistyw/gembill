@@ -2012,8 +2012,10 @@ async function getHotspotVoucherDetail(voucherCode) {
 
         console.log('[HS-DEBUG] Mulai cek voucher:', voucherCode);
 
-        const conn = await connectToMikrotik();
-
+        console.log('[HS-DEBUG] Sebelum getMikrotikConnection');
+        const conn = await getMikrotikConnection();
+        console.log('[HS-DEBUG] Sesudah getMikrotikConnection');
+        
         if (!conn) {
             return {
                 success: false,

@@ -3273,7 +3273,9 @@ router.put('/customers/:phone', async (req, res) => {
             const packageData = await billingManager.getPackageById(package_id);
             profileToUse = packageData?.pppoe_profile || 'default';
         } else if (!profileToUse) {
-            profileToUse = currentCustomer.pppoe_profile || 'default';
+            profileToUse =
+                packageData.pppoe_profile ||
+                'default';
         }
 
         // Extract new phone from request body, fallback to current if not provided
