@@ -2,130 +2,518 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | <%= (settings && settings.company_header) ? settings.company_header : 'Portal Admin' %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        body { background: #f5f6fa; }
-        .login-box {
-            margin: 80px auto;
-            max-width: 400px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 32px 28px;
+        *, *::before, *::after { 
+            box-sizing: border-box;
+            margin: 0; 
+            padding: 0; 
         }
-        .toast {
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0d1b3e;
+            padding: 24px 16px;
+        }
+
+        /* Latar belakang ornamen sferis */
+        body::before, body::after {
+            content: '';
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            min-width: 300px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::before {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(58,91,216,0.22) 0%, transparent 70%);
+            top: -200px; left: -150px;
+            animation: floatOrb 12s ease-in-out infinite;
+        }
+        body::after {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(232,85,85,0.15) 0%, transparent 70%);
+            bottom: -150px; right: -120px;
+            animation: floatOrb 9s ease-in-out infinite reverse 2s;
+        }
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0,0); }
+            50%       { transform: translate(30px, -30px); }
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 520px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+            animation: riseIn 0.55s cubic-bezier(.22,.68,0,1.15) both;
+        }
+        @keyframes riseIn {
+            from { opacity:0; transform:translateY(32px) scale(0.97); }
+            to   { opacity:1; transform:translateY(0) scale(1); }
+        }
+
+        .logo-header {
+            background: linear-gradient(
+                160deg,
+                #14532d 0%,
+                #15803d 50%,
+                #22c55e 100%
+            );
+            padding: 45px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .logo-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 22px 22px;
+        }
+
+        /* Container Logo Dinamis - FIX DIAM / STATIS */
+        .logo-container {
+            width: auto;
+            height: auto;
+            background: none;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInLogo 1s ease 0.2s forwards;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Ukuran Logo Tetap Besar di mobile*/
+        .logo-container img {
+            width: auto;
+            height: auto;
+            max-width: 380px;
+            max-height: 160px;
+            object-fit: contain;
+            border-radius: 12px;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,.15));
+            box-shadow: 0 10px 40px rgba(0,0,0,.35);
+        }
+        .logo-fallback {
+            display: none;
+            font-size: 54px;
+            color: rgba(255,255,255,0.85);
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeInLogo {
+            to { opacity: 1; }
+        }
+
+        /* Class Ornamen Logo berbasis Aspect Ratio */
+        #logo-ornament.ornament-square {
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(58, 91, 216, 0.4);
+            background: #ffffff;
+            padding: 14px;
+            border: 3px solid #3a5bd8;
+        }
+        #logo-ornament.ornament-rectangle {
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(232, 85, 85, 0.3);
+            background: #ffffff;
+            padding: 12px 24px;
+            border: 3px solid #e85555;
+        }
+        #logo-ornament.ornament-circle {
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(58, 91, 216, 0.5);
+            background: #ffffff;
+            padding: 16px;
+            border: 3px solid #3a5bd8;
+        }
+
+        .logo-divider {
+            position: relative;
+            z-index: 2;
+            width: 85%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            margin-top: 15px;
+        }
+        .logo-tagline {
+            position: relative;
+            z-index: 2;
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+        .company-name{
+            position:relative;
+            z-index:2;
+            color:#fff;
+            font-size:28px;
+            font-weight:700;
+            margin-top:15px;
+            margin-bottom:6px;
+            text-align:center;
+            letter-spacing:-0.5px;
+            text-shadow:0 3px 12px rgba(0,0,0,.35);
+        }
+        
+        .company-subtitle{
+            position:relative;
+            z-index:2;
+            font-size:12px;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:rgba(255,255,255,.75);
+        }
+        .form-body {
+            background: #ffffff;
+            padding: 35px 35px 30px;
+        }
+        .form-heading { 
+            margin-bottom: 25px; 
+        }
+        .form-heading .eyebrow {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e85555;
+            margin-bottom: 6px;
+        }
+        .form-heading h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0d1b3e;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        .form-heading p { 
+            font-size: 13px; 
+            color: #9095b8; 
+        }
+
+        .field { 
+            margin-bottom: 20px; 
+        }
+        .field label {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #3c4067;
+            margin-bottom: 8px;
+        }
+        .input-wrap { 
+            position: relative; 
+        }
+        .input-wrap .ico {
+            position: absolute;
+            left: 16px; 
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 15px;
+            color: #b0b4d0;
+            pointer-events: none;
+            transition: color 0.2s;
+        }
+        .input-wrap:focus-within .ico { 
+            color: #3a5bd8; 
+        }
+        .input-wrap input {
+            width: 100%;
+            padding: 14px 16px 14px 45px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            background: #f8f9fd;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #0d1b3e;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .input-wrap input::placeholder { 
+            color: #c4c8e0; 
+        }
+        .input-wrap input:focus {
+            border-color: #3a5bd8;
+            background: #ffffff;
+            box-shadow: 0 0 0 0.2rem rgba(58, 91, 216, 0.15);
+        }
+        .toggle-pass {
+            position: absolute;
+            right: 14px; 
+            top: 50%;
+            transform: translateY(-50%);
+            background: none; 
+            border: none;
+            padding: 4px; 
+            cursor: pointer;
+            color: #b0b4d0; 
+            font-size: 16px; 
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .toggle-pass:hover { 
+            color: #3a5bd8; 
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            margin-top: 5px;
+            background: linear-gradient(135deg, #1a3a80 0%, #0d1b3e 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-login::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+        }
+        .btn-login:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(13, 27, 62, 0.4);
+        }
+        .btn-login:active:not(:disabled) { 
+            transform: translateY(0); 
+        }
+        .btn-login:disabled { 
+            opacity: 0.7; 
+            cursor: not-allowed; 
+        }
+        .btn-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            gap: 8px;
+            position: relative; 
+            z-index: 1;
+        }
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin { 
+            to { transform: rotate(360deg); } 
+        }
+
+        .form-note {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        @media (max-width: 576px) {
+            .card { border-radius: 16px; }
+            .logo-header { padding: 30px 20px; }
+            .form-body { padding: 30px 20px; }
+            .logo-container img { max-width: 220px; max-height: 90px; }
         }
     </style>
 </head>
 <body>
-<div class="login-box">
-    <h3 class="mb-4 text-center">Login Admin</h3>
-    <div id="loginAlert" style="display:none;"></div>
-    <form id="loginForm">
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required autofocus>
+
+<div class="card">
+    <div class="logo-header">
+        <div class="logo-container" id="logo-ornament">
+            <img id="logo-img"
+                src="/img/<%= (settings && settings.logo_filename) ? settings.logo_filename : 'logo.png' %>?ts=<%= Date.now() %>"
+                alt="Logo"
+                onerror="this.style.display='none'; document.getElementById('logo-ornament').style.display='none'; document.querySelector('.logo-fallback').style.display='block'"
+            >
+            <i class="bi bi-shield-lock logo-fallback"></i>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100" id="loginBtn">
-            <span class="btn-text">Login</span>
-            <span class="btn-loading" style="display:none;">
-                <i class="bi bi-hourglass-split"></i> Memproses...
-            </span>
-        </button>
-    </form>
-    
+        <h4 class="mb-1 fw-bold">Admin Terintegrasi</h4>
+        <p class="mb-0 fw-bold"><%= settings.company_header %></p>
     </div>
 
-<!-- Toast Container -->
-<div id="toast-container"></div>
+    <div class="form-body">
+        <div class="form-heading">
+            <h2>Selamat Datang CEO</h2>
+            <p>Masuk untuk mengelola sistem</p>
+        </div>
+
+        <form id="loginForm" autocomplete="off">
+            <div class="field">
+                <label for="username">Username</label>
+                <div class="input-wrap">
+                    <i class="bi bi-person ico"></i>
+                    <input type="text" id="username" name="username" placeholder="Masukkan username" required autofocus>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <div class="input-wrap">
+                    <i class="bi bi-lock ico"></i>
+                    <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                    <button type="button" class="toggle-pass" id="togglePass" tabindex="-1">
+                        <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login" id="loginBtn">
+                <div class="btn-inner" id="btnNormal">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Masuk</span>
+                </div>
+                <div class="btn-inner" id="btnLoading" style="display:none;">
+                    <div class="spinner"></div>
+                    <span>Memproses&hellip;</span>
+                </div>
+            </button>
+        </form>
+
+        <p class="form-note">
+            © <%= new Date().getFullYear() %><br>
+            <strong>Hak Cipta Dilindungi</strong><br>
+            <span>Billing - Mikrotik - ACS - BOT - Mapping - Teknisi - Agen</span><br><br>
+            ⚠️ Info hubungi <%= superAdminNumber || 'Admin' %> <a href="https://wa.me/<%= superAdminNumber %>?text=Info%20Billing"><font color="#FF0000">[📨DISINI]</font></a>
+        </p>
+    </div>
+</div>
+
+<div id="toast-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-// Fungsi toast notification
-function showToast(type, title, message, duration = 5000) {
-    const toastId = 'toast-' + Date.now();
-    const iconClass = type === 'success' ? 'bi-check-circle' : type === 'error' ? 'bi-x-circle' : 'bi-info-circle';
-    const bgClass = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-primary';
-    
-    const toastHtml = `
-        <div id="${toastId}" class="toast align-items-center text-white ${bgClass} border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    <i class="bi ${iconClass} me-2"></i>
-                    <strong>${title}</strong><br>
-                    <small>${message}</small>
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-    `;
-    
-    $('#toast-container').append(toastHtml);
-    const toastElement = document.getElementById(toastId);
-    const toast = new bootstrap.Toast(toastElement, { delay: duration });
-    toast.show();
-    
-    // Auto remove after hide
-    toastElement.addEventListener('hidden.bs.toast', () => {
-        toastElement.remove();
+    document.getElementById('togglePass').addEventListener('click', function () {
+        const inp  = document.getElementById('password');
+        const icon = document.getElementById('toggleIcon');
+        const show = inp.type === 'password';
+        inp.type       = show ? 'text' : 'password';
+        icon.className = show ? 'bi bi-eye' : 'bi bi-eye-slash';
     });
-}
 
-// Handler form login
-$('#loginForm').on('submit', function(e) {
-    e.preventDefault();
-    
-    const username = $('#username').val();
-    const password = $('#password').val();
-    
-    if (!username || !password) {
-        showToast('error', 'Error', 'Username dan password harus diisi!');
-        return;
-    }
-    
-    // Loading state
-    const $btn = $('#loginBtn');
-    const $btnText = $btn.find('.btn-text');
-    const $btnLoading = $btn.find('.btn-loading');
-    
-    $btn.prop('disabled', true);
-    $btnText.hide();
-    $btnLoading.show();
-    
-    // Kirim request
-    $.ajax({
-        url: '/admin/login',
-        method: 'POST',
-        data: { username, password },
-        success: function(response) {
-            // Jika berhasil, redirect ke dashboard
-            window.location.href = '/admin/dashboard';
-        },
-        error: function(xhr) {
-            // Jika error, tampilkan pesan
-            const errorMsg = xhr.responseJSON?.message || 'Username atau password salah!';
-            showToast('error', 'Login Gagal', errorMsg);
+    function showToast(type, title, message, duration) {
+        duration = duration || 5000;
+        const toastId = 'toast-' + Date.now();
+        const iconClass = type === 'success' ? 'bi-check-circle' : type === 'error' ? 'bi-x-circle' : 'bi-info-circle';
+        const bgClass   = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-primary';
+        
+        const toastHtml = `
+            <div id="${toastId}" class="toast align-items-center text-white ${bgClass} border-0"
+                 role="alert" aria-live="assertive" aria-atomic="true" style="min-width:300px;">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi ${iconClass} me-2"></i>
+                        <strong>${title}</strong><br>
+                        <small>${message}</small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>`;
             
-            // Reset button
-            $btn.prop('disabled', false);
-            $btnText.show();
-            $btnLoading.hide();
+        $('#toast-container').append(toastHtml);
+        const toastElement = document.getElementById(toastId);
+        const toast = new bootstrap.Toast(toastElement, { delay: duration });
+        toast.show();
+        toastElement.addEventListener('hidden.bs.toast', () => toastElement.remove());
+    }
+
+    $('#loginForm').on('submit', function (e) {
+        e.preventDefault();
+        var username = $('#username').val().trim();
+        var password = $('#password').val();
+        
+        if (!username || !password) {
+            showToast('error', 'Kolom Kosong', 'Username dan password wajib diisi!');
+            return;
+        }
+        
+        $('#loginBtn').prop('disabled', true);
+        $('#btnNormal').hide();
+        $('#btnLoading').show();
+        
+        $.ajax({
+            url: '/admin/login',
+            method: 'POST',
+            data: { username: username, password: password },
+            success: function () {
+                showToast('success', 'Berhasil Masuk', 'Mengalihkan ke dashboard...');
+                setTimeout(function () { window.location.href = '/admin/dashboard'; }, 900);
+            },
+            error: function (xhr) {
+                var msg = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : 'Username atau password salah!';
+                showToast('error', 'Login Gagal', msg);
+                $('#loginBtn').prop('disabled', false);
+                $('#btnNormal').show();
+                $('#btnLoading').hide();
+            }
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+        const logoImg = document.getElementById('logo-img');
+        const ornament = document.getElementById('logo-ornament');
+        
+        function updateOrnament() {
+            if (!logoImg.naturalWidth || !logoImg.naturalHeight) return;
+            const w = logoImg.naturalWidth;
+            const h = logoImg.naturalHeight;
+            
+            ornament.classList.remove('ornament-square', 'ornament-rectangle', 'ornament-circle');
+            
+            if (Math.abs(w - h) < 10) {
+                ornament.classList.add('ornament-square');
+            } else if (w > h * 1.2 || h > w * 1.2) {
+                ornament.classList.add('ornament-rectangle');
+            } else {
+                ornament.classList.add('ornament-square');
+            }
+        }
+        
+        if (logoImg.complete) {
+            updateOrnament();
+        } else {
+            logoImg.onload = updateOrnament;
         }
     });
-});
 </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

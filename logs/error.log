@@ -20838,3 +20838,30 @@
   "message": "Invoice sudah memiliki pembayaran dan tidak dapat dihapus",
   "stack": "Error: Invoice sudah memiliki pembayaran dan tidak dapat dihapus\n    at Statement.<anonymous> (/root/gembill/config/billing.js:1941:29)\n    at Statement.replacement (/root/gembill/node_modules/sqlite3/lib/trace.js:25:27)\n    at Statement.replacement (/root/gembill/node_modules/sqlite3/lib/trace.js:25:27)"
 }
+[2026-06-17 21:20:12] [ERROR] Hotspot suspension failed for mf83: - input does not match any value of profile
+[2026-06-17 21:22:37] [ERROR] Hotspot restore failed for mf83: - input does not match any value of profile
+[2026-06-18 08:43:16] [ERROR] Hotspot restore failed for mf83: - input does not match any value of profile
+[2026-06-18 15:57:48] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-06-18 23:06:16] [ERROR] Error in suspendStaticIPCustomer:
+{
+  "name": "Error",
+  "message": "Customer tidak memiliki IP statik atau MAC address yang terdaftar",
+  "stack": "Error: Customer tidak memiliki IP statik atau MAC address yang terdaftar\n    at StaticIPSuspensionManager.suspendStaticIPCustomer (/root/gembill/config/staticIPSuspension.js:44:23)\n    at ServiceSuspensionManager.suspendCustomerService (/root/gembill/config/serviceSuspension.js:158:50)\n    at BillingCommands.handleIsolir (/root/gembill/config/billing-commands.js:75:52)\n    at async handleIncomingMessage (/root/gembill/config/whatsapp.js:6490:17)\n    at async EventEmitter.<anonymous> (/root/gembill/config/whatsapp.js:668:21)"
+}
+[2026-06-18 23:06:16] [ERROR] [STATIC-SUSPEND] FAILED username=ys64: Customer tidak memiliki IP statik atau MAC address yang terdaftar
+[2026-06-19 15:44:45] [ERROR] GenieACS suspension failed for nh72: - socket hang up
+[2026-06-19 16:06:02] [ERROR] GenieACS restoration failed for nh72: - socket hang up
+[2026-06-19 16:07:36] [ERROR] GenieACS suspension failed for nh72: - socket hang up
+[2026-06-19 19:44:18] [ERROR] GenieACS restoration failed for nh72: - socket hang up
+[2026-06-19 20:23:20] [ERROR] GenieACS suspension failed for ra41: - socket hang up
+[2026-06-19 21:36:37] [ERROR] GenieACS suspension failed for ra41: - socket hang up
+[2026-06-19 21:39:02] [ERROR] [STATIC-RESTORE] FAILED username=ra41: undefined
+[2026-06-19 21:39:24] [ERROR] GenieACS restoration failed for ra41: - socket hang up
+[2026-06-19 21:40:48] [ERROR] GenieACS suspension failed for ra41: - socket hang up
+[2026-06-19 21:44:40] [ERROR] GenieACS restoration failed for ra41: - socket hang up
+[2026-06-19 22:04:33] [ERROR] Hotspot suspension failed for hsb: - input does not match any value of profile
+[2026-06-19 23:23:47] [ERROR] Error editing PPPoE user: input does not match any value of profile
+[2026-06-19 23:23:47] [ERROR] [BILLING] Failed to sync Mikrotik for del_190626: - input does not match any value of profile
+[2026-06-20 05:40:28] [ERROR] Error adding PPPoE secret: input does not match any value of profile
+[2026-06-20 06:58:16] [ERROR] GenieACS suspension failed for ra41: - socket hang up
+[2026-06-20 07:36:31] [ERROR] Error adding hotspot user: failure: already have user with this name for this server

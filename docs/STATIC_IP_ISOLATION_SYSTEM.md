@@ -12,7 +12,7 @@ Sistem isolir IP statik adalah fitur yang memungkinkan ISP untuk memblokir atau 
 **Metode terbaik dan paling efisien**
 
 **Cara Kerja:**
-- Menambahkan IP pelanggan ke address list `blocked_customers`
+- Menambahkan IP pelanggan ke address list `isolir`
 - Menggunakan firewall rule untuk memblokir semua traffic dari address list
 - Performa tinggi dan mudah dikelola
 
@@ -125,18 +125,18 @@ node scripts/add-static-ip-fields.js
 **Address List Method (Automatic):**
 ```mikrotik
 # Rules akan dibuat otomatis oleh sistem saat pertama kali digunakan
-/ip firewall filter add chain=forward src-address-list=blocked_customers action=drop comment="Block suspended customers (static IP)"
-/ip firewall filter add chain=input src-address-list=blocked_customers action=drop comment="Block suspended customers from accessing router"
+/ip firewall filter add chain=forward src-address-list=isolir action=drop comment="Block suspended customers (static IP)"
+/ip firewall filter add chain=input src-address-list=isolir action=drop comment="Block suspended customers from accessing router"
 ```
 
 **Manual Setup (Optional):**
 ```mikrotik
 # Buat address list kosong
-/ip firewall address-list add list=blocked_customers address=0.0.0.0 comment="Placeholder - will be auto-managed"
+/ip firewall address-list add list=isolir address=0.0.0.0 comment="Placeholder - will be auto-managed"
 
 # Buat firewall rules
-/ip firewall filter add chain=forward src-address-list=blocked_customers action=drop place-before=0
-/ip firewall filter add chain=input src-address-list=blocked_customers action=drop
+/ip firewall filter add chain=forward src-address-list=isolir action=drop place-before=0
+/ip firewall filter add chain=input src-address-list=isolir action=drop
 ```
 
 ---
@@ -216,10 +216,10 @@ console.log('Methods:', status.methods);
 
 ```mikrotik
 # Cek address list blocked customers
-/ip firewall address-list print where list=blocked_customers
+/ip firewall address-list print where list=isolir
 
 # Cek firewall rules
-/ip firewall filter print where src-address-list=blocked_customers
+/ip firewall filter print where src-address-list=isolir
 
 # Cek queue untuk bandwidth limit
 /queue simple print where name~"suspended_"
@@ -255,7 +255,7 @@ tail -f logs/error.log | grep "static.*IP\|Static IP"
 /ip firewall filter move [rule-id] destination=0
 
 # Cek address list
-/ip firewall address-list print where list=blocked_customers
+/ip firewall address-list print where list=isolir
 ```
 
 ### **Problem 2: DHCP block tidak berfungsi**

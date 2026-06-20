@@ -2493,7 +2493,7 @@ router.post('/whatsapp-settings/test', async (req, res) => {
                 due_date: '15 Januari 2024',
                 package_name: 'Paket Premium',
                 package_speed: '50 Mbps',
-                notes: 'Tagihan bulanan'
+                notes: 'Tagihan'
             },
             due_date_reminder: {
                 customer_name: 'Test Customer',

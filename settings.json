@@ -83,7 +83,7 @@
   "auto_suspension_enabled": false,
   "suspension_grace_period_days": "2",
   "default_pppoe_profile": "default",
-  "isolir_profile": "ISOLIR",
+  "isolir_profile": "isolir",
   "static_ip_suspension_method": "address_list",
   "suspension_bandwidth_limit": "1k/1k",
   "whatsapp_rate_limit": {
@@ -230,5 +230,11 @@
   "whatsapp_daily_count.2026-06-09": 6,
   "whatsapp_daily_count.2026-06-10": 10,
   "whatsapp_daily_count.2026-06-11": 2,
-  "whatsapp_daily_count.2026-06-12": 2
+  "whatsapp_daily_count.2026-06-12": 5,
+  "whatsapp_daily_count.2026-06-14": 5,
+  "whatsapp_daily_count.2026-06-16": 1,
+  "whatsapp_daily_count.2026-06-17": 2,
+  "whatsapp_daily_count.2026-06-18": 2,
+  "whatsapp_daily_count.2026-06-19": 6,
+  "whatsapp_daily_count.2026-06-20": 8
 }

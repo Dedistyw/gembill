@@ -882,7 +882,8 @@ router.post('/login', async (req, res) => {
         const msg = `🔐 *KODE OTP PORTAL PELANGGAN*\n\n` +
           `Kode OTP Anda adalah: *${otp}*\n\n` +
           `⏰ Kode ini berlaku selama ${(isNaN(expiryMin) ? 5 : expiryMin)} menit\n` +
-          `🔒 Jangan bagikan kode ini kepada siapapun`;
+          `🔒 Jangan bagikan kode ini kepada siapapun\n`
+          `⚔️ Proses verifikasi butuh waktu , diharapkan jangan terburu-buru minta otp ulang🙏`;
         
         await sendMessage(waJid, msg);
         console.log(`OTP berhasil dikirim ke ${normalizedPhone}: ${otp}`);

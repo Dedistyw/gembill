@@ -37,6 +37,9 @@ class StaticIPSuspensionManager {
             const customerIP = customer.static_ip || customer.ip_address || customer.assigned_ip;
             const macAddress = customer.mac_address;
 
+            logger.info(
+                `[STATIC-SUSPEND] username=${customer.username} ip=${customerIP || '-'} mac=${macAddress || '-'} method=${method}`
+            );
             if (!customerIP && !macAddress) {
                 throw new Error('Customer tidak memiliki IP statik atau MAC address yang terdaftar');
             }
@@ -45,6 +48,9 @@ class StaticIPSuspensionManager {
             results.mac_address = macAddress;
 
             // Pilih metode suspend berdasarkan parameter
+            logger.info(
+                `[STATIC-SUSPEND] Using suspension method: ${method}`
+            );
             switch (method) {
                 case this.suspensionMethods.ADDRESS_LIST:
                     if (customerIP) {
@@ -119,12 +125,12 @@ class StaticIPSuspensionManager {
         try {
             const mikrotik = await getMikrotikConnection();
             
-            // Pastikan address list "blocked_customers" ada dan firewall rule aktif
+            // Pastikan address list "isolir" ada dan firewall rule aktif
             await this.ensureBlockedCustomersSetup();
 
             // Cek apakah IP sudah ada di address list
             const existingEntries = await mikrotik.write('/ip/firewall/address-list/print', [
-                '?list=blocked_customers',
+                '?list=isolir',
                 `?address=${customerIP}`
             ]);
 
@@ -135,12 +141,14 @@ class StaticIPSuspensionManager {
 
             // Tambahkan IP ke address list
             await mikrotik.write('/ip/firewall/address-list/add', [
-                '=list=blocked_customers',
+                '=list=isolir',
                 `=address=${customerIP}`,
                 `=comment=SUSPENDED - ${reason} - ${new Date().toISOString()}`
             ]);
 
-            logger.info(`Static IP ${customerIP} added to blocked_customers address list`);
+            logger.info(
+                `[STATIC-SUSPEND] Added IP ${customerIP} to isolir`
+            );
             return { success: true, message: 'Added to address list' };
 
         } catch (error) {
@@ -273,6 +281,9 @@ class StaticIPSuspensionManager {
             const customerIP = customer.static_ip || customer.ip_address || customer.assigned_ip;
             const macAddress = customer.mac_address;
 
+            logger.info(
+                `[STATIC-RESTORE] username=${customer.username} ip=${customerIP || '-'} mac=${macAddress || '-'}`
+            );
             if (!customerIP && !macAddress) {
                 throw new Error('Customer tidak memiliki IP statik atau MAC address yang terdaftar');
             }
@@ -280,6 +291,9 @@ class StaticIPSuspensionManager {
             // Coba semua metode restore
             if (customerIP) {
                 // 1. Remove dari address list
+                logger.info(
+                    `[STATIC-RESTORE] Trying address-list removal for ${customerIP}`
+                );
                 const addressListResult = await this.restoreFromAddressList(customerIP);
                 if (addressListResult.success) {
                     results.mikrotik = true;
@@ -287,6 +301,9 @@ class StaticIPSuspensionManager {
                 }
 
                 // 2. Remove bandwidth limit
+                logger.info(
+                    `[STATIC-RESTORE] Trying bandwidth-limit removal for ${customerIP}`
+                );
                 const bandwidthResult = await this.restoreFromBandwidthLimit(customerIP);
                 if (bandwidthResult.success) {
                     results.mikrotik = true;
@@ -294,6 +311,9 @@ class StaticIPSuspensionManager {
                 }
 
                 // 3. Remove firewall rule
+                logger.info(
+                    `[STATIC-RESTORE] Trying firewall-rule removal for ${customerIP}`
+                );
                 const firewallResult = await this.restoreFromFirewallRule(customerIP);
                 if (firewallResult.success) {
                     results.mikrotik = true;
@@ -303,6 +323,9 @@ class StaticIPSuspensionManager {
 
             if (macAddress) {
                 // 4. Unblock DHCP lease
+                logger.info(
+                    `[STATIC-RESTORE] Trying DHCP unblock for ${macAddress}`
+                );
                 const dhcpResult = await this.restoreFromDHCPBlock(macAddress);
                 if (dhcpResult.success) {
                     results.mikrotik = true;
@@ -322,6 +345,9 @@ class StaticIPSuspensionManager {
                 }
             }
 
+            logger.info(
+                `[STATIC-RESTORE] RESULT success=${results.mikrotik} methods=${results.methods_tried.join(',')}`
+            );
             return {
                 success: results.mikrotik,
                 results,
@@ -345,10 +371,13 @@ class StaticIPSuspensionManager {
      */
     async restoreFromAddressList(customerIP) {
         try {
+            logger.info(
+                `[STATIC-RESTORE] Searching address-list entry for ${customerIP}`
+            );
             const mikrotik = await getMikrotikConnection();
 
             const entries = await mikrotik.write('/ip/firewall/address-list/print', [
-                '?list=blocked_customers',
+                '?list=isolir',
                 `?address=${customerIP}`
             ]);
 
@@ -358,7 +387,7 @@ class StaticIPSuspensionManager {
                         `=.id=${entry['.id']}`
                     ]);
                 }
-                logger.info(`Removed ${customerIP} from blocked_customers address list`);
+                logger.info(`Removed ${customerIP} from isolir address list`);
                 return { success: true };
             }
 
@@ -460,36 +489,36 @@ class StaticIPSuspensionManager {
 
             // 1. Pastikan firewall rule untuk block address list ada
             const existingRules = await mikrotik.write('/ip/firewall/filter/print', [
-                '?src-address-list=blocked_customers',
+                '?src-address-list=isolir',
                 '?action=drop'
             ]);
 
             if (!existingRules || existingRules.length === 0) {
                 await mikrotik.write('/ip/firewall/filter/add', [
                     '=chain=forward',
-                    '=src-address-list=blocked_customers',
+                    '=src-address-list=isolir',
                     '=action=drop',
                     '=comment=Block suspended customers (static IP)',
                     '=place-before=0' // Put at top of chain
                 ]);
-                logger.info('Created firewall rule for blocked_customers address list');
+                logger.info('Created firewall rule for isolir address list');
             }
 
             // 2. Tambahkan rule untuk block dari internal juga (jika diperlukan)
             const internalRules = await mikrotik.write('/ip/firewall/filter/print', [
                 '?chain=input',
-                '?src-address-list=blocked_customers',
+                '?src-address-list=isolir',
                 '?action=drop'
             ]);
 
             if (!internalRules || internalRules.length === 0) {
                 await mikrotik.write('/ip/firewall/filter/add', [
                     '=chain=input',
-                    '=src-address-list=blocked_customers',
+                    '=src-address-list=isolir',
                     '=action=drop',
                     '=comment=Block suspended customers from accessing router (static IP)'
                 ]);
-                logger.info('Created input chain rule for blocked_customers address list');
+                logger.info('Created input chain rule for isolir address list');
             }
 
         } catch (error) {
@@ -516,7 +545,7 @@ class StaticIPSuspensionManager {
             // Cek address list
             if (customerIP) {
                 const addressListEntries = await mikrotik.write('/ip/firewall/address-list/print', [
-                    '?list=blocked_customers',
+                    '?list=isolir',
                     `?address=${customerIP}`
                 ]);
                 if (addressListEntries && addressListEntries.length > 0) {

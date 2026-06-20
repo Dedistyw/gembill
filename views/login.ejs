@@ -54,7 +54,7 @@
     .logo-container img {
       width: auto;
       height: auto;
-      max-width: 150px;
+      max-width: 200px;
       max-height: 150px;
       object-fit: contain;
       box-shadow: 0 8px 32px rgba(102,126,234,0.18);
@@ -127,8 +127,8 @@
         padding: 25px 20px;
       }
       .logo-container img {
-        max-width: 100px;
-        max-height: 100px;
+        max-width: 200px;
+        max-height: 150px;
       }
     }
     /* Ornamen dinamis */
@@ -229,7 +229,7 @@
           </p>
           <p class="mb-2">
             <i class="bi bi-telephone me-1"></i>
-            Butuh bantuan? Hubungi <%= settings.contact_phone || 'Admin' %>
+            Butuh bantuan? Hubungi <%= settings.contact_phone || 'Admin' %> <a href="https://wa.me/62<%= settings.contact_phone || 'Admin' %>?text=Saya%20mau%20daftar%20paketan%20internet"><font color="#FF0000">[📨DISINI]</font></a>
           </p>
           
           <p class="mb-0">

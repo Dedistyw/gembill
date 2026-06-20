@@ -135,46 +135,102 @@ class ServiceSuspensionManager {
             }
             // 2. Jika tidak ada PPPoE, coba suspend IP statik
             else if (
-                    connectionType === 'static' ||
-                    (
-                        connectionType === 'auto' &&
-                        (hasStaticIP || hasMacAddress)
-                    )
-                ) {
+                connectionType === 'static' ||
+                (
+                    connectionType === 'auto' &&
+                    (hasStaticIP || hasMacAddress)
+                )
+            ) {
                 results.suspension_type = 'static_ip';
+            
                 try {
-                    // Tentukan metode suspend dari setting (default: address_list)
-                    const suspensionMethod = getSetting('static_ip_suspension_method', 'address_list');
-
-                    const staticResult = await staticIPSuspension.suspendStaticIPCustomer(
-                        customer,
-                        reason,
-                        suspensionMethod
+                    const suspensionMethod =
+                        getSetting(
+                            'static_ip_suspension_method',
+                            'address_list'
+                        );
+            
+                    logger.info(
+                        `[STATIC-SUSPEND] username=${customer.username} ip=${customer.static_ip || customer.ip_address || customer.assigned_ip || '-'} mac=${customer.mac_address || '-'} method=${suspensionMethod}`
                     );
-
+            
+                    const staticResult =
+                        await staticIPSuspension.suspendStaticIPCustomer(
+                            customer,
+                            reason,
+                            suspensionMethod
+                        );
+            
+                    logger.info(
+                        `[STATIC-SUSPEND] Result: ${JSON.stringify(staticResult)}`
+                    );
+            
                     if (staticResult.success) {
                         results.mikrotik = true;
-                        results.static_ip_method = staticResult.results?.method_used;
-                        logger.info(`Static IP suspension successful for ${customer.username} using ${staticResult.results?.method_used}`);
+                        results.static_ip_method =
+                            staticResult.results?.method_used;
+            
+                        logger.info(
+                            `[STATIC-SUSPEND] SUCCESS username=${customer.username} method=${staticResult.results?.method_used}`
+                        );
                     } else {
-                        logger.error(`Static IP suspension failed for ${customer.username}: ${staticResult.error}`);
+                        logger.error(
+                            `[STATIC-SUSPEND] FAILED username=${customer.username}: ${staticResult.error}`
+                        );
                     }
+            
                 } catch (staticIPError) {
-                    logger.error(`Static IP suspension failed for ${customer.username}:`, staticIPError.message);
+                    logger.error(
+                        `[STATIC-SUSPEND] EXCEPTION username=${customer.username}:`,
+                        staticIPError.message
+                    );
                 }
             }
-            // cek HOTSPOT dulu
+            // cek HOTSPOT dulu _ suspend
             else if (connectionType === 'hotspot') {
                 results.suspension_type = 'hotspot';
             
                 try {
                     const mikrotik = await getMikrotikConnection();
             
-                    const selectedProfile = getSetting(
-                        'isolir_profile',
-                        'isolir'
+                    const selectedProfile =
+                        (getSetting('isolir_profile', 'isolir') || '')
+                            .trim();
+                    
+                    logger.info(
+                        `[HOTSPOT-SUSPEND] username=${customer.username} profile=${selectedProfile}`
                     );
-            
+                    
+                    // tampilkan profile hotspot yg tersedia
+                    try {
+                        const profiles = await mikrotik.write(
+                            '/ip/hotspot/user/profile/print',
+                            []
+                        );
+                        const profileExists = profiles.some(
+                            p => (p.name || '').trim() === selectedProfile
+                        );
+                        
+                        logger.info(
+                            `[HOTSPOT-SUSPEND] profile_exists=${profileExists}`
+                        );
+                        
+                        if (!profileExists) {
+                            throw new Error(
+                                `Hotspot profile '${selectedProfile}' tidak ditemukan`
+                            );
+                        }
+                        logger.info(
+                            `[HOTSPOT-SUSPEND] Available hotspot profiles: ${
+                                profiles.map(p => p.name).join(', ')
+                            }`
+                        );
+                    } catch (profileErr) {
+                        logger.warn(
+                            `[HOTSPOT-SUSPEND] Failed reading hotspot profiles: ${profileErr.message}`
+                        );
+                    }
+                    
                     const users = await mikrotik.write(
                         '/ip/hotspot/user/print',
                         [
@@ -182,13 +238,28 @@ class ServiceSuspensionManager {
                         ]
                     );
             
+                    logger.info(
+                        `[HOTSPOT-SUSPEND] Found ${users.length} hotspot user(s) for ${customer.username}`
+                    );
+                    
                     if (users.length > 0) {
+                        logger.info(
+                            `[HOTSPOT-SUSPEND] user_id=${users[0]['.id']} current_profile=${users[0].profile || '-'}`
+                        );
+                        logger.info(
+                            `[HOTSPOT-SUSPEND] Setting hotspot profile '${selectedProfile}' for ${customer.username}`
+                        );
+                        
                         await mikrotik.write(
                             '/ip/hotspot/user/set',
                             [
                                 `=.id=${users[0]['.id']}`,
                                 `=profile=${selectedProfile}`
                             ]
+                        );
+                        
+                        logger.info(
+                            `[HOTSPOT-SUSPEND] SUCCESS profile changed to '${selectedProfile}'`
                         );
             
                         // Putuskan sesi aktif agar isolir langsung berlaku
@@ -429,26 +500,81 @@ class ServiceSuspensionManager {
                 )
             ) {
                 results.restoration_type = 'static_ip';
+            
                 try {
-                    const staticResult = await staticIPSuspension.restoreStaticIPCustomer(customer, reason);
-
+            
+                    logger.info(
+                        `[STATIC-RESTORE] username=${customer.username} ip=${customer.static_ip || customer.ip_address || customer.assigned_ip || '-'} mac=${customer.mac_address || '-'}`
+                    );
+            
+                    const staticResult =
+                        await staticIPSuspension.restoreStaticIPCustomer(
+                            customer,
+                            reason
+                        );
+            
+                    logger.info(
+                        `[STATIC-RESTORE] Result: ${JSON.stringify(staticResult)}`
+                    );
+            
                     if (staticResult.success) {
+            
                         results.mikrotik = true;
-                        results.static_ip_methods = staticResult.results?.methods_tried;
-                        logger.info(`Static IP restoration successful for ${customer.username}. Methods: ${staticResult.results?.methods_tried?.join(', ')}`);
+            
+                        results.static_ip_methods =
+                            staticResult.results?.methods_tried;
+            
+                        logger.info(
+                            `[STATIC-RESTORE] SUCCESS username=${customer.username} methods=${staticResult.results?.methods_tried?.join(', ')}`
+                        );
+            
                     } else {
-                        logger.error(`Static IP restoration failed for ${customer.username}: ${staticResult.error}`);
+            
+                        logger.error(
+                            `[STATIC-RESTORE] FAILED username=${customer.username}: ${staticResult.error}`
+                        );
+            
                     }
+            
                 } catch (staticIPError) {
-                    logger.error(`Static IP restoration failed for ${customer.username}:`, staticIPError.message);
+            
+                    logger.error(
+                        `[STATIC-RESTORE] EXCEPTION username=${customer.username}:`,
+                        staticIPError.message
+                    );
+            
                 }
             }
-            // cek hotspot dulu
+            // cek hotspot dulu _ restore
             else if (connectionType === 'hotspot') {
                 results.restoration_type = 'hotspot';
             
                 try {
                     const mikrotik = await getMikrotikConnection();
+            
+                    let profileToUse = 'default';
+            
+                    try {
+                        if (customer.package_id) {
+                            const packageData =
+                                await billingManager.getPackageById(
+                                    customer.package_id
+                                );
+            
+                            if (packageData?.pppoe_profile) {
+                                profileToUse =
+                                    packageData.pppoe_profile;
+                            }
+                        }
+                    } catch (pkgErr) {
+                        logger.warn(
+                            `[HOTSPOT-RESTORE] Failed load package profile: ${pkgErr.message}`
+                        );
+                    }
+            
+                    logger.info(
+                        `[HOTSPOT-RESTORE] username=${customer.username} package_id=${customer.package_id} profile=${profileToUse}`
+                    );
             
                     const users = await mikrotik.write(
                         '/ip/hotspot/user/print',
@@ -457,20 +583,28 @@ class ServiceSuspensionManager {
                         ]
                     );
             
+                    logger.info(
+                        `[HOTSPOT-RESTORE] Found ${users.length} hotspot user(s)`
+                    );
+            
                     if (users.length > 0) {
             
                         await mikrotik.write(
                             '/ip/hotspot/user/set',
                             [
                                 `=.id=${users[0]['.id']}`,
-                                '=profile=default'
+                                `=profile=${profileToUse}`
                             ]
                         );
             
-                        results.mikrotik = true;
-            
                         logger.info(
-                            `Hotspot user ${customer.username} restored`
+                            `[HOTSPOT-RESTORE] SUCCESS profile changed to ${profileToUse}`
+                        );
+            
+                        results.mikrotik = true;
+                    } else {
+                        logger.warn(
+                            `[HOTSPOT-RESTORE] User ${customer.username} not found`
                         );
                     }
             

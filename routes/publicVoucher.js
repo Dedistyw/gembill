@@ -683,16 +683,25 @@ router.get('/success/:purchaseId', async (req, res) => {
 // GET: Halaman hasil pembayaran dari payment gateway
 router.get('/finish', async (req, res) => {
     try {
-        const { order_id, transaction_status } = req.query;
 
-        if (!order_id) {
+        const {
+            order_id,
+            transaction_status,
+            tripay_reference,
+            tripay_merchant_ref
+        } = req.query;
+
+        // Support Midtrans dan Tripay
+        const lookupId = order_id || tripay_merchant_ref;
+
+        if (!lookupId) {
             const settings = getSettingsWithCache();
             const company_header = settings.company_header || 'Voucher Hotspot';
 
             return res.render('voucherError', {
                 title: 'Error',
-                error: 'Order ID tidak ditemukan',
-                message: 'Parameter order_id tidak ditemukan dalam URL',
+                error: 'Referensi pembayaran tidak ditemukan',
+                message: 'Parameter pembayaran tidak ditemukan dalam URL',
                 company_header,
                 settings,
                 versionInfo: getVersionInfo(),
@@ -700,11 +709,21 @@ router.get('/finish', async (req, res) => {
             });
         }
 
+        // Kompatibilitas data lama yang terlanjur INV-INV-
+        const normalizedLookupId =
+            lookupId.startsWith('INV-INV-')
+                ? lookupId.replace('INV-INV-', 'INV-')
+                : lookupId;
+
         const purchase = await new Promise((resolve, reject) => {
-            billingManager.db.get('SELECT * FROM voucher_purchases WHERE invoice_id = ?', [order_id], (err, row) => {
-                if (err) reject(err);
-                else resolve(row);
-            });
+            billingManager.db.get(
+                'SELECT * FROM voucher_purchases WHERE invoice_id = ?',
+                [normalizedLookupId],
+                (err, row) => {
+                    if (err) reject(err);
+                    else resolve(row);
+                }
+            );
         });
 
         if (!purchase) {
@@ -714,7 +733,7 @@ router.get('/finish', async (req, res) => {
             return res.render('voucherError', {
                 title: 'Voucher Tidak Ditemukan',
                 error: 'Voucher tidak ditemukan',
-                message: 'Purchase dengan order ID tersebut tidak ditemukan',
+                message: `Purchase dengan invoice ${normalizedLookupId} tidak ditemukan`,
                 company_header,
                 settings,
                 versionInfo: getVersionInfo(),
@@ -723,6 +742,7 @@ router.get('/finish', async (req, res) => {
         }
 
         let vouchers = [];
+
         if (purchase.voucher_data) {
             try {
                 vouchers = JSON.parse(purchase.voucher_data);
@@ -731,17 +751,38 @@ router.get('/finish', async (req, res) => {
             }
         }
 
-        // Don't close billingManager.db as it's a singleton
-
-        // Tentukan status berdasarkan transaction_status
+        // Tentukan status
         let status = 'pending';
-        if (transaction_status === 'settlement' || transaction_status === 'capture') {
+
+        // Midtrans
+        if (
+            transaction_status === 'settlement' ||
+            transaction_status === 'capture'
+        ) {
             status = 'success';
-        } else if (transaction_status === 'expire' || transaction_status === 'cancel') {
+        } else if (
+            transaction_status === 'expire' ||
+            transaction_status === 'cancel'
+        ) {
             status = 'failed';
         }
 
-        // Ambil settings untuk informasi tambahan
+        // Tripay / database
+        if (
+            purchase.status === 'completed' ||
+            purchase.status === 'paid' ||
+            purchase.status === 'success'
+        ) {
+            status = 'success';
+        }
+
+        if (
+            purchase.status === 'failed' ||
+            purchase.status === 'expired'
+        ) {
+            status = 'failed';
+        }
+
         const settings = getSettingsWithCache();
         const company_header = settings.company_header || 'Voucher Hotspot';
         const adminContact = settings['admins.0'] || '-';
@@ -749,10 +790,12 @@ router.get('/finish', async (req, res) => {
         res.render('voucherFinish', {
             title: 'Hasil Pembayaran Voucher',
             purchase,
+            purchaseId: purchase.id,
             vouchers,
             status,
             transaction_status,
-            order_id,
+            order_id: normalizedLookupId,
+            tripay_reference,
             company_header,
             adminContact,
             settings,
@@ -763,7 +806,6 @@ router.get('/finish', async (req, res) => {
     } catch (error) {
         console.error('Error rendering voucher finish page:', error);
 
-        // Ambil settings untuk error page juga
         const settings = getSettingsWithCache();
         const company_header = settings.company_header || 'Voucher Hotspot';
 

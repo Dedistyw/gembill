@@ -44,9 +44,35 @@ const technicianSync = {
         console.log('🔄 Technician auto-sync enabled - settings.json changes will auto-update technicians');
     }
 };
-
 // Start technician sync service
 technicianSync.start();
+
+// Super Admin Sync Service ke semua EJS dgn <%= superAdminNumber %>
+global.superAdminNumber = 'Unknown';
+
+const superAdminSync = {
+    start() {
+        const fs = require('fs');
+
+        const load = () => {
+            try {
+                global.superAdminNumber = fs
+                    .readFileSync('./config/superadmin.txt', 'utf8')
+                    .trim();
+
+                console.log('👑 Super Admin loaded:', global.superAdminNumber);
+            } catch (e) {
+                console.error('SuperAdmin Sync Error:', e.message);
+            }
+        };
+
+        fs.watchFile('./config/superadmin.txt', { interval: 1000 }, load);
+
+        load(); // Initial load
+    }
+};
+
+superAdminSync.start();
 
 // Inisialisasi aplikasi Express
 const app = express();
@@ -56,6 +82,19 @@ const { router: adminAuthRouter, adminAuth } = require('./routes/adminAuth');
 
 // Import middleware untuk access control (harus diimport sebelum digunakan)
 const { blockTechnicianAccess } = require('./middleware/technicianAccessControl');
+
+const { getSettingsWithCache } = require('./config/settingsManager');
+
+// semua view EJS otomatis mendapatkan objek settings <%= settings.company_header %>
+app.use((req, res, next) => {
+    try {
+        res.locals.settings = getSettingsWithCache();
+    } catch (err) {
+        console.error('Error loading settings:', err);
+        res.locals.settings = {};
+    }
+    next();
+});
 
 // Middleware dasar - Optimized
 app.use(express.json({ limit: '10mb' }));
@@ -78,6 +117,11 @@ app.use(session({
     name: 'admin_session' // Custom session name
 }));
 
+// Global variables untuk semua EJS mendptkan  <%= superAdminNumber %>
+app.use((req, res, next) => {
+    res.locals.superAdminNumber = global.superAdminNumber;
+    next();
+});
 
 // Test route untuk debugging
 app.get('/admin/test', (req, res) => {

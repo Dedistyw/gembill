@@ -576,18 +576,20 @@ async function connectToWhatsApp() {
                         const phone =
                             sock?.user?.id?.split(':')[0] || 'Unknown';
         
+                        const companyHeader = getSetting('company_header', '🌐🛠🛜🇲🇨');
+                        
                         const message =
-        `✅ *WhatsApp Connected*
+        `✅ *WhatsApp Connected...!*
         
         Server berhasil terhubung dan siap digunakan.
         
-        📱 Nomor:
-        ${phone}
+        🏢 Billing : *${companyHeader}*
         
-        🕒 Connected:
-        ${connectedSince.toLocaleString('id-ID')}
+        📱 Nomor : ${phone}
         
-        🚀 Sistem berjalan normal`
+        🕒 Connected: ${connectedSince.toLocaleString('id-ID')}
+        
+        🚀 Tetap SEMANGAT...!`
         .split('\n')
         .map(line => line.trim())
         .join('\n');
@@ -5713,22 +5715,22 @@ Pesan GenieACS telah diaktifkan kembali.`);
                     '📶 DETAIL VOUCHER *35K*',
                     '',
                     `🎫 Voucher : ${data.username}`,
-                    `👤 Profile : ${data.profile}`,
+                    `👤 Profile    : ${data.profile}`,
                     `📝 Masa Aktif/Comment : ${data.comment}`,
                     '',
                     `🟢 Status : ${data.status}`,
                     `📱 Device : ${data.deviceType || '-'}`,
-                    `🌐 IP : ${data.ip}`,
-                    `📡 MAC : ${data.mac}`,
+                    `🌐 IP        : ${data.ip}`,
+                    `📡 MAC     : ${data.mac}`,
                     '',
-                    `⏳ Sesi Aktif : ${formatUptime(data.sessionUptime)}`,
+                    `⏳ Sesi Aktif   : ${formatUptime(data.sessionUptime)}`,
                     `⌛ Total Aktif : ${formatUptime(data.totalUptime)}`,
                     `📥 Total Download : ${formatBytes(data.bytesOut)}`,
                     `📤 Total Upload : ${formatBytes(data.bytesIn)}`,
                     `📊 Total Traffic : ${formatBytes(data.totalBytes)}`,
                     '',
-                    `👥 Multi Login : ${data.multiLogin}`,
-                    `🚨 Sharing : ${data.sharing}`,
+                    `👥 Login       : ${data.multiLogin}`,
+                    `🚨 Sharing   : ${data.sharing}`,
                     `🕓 Last Seen : ${data.lastSeen}`,
                     `🕓 Last Login : ${data.lastLogin}`,
                     `🕓 Last Logout : ${data.lastLogout}`,

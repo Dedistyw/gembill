@@ -219,7 +219,7 @@ class InvoiceScheduler {
                         base_amount: basePrice, // Store base price for reference
                         tax_rate: taxRate, // Store tax rate for reference
                         due_date: dueDate.toISOString().split('T')[0],
-                        notes: `Tagihan bulanan ${currentDate.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}`,
+                        notes: `Tagihan ${currentDate.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}`,
                         invoice_type: 'monthly'
                     };
 
@@ -317,7 +317,7 @@ class InvoiceScheduler {
                         base_amount: basePrice,
                         tax_rate: taxRate,
                         due_date: dueDate,
-                        notes: `Tagihan bulanan ${today.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}`
+                        notes: `Tagihan ${today.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}`
                     };
 
                     const newInvoice = await billingManager.createInvoice(invoiceData);

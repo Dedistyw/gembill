@@ -564,7 +564,7 @@ class TripayGateway {
 
         const orderData = {
             method: selectedMethod,
-            merchant_ref: `INV-${invoice.invoice_number}`,
+            merchant_ref: invoice.invoice_number,
             amount: parseInt(invoice.amount),
             customer_name: sanitizedCustomerName,
             customer_email: customerEmail,

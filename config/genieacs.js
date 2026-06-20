@@ -72,7 +72,7 @@ const genieacsApi = {
 
             // Jika tidak ditemukan dengan tag, coba cari dengan PPPoE username dari billing
             try {
-                const { billingManager } = require('./billing');
+                const billingManager = require('./billing');
                 const customer = await billingManager.getCustomerByPhone(phoneNumber);
                 if (customer && customer.pppoe_username) {
                     console.log(`Device not found by phone tag, trying PPPoE username: ${customer.pppoe_username}`);

@@ -145,17 +145,19 @@
                 </div>
                 <div class="row">
                     <div class="col-4"><strong>Jumlah:</strong></div>
-                    <div class="col-8">Rp <%= (gross_amount || 0).toLocaleString('id-ID') %></div>
+                    <div class="col-8">
+                        Rp <%= Number(purchase?.amount || 0).toLocaleString('id-ID') %></div>
                 </div>
                 <div class="row">
                     <div class="col-4"><strong>Payment:</strong></div>
-                    <div class="col-8"><%= payment_type || 'N/A' %></div>
+                    <div class="col-8">
+                      <%= purchase?.payment_method || 'Online Payment' %></div>
                 </div>
                 <div class="row">
                     <div class="col-4"><strong>Status:</strong></div>
                     <div class="col-8">
-                        <span class="badge bg-<%= transaction_status === 'settlement' ? 'success' : transaction_status === 'pending' ? 'warning' : 'secondary' %>">
-                            <%= transaction_status || 'unknown' %>
+                        <span class="badge bg-<%= status === 'success' ? 'success' : status === 'pending' ? 'warning' : 'danger' %>">
+                          <%= status || 'unknown' %>
                         </span>
                     </div>
                 </div>
@@ -194,11 +196,11 @@
             const btnText = document.getElementById('btnText');
             const spinner = continueBtn.querySelector('.spinner-border');
 
-            const transactionStatus = '<%= transaction_status %>';
+            const transactionStatus = '<%= status %>';
             const orderId = '<%= order_id %>';
-
+            const purchaseId = '<%= purchaseId %>';
             // Handle different transaction statuses
-            if (transactionStatus === 'settlement' || transactionStatus === 'capture') {
+            if (transactionStatus === 'success') {
                 // Payment successful
                 statusCard.innerHTML = `
                     <div class="text-center">
@@ -220,7 +222,8 @@
 
                     // Redirect to voucher success page after a short delay
                     setTimeout(() => {
-                        window.location.href = '/voucher/success?order_id=' + orderId;
+                        window.location.href =
+                        '/voucher/success/' + purchaseId;
                     }, 2000);
                 };
 
@@ -244,7 +247,7 @@
                     window.location.reload();
                 };
 
-            } else if (transactionStatus === 'cancel' || transactionStatus === 'expire' || transactionStatus === 'failure') {
+            } else if (transactionStatus === 'failed') {
                 // Payment failed
                 statusCard.innerHTML = `
                     <div class="text-center">
@@ -286,14 +289,16 @@
             }
 
             // Auto redirect for successful payments after 5 seconds
-            if (transactionStatus === 'settlement' || transactionStatus === 'capture') {
+            if (transactionStatus === 'success') {
                 setTimeout(() => {
                     if (!continueBtn.clicked) {
-                        window.location.href = '/voucher/success?order_id=' + orderId;
+                        window.location.href =
+                        '/voucher/success/' + purchaseId;
                     }
                 }, 5000);
             }
         });
     </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"71a1d182bc2c49b1a739fd22c0c329e9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

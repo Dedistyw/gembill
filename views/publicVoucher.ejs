@@ -276,7 +276,8 @@
                             <%= settings.company_header || 'GEMBOK' %> Hotspot
                         </h1>
                         <p class="lead text-white-50 mb-4">
-                            Pilih paket voucher WiFi yang sesuai dengan kebutuhan Anda
+                            Pilih paket voucher WiFi yang sesuai dengan kebutuhan Anda.
+                            Tersedia juga paket bulanan Unlimited terbaik untuk keluarga Anda.
                         </p>
                     </div>
 
@@ -353,9 +354,10 @@
                         <p class="text-white-50 mb-2">
                             <i class="bi bi-info-circle me-2"></i>
                             Butuh bantuan? Hubungi kami di <%= settings.contact_phone || '081947215703' %>
+                            <a href="https://wa.me/62<%= settings.contact_phone || '085894387669' %>?text=Saya%20mau%20daftar%20paketan%20internet"><font color="#7FFF0">[📨DISINI]</font></a>
                         </p>
                         <p class="text-white-50 small">
-                            © 2025 <%= settings.company_header || 'GEMBOK' %> - Semua hak dilindungi
+                            © <script type="text/javascript">document.write(new Date().getFullYear());</script> <%= settings.company_header || 'GEMBOK' %> - Semua hak dilindungi
                         </p>
                     </div>
                 </div>
@@ -381,7 +383,7 @@
                     <form id="purchaseForm">
                         <div class="mb-3">
                             <label for="customerName" class="form-label">
-                                <i class="bi bi-person me-2"></i>Nama Lengkap
+                                <i class="bi bi-person me-2"></i>Nama
                             </label>
                             <input type="text" class="form-control" id="customerName" name="customerName" required
                                    placeholder="Masukkan nama lengkap Anda">
@@ -431,7 +433,7 @@
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-modal" id="submitBtn" disabled>
                                 <span class="spinner-border spinner-border-sm me-2 d-none" role="status"></span>
-                                <i class="bi bi-credit-card me-2"></i>Pilih Merchant dan Bayar
+                                <i class="bi bi-credit-card me-2"></i>Silahkan pilih Merchant diatas
                             </button>
                             <button type="button" class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">
                                 <i class="bi bi-x-circle me-2"></i>Batal

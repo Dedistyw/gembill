@@ -118,6 +118,9 @@ class BillingManager {
                   billing_day = ?,
                   latitude = ?,
                   longitude = ?,
+                  static_ip = ?,
+                  assigned_ip = ?,
+                  mac_address = ?,
                   cable_type = ?,
                   cable_length = ?,
                   port_number = ?,
@@ -138,6 +141,9 @@ class BillingManager {
                     status ?? oldCustomer.status,
                     auto_suspension !== undefined ? auto_suspension : oldCustomer.auto_suspension,
                     normBillingDay,
+                    static_ip !== undefined ? static_ip : oldCustomer.static_ip,
+                    assigned_ip !== undefined ? assigned_ip : oldCustomer.assigned_ip,
+                    mac_address !== undefined ? mac_address : oldCustomer.mac_address,
                     cable_type !== undefined ? cable_type : oldCustomer.cable_type,
                     cable_length !== undefined ? cable_length : oldCustomer.cable_length,
                     port_number !== undefined ? port_number : oldCustomer.port_number,
@@ -894,7 +900,11 @@ class BillingManager {
                     }
                     // Jika ada nomor telepon dan PPPoE username, coba tambahkan tag ke GenieACS
                     // Tambahkan timeout dan error handling untuk mencegah delay
-                    if (phone && autoPPPoEUsername) {
+                    if (
+                        (connection_type || 'pppoe') === 'pppoe' &&
+                        phone &&
+                        autoPPPoEUsername
+                    ) {
                         try {
                             // Timeout untuk operasi GenieACS
                             const genieacsPromise = new Promise(async (resolve, reject) => {
@@ -923,7 +933,11 @@ class BillingManager {
                             console.log(`⚠️ GenieACS integration skipped for customer ${finalUsername} (timeout or error): ${genieacsError.message}`);
                             // Jangan reject, karena customer sudah berhasil dibuat di billing
                         }
-                    } else if (phone && finalUsername) {
+                    } else if (
+                        (connection_type || 'pppoe') === 'pppoe' &&
+                        phone &&
+                        finalUsername
+                    ) {
                         // Fallback: coba dengan username jika pppoe_username tidak ada
                         try {
                             // Timeout untuk operasi GenieACS
@@ -1322,6 +1336,9 @@ class BillingManager {
                 billing_day,
                 latitude,
                 longitude,
+                static_ip,
+                assigned_ip,
+                mac_address,
                 cable_type,
                 cable_length,
                 port_number,
@@ -1356,6 +1373,9 @@ class BillingManager {
                   billing_day = ?,
                   latitude = ?,
                   longitude = ?,
+                  static_ip = ?,
+                  assigned_ip = ?,
+                  mac_address = ?,
                   cable_type = ?,
                   cable_length = ?,
                   port_number = ?,
@@ -1378,6 +1398,9 @@ class BillingManager {
                     normBillingDay,
                     latitude !== undefined ? parseFloat(latitude) : oldCustomer.latitude,
                     longitude !== undefined ? parseFloat(longitude) : oldCustomer.longitude,
+                    static_ip !== undefined ? static_ip : oldCustomer.static_ip,
+                    assigned_ip !== undefined ? assigned_ip : oldCustomer.assigned_ip,
+                    mac_address !== undefined ? mac_address : oldCustomer.mac_address,
                     cable_type !== undefined ? cable_type : oldCustomer.cable_type,
                     cable_length !== undefined ? cable_length : oldCustomer.cable_length,
                     port_number !== undefined ? port_number : oldCustomer.port_number,
@@ -1390,7 +1413,16 @@ class BillingManager {
                     } else {
                         // Jika nomor telepon atau PPPoE username berubah, update tag di GenieACS
                         const newPhone = phone || oldPhone;
-                        if (newPhone && (newPhone !== oldPhone || pppoe_username !== oldPPPoE)) {
+                        const currentConnectionType =
+                            connection_type ||
+                            oldCustomer.connection_type ||
+                            'pppoe';
+                        
+                        if (
+                            currentConnectionType === 'pppoe' &&
+                            newPhone &&
+                            (newPhone !== oldPhone || pppoe_username !== oldPPPoE)
+                        ) {
                             try {
                                 // Timeout untuk operasi GenieACS
                                 const genieacsPromise = new Promise(async (resolve, reject) => {
@@ -1557,7 +1589,10 @@ class BillingManager {
                         reject(err);
                     } else {
                         // Hapus tag dari GenieACS jika ada nomor telepon
-                        if (customer.phone) {
+                        if (
+                            customer.phone &&
+                            (customer.connection_type || 'pppoe') === 'pppoe'
+                        ) {
                             try {
                                 const genieacs = require('./genieacs');
                                 const pppoeToUse = customer.pppoe_username || customer.username; // Fallback ke username jika pppoe_username kosong
@@ -1576,6 +1611,47 @@ class BillingManager {
                             }
                         }
 
+                        try {
+                            const mikrotik = require('./mikrotik');
+                        
+                            if (customer.connection_type === 'pppoe') {
+                        
+                                const pppoeUser =
+                                    customer.pppoe_username ||
+                                    customer.username;
+                        
+                                console.log(
+                                    `[DELETE-PPPOE] Removing PPPoE secret ${pppoeUser}`
+                                );
+                        
+                                await mikrotik.deletePPPoESecret(pppoeUser);
+                        
+                            } else if (customer.connection_type === 'hotspot') {
+                        
+                                console.log(
+                                    `[DELETE-HOTSPOT] Removing hotspot user ${customer.username}`
+                                );
+                        
+                                await mikrotik.deleteHotspotUser(
+                                    customer.username
+                                );
+                        
+                            } else if (customer.connection_type === 'static') {
+                        
+                                console.log(
+                                    `[DELETE-STATIC] Skip Mikrotik user removal`
+                                );
+                        
+                            }
+                        
+                        } catch (mikrotikError) {
+                        
+                            console.error(
+                                '[DELETE-MIKROTIK]',
+                                mikrotikError.message
+                            );
+                        
+                        }
                         resolve({ username: customer.username, deleted: true });
                     }
                 });
@@ -1620,7 +1696,10 @@ class BillingManager {
                         reject(err);
                     } else {
                         // Hapus tag dari GenieACS jika ada nomor telepon
-                        if (customer.phone) {
+                        if (
+                            customer.phone &&
+                            (customer.connection_type || 'pppoe') === 'pppoe'
+                        ) {
                             try {
                                 const genieacs = require('./genieacs');
                                 const pppoeToUse = customer.pppoe_username || customer.username; // Fallback ke username jika pppoe_username kosong
@@ -1639,6 +1718,47 @@ class BillingManager {
                             }
                         }
 
+                        try {
+                            const mikrotik = require('./mikrotik');
+                        
+                            if (customer.connection_type === 'pppoe') {
+                        
+                                const pppoeUser =
+                                    customer.pppoe_username ||
+                                    customer.username;
+                        
+                                console.log(
+                                    `[DELETE-PPPOE] Removing PPPoE secret ${pppoeUser}`
+                                );
+                        
+                                await mikrotik.deletePPPoESecret(pppoeUser);
+                        
+                            } else if (customer.connection_type === 'hotspot') {
+                        
+                                console.log(
+                                    `[DELETE-HOTSPOT] Removing hotspot user ${customer.username}`
+                                );
+                        
+                                await mikrotik.deleteHotspotUser(
+                                    customer.username
+                                );
+                        
+                            } else if (customer.connection_type === 'static') {
+                        
+                                console.log(
+                                    `[DELETE-STATIC] Skip Mikrotik user removal`
+                                );
+                        
+                            }
+                        
+                        } catch (mikrotikError) {
+                        
+                            console.error(
+                                '[DELETE-MIKROTIK]',
+                                mikrotikError.message
+                            );
+                        
+                        }
                         resolve({ username: customer.username, deleted: true });
                     }
                 });
