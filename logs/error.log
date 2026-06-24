@@ -20865,3 +20865,25 @@
 [2026-06-20 05:40:28] [ERROR] Error adding PPPoE secret: input does not match any value of profile
 [2026-06-20 06:58:16] [ERROR] GenieACS suspension failed for ra41: - socket hang up
 [2026-06-20 07:36:31] [ERROR] Error adding hotspot user: failure: already have user with this name for this server
+[2026-06-21 12:24:20] [ERROR] GenieACS restoration failed for ra41: - socket hang up
+[2026-06-24 07:10:38] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_ERROR: near \"email\": syntax error",
+  "stack": "Error: SQLITE_ERROR: near \"email\": syntax error"
+}
+[2026-06-24 07:10:56] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_ERROR: near \"email\": syntax error",
+  "stack": "Error: SQLITE_ERROR: near \"email\": syntax error"
+}
+[2026-06-24 07:11:27] [ERROR] Error creating customer:
+{
+  "name": "Error",
+  "message": "SQLITE_ERROR: near \"email\": syntax error",
+  "stack": "Error: SQLITE_ERROR: near \"email\": syntax error"
+}
+[2026-06-25 00:01:33] [ERROR] GenieACS suspension failed for dg82: - socket hang up
+[2026-06-25 00:12:51] [ERROR] GenieACS restoration failed for dg82: - socket hang up
+[2026-06-25 00:30:05] [ERROR] GenieACS suspension failed for dg82: - socket hang up

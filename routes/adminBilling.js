@@ -1344,7 +1344,6 @@ router.get('/export/monthly-summary.xlsx', adminAuth, async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 });
-
 // Export laporan keuangan ke Excel
 router.get('/export/financial-report.xlsx', async (req, res) => {
     try {
@@ -1688,7 +1687,7 @@ router.get('/export/customers.xlsx', async (req, res) => {
         // Header lengkap dengan koordinat map dan data lainnya
         const headers = [
             'ID', 'Username', 'Nama', 'Phone', 'PPPoE Username', 'Email', 'Alamat',
-            'Latitude', 'Longitude', 'Package ID', 'Package Name', 'PPPoE Profile',
+            'Latitude', 'Longitude', 'Package ID', 'Package Name', 'Mikrotik Profile',
             'Status', 'Auto Suspension', 'Billing Day', 'Join Date', 'Created At'
         ];
 
@@ -1704,17 +1703,21 @@ router.get('/export/customers.xlsx', async (req, res) => {
         // Set column widths
         worksheet.columns = [
             { header: 'ID', key: 'id', width: 8 },
-            { header: 'Username', key: 'username', width: 15 },
+            { header: 'Username hs/ppp', key: 'username', width: 15 },
             { header: 'Nama', key: 'name', width: 25 },
             { header: 'Phone', key: 'phone', width: 15 },
-            { header: 'PPPoE Username', key: 'pppoe_username', width: 20 },
+            { header: 'Tipe Koneksi', key: 'connection_type', width: 15 },
+            { header: 'Package ID', key: 'package_id', width: 10 },
+            { header: 'Package Name', key: 'package_name', width: 20 },
+            { header: 'Mikrotik Profile', key: 'pppoe_profile', width: 15 },
+            { header: 'Static IP', key: 'static_ip', width: 18 },
+            { header: 'Assigned IP', key: 'assigned_ip', width: 18 },
+            { header: 'MAC Address', key: 'mac_address', width: 20 },
+            { header: 'ODP ID', key: 'odp_id', width: 10 },
             { header: 'Email', key: 'email', width: 25 },
             { header: 'Alamat', key: 'address', width: 35 },
             { header: 'Latitude', key: 'latitude', width: 12 },
             { header: 'Longitude', key: 'longitude', width: 12 },
-            { header: 'Package ID', key: 'package_id', width: 10 },
-            { header: 'Package Name', key: 'package_name', width: 20 },
-            { header: 'PPPoE Profile', key: 'pppoe_profile', width: 15 },
             { header: 'Status', key: 'status', width: 10 },
             { header: 'Auto Suspension', key: 'auto_suspension', width: 15 },
             { header: 'Billing Day', key: 'billing_day', width: 12 },
@@ -1728,14 +1731,18 @@ router.get('/export/customers.xlsx', async (req, res) => {
                 c.username || '',
                 c.name || '',
                 c.phone || '',
-                c.pppoe_username || '',
+                c.connection_type || 'pppoe',
+                c.package_id || '',
+                c.package_name || '',
+                c.pppoe_profile || 'default',
+                c.static_ip || '',
+                c.assigned_ip || '',
+                c.mac_address || '',
+                c.odp_id || '',
                 c.email || '',
                 c.address || '',
                 c.latitude || '',
                 c.longitude || '',
-                c.package_id || '',
-                c.package_name || '',
-                c.pppoe_profile || 'default',
                 c.status || 'active',
                 typeof c.auto_suspension !== 'undefined' ? c.auto_suspension : 1,
                 c.billing_day || 15,
@@ -1795,13 +1802,19 @@ router.post('/import/customers/xlsx', upload.single('file'), async (req, res) =>
 
         // Support for Indonesian headers (from new export format)
         const indonesianHeaderMap = {
+            'username': 'username',
             'nama': 'name',
             'phone': 'phone',
-            'pppoe username': 'pppoe_username',
+            'tipe koneksi': 'connection_type',
+            'package id': 'package_id',
+            'package name': 'package_name',
+            'mikrotik profile': 'pppoe_profile',
+            'static ip': 'static_ip',
+            'assigned ip': 'assigned_ip',
+            'mac address': 'mac_address',
+            'odp id': 'odp_id',
             'email': 'email',
             'alamat': 'address',
-            'package id': 'package_id',
-            'pppoe profile': 'pppoe_profile',
             'status': 'status',
             'auto suspension': 'auto_suspension',
             'billing day': 'billing_day'
@@ -1834,11 +1847,16 @@ router.post('/import/customers/xlsx', upload.single('file'), async (req, res) =>
                 const raw = {
                     name,
                     phone,
-                    pppoe_username: String(getVal(row, 'pppoe_username') || '').trim(),
+                    username: String(getVal(row, 'username') || '').trim(),
                     email: String(getVal(row, 'email') || '').trim(),
                     address: String(getVal(row, 'address') || '').trim(),
                     package_id: getVal(row, 'package_id') ? Number(getVal(row, 'package_id')) : null,
                     pppoe_profile: String(getVal(row, 'pppoe_profile') || 'default').trim(),
+                    connection_type: String(getVal(row, 'connection_type') || 'pppoe').trim(),
+                    static_ip: String(getVal(row, 'static_ip') || '').trim(),
+                    assigned_ip: String(getVal(row, 'assigned_ip') || '').trim(),
+                    mac_address: String(getVal(row, 'mac_address') || '').trim(),
+                    odp_id: getVal(row, 'odp_id') ? Number(getVal(row, 'odp_id')) : null,
                     status: String(getVal(row, 'status') || 'active').trim(),
                     auto_suspension: (() => {
                         const v = getVal(row, 'auto_suspension');
@@ -1891,11 +1909,16 @@ router.post('/import/customers/xlsx', upload.single('file'), async (req, res) =>
                 const customerData = {
                     name: raw.name.trim(),
                     phone: raw.phone.trim(),
-                    pppoe_username: raw.pppoe_username ? raw.pppoe_username.trim() : '',
+                    username: raw.username ? raw.pppoe_username.trim() : '',
                     email: raw.email ? raw.email.trim() : '',
                     address: raw.address ? raw.address.trim() : '',
                     package_id: raw.package_id || null,
                     pppoe_profile: raw.pppoe_profile || 'default',
+                    connection_type: raw.connection_type || 'pppoe',
+                    static_ip: raw.static_ip || null,
+                    assigned_ip: raw.assigned_ip || null,
+                    mac_address: raw.mac_address || null,
+                    odp_id: raw.odp_id || null,
                     status: raw.status || 'active',
                     auto_suspension: typeof raw.auto_suspension !== 'undefined' ? parseInt(raw.auto_suspension) : 1,
                     billing_day: raw.billing_day ? Math.min(Math.max(parseInt(raw.billing_day), 1), 28) : 15
@@ -1928,9 +1951,48 @@ router.post('/import/customers/xlsx', upload.single('file'), async (req, res) =>
 router.get('/export/customers.json', async (req, res) => {
     try {
         const customers = await billingManager.getCustomers();
-        res.setHeader('Content-Type', 'application/json');
-        res.setHeader('Content-Disposition', 'attachment; filename=customers.json');
-        res.json({ success: true, customers });
+
+        const exportCustomers = customers.map(c => ({
+            id: c.id,
+            username: c.username,
+            name: c.name,
+            phone: c.phone,
+            connection_type: c.connection_type || 'pppoe',
+            package_id: c.package_id,
+            package_name: c.package_name,
+            mikrotik_profile: c.pppoe_profile,
+            static_ip: c.static_ip,
+            assigned_ip: c.assigned_ip,
+            mac_address: c.mac_address,
+            odp_id: c.odp_id,
+            email: c.email,
+            address: c.address,
+            latitude: c.latitude,
+            longitude: c.longitude,
+            status: c.status,
+            auto_suspension: c.auto_suspension,
+            billing_day: c.billing_day,
+            join_date: c.join_date,
+            created_at: c.created_at
+        }));
+
+        const jsonData = JSON.stringify({
+            success: true,
+            customers: exportCustomers
+        }, null, 2);
+
+        res.setHeader(
+            'Content-Disposition',
+            'attachment; filename="customers.json"'
+        );
+
+        res.setHeader(
+            'Content-Type',
+            'application/octet-stream'
+        );
+
+        return res.send(jsonData);
+
     } catch (error) {
         logger.error('Error exporting customers (JSON):', error);
         res.status(500).json({
@@ -1976,14 +2038,35 @@ router.post('/import/customers/json', upload.single('file'), async (req, res) =>
                 const customerData = {
                     name,
                     phone,
-                    pppoe_username: raw.pppoe_username || '',
+                
+                    username: raw.username || '',
+                
+                    connection_type: raw.connection_type || 'pppoe',
+                
+                    package_id: raw.package_id || null,
+                
+                    pppoe_profile: raw.mikrotik_profile || raw.pppoe_profile || 'default',
+                    static_ip: raw.static_ip || null,
+                    assigned_ip: raw.assigned_ip || null,
+                    mac_address: raw.mac_address || null,
+                
+                    odp_id: raw.odp_id || null,
+                
                     email: raw.email || '',
                     address: raw.address || '',
-                    package_id: raw.package_id || null,
-                    pppoe_profile: raw.pppoe_profile || 'default',
+                
                     status: raw.status || 'active',
-                    auto_suspension: raw.auto_suspension !== undefined ? parseInt(raw.auto_suspension, 10) : 1,
-                    billing_day: raw.billing_day ? Math.min(Math.max(parseInt(raw.billing_day), 1), 28) : 1
+                
+                    
+                    auto_suspension:
+                        raw.auto_suspension !== undefined
+                            ? parseInt(raw.auto_suspension, 10)
+                            : 1,
+                
+                    billing_day:
+                        raw.billing_day
+                            ? Math.min(Math.max(parseInt(raw.billing_day), 1), 28)
+                            : 1
                 };
 
                 if (existing) {
@@ -3315,8 +3398,88 @@ router.put('/customers/:phone', async (req, res) => {
         };
 
         // Use current phone for lookup, allow phone to be updated in customerData
-        const result = await billingManager.updateCustomerByPhone(phone, customerData);
-
+        logger.info(
+            `[WEB-EDIT] username=${currentCustomer.username} ` +
+            `status_lama=${currentCustomer.status} ` +
+            `status_baru=${customerData.status} ` +
+            `connection_type=${customerData.connection_type}`
+        );
+        const result = await billingManager.updateCustomerByPhone(
+            phone,
+            customerData
+        );
+        
+        // Trigger suspend / restore hanya jika update database berhasil
+        if (result) {
+        
+            if (
+                currentCustomer.status !== 'suspended' &&
+                customerData.status === 'suspended'
+            ) {
+                try {
+        
+                    logger.info(
+                        `[WEB-EDIT] Trigger SUSPEND untuk ${customerData.username}`
+                    );
+        
+                    const updatedCustomer =
+                        await billingManager.getCustomerByPhone(
+                            customerData.phone || phone
+                        );
+        
+                    await serviceSuspension.suspendCustomerService(
+                        updatedCustomer,
+                        'Suspend dari Edit Pelanggan'
+                    );
+        
+                    logger.info(
+                        `[WEB-EDIT] SUSPEND selesai untuk ${customerData.username}`
+                    );
+        
+                } catch (err) {
+        
+                    logger.error(
+                        `[WEB-EDIT] SUSPEND gagal ${customerData.username}:`,
+                        err.message
+                    );
+        
+                }
+            }
+        
+            else if (
+                currentCustomer.status === 'suspended' &&
+                customerData.status === 'active'
+            ) {
+                try {
+        
+                    logger.info(
+                        `[WEB-EDIT] Trigger RESTORE untuk ${customerData.username}`
+                    );
+        
+                    const updatedCustomer =
+                        await billingManager.getCustomerByPhone(
+                            customerData.phone || phone
+                        );
+        
+                    await serviceSuspension.restoreCustomerService(
+                        updatedCustomer,
+                        'Restore dari Edit Pelanggan'
+                    );
+        
+                    logger.info(
+                        `[WEB-EDIT] RESTORE selesai untuk ${customerData.username}`
+                    );
+        
+                } catch (err) {
+        
+                    logger.error(
+                        `[WEB-EDIT] RESTORE gagal ${customerData.username}:`,
+                        err.message
+                    );
+        
+                }
+            }
+        }
         // Jika update database berhasil, sinkronisasi data ke Mikrotik
         if (result) {
             try {

@@ -37,7 +37,7 @@
   "welcome_message": {
     "title": "Welcome Message",
     "template": "👋 *SELAMAT DATANG*\n\nHalo {customer_name},\n\nSelamat datang di layanan internet kami!\n\n👤 *Username:* {username}\n📦 *Paket:* {package_name} ({package_speed})\n📞 *Support:* {support_phone}\n\n📱 *Untuk menggunakan layanan WhatsApp:*\nKetik: REG {customer_name}\nKetik: Menu , untuk melihat layanan\n\nTerima kasih telah memilih layanan kami.\n*35K HEMAT - CEPAT - MERAKYAT* ",
-    "enabled": false
+    "enabled": true
   },
   "installation_job_assigned": {
     "title": "Tugas Instalasi Baru",

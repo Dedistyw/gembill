@@ -808,6 +808,8 @@ class BillingManager {
                 phone,
                 pppoe_username,
                 connection_type,
+                password,
+                whatsapp_lid,
                 email,
                 address,
                 package_id,
@@ -839,6 +841,8 @@ class BillingManager {
                  phone,
                  pppoe_username,
                  connection_type,
+                 password,
+                 whatsapp_lid,
                  email,
                  address,
                  package_id,
@@ -858,12 +862,12 @@ class BillingManager {
                  cable_status,
                  cable_notes
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 `;
             // Default coordinates untuk Jakarta jika tidak ada koordinat
             const finalLatitude = latitude !== undefined ? parseFloat(latitude) : -6.2088;
             const finalLongitude = longitude !== undefined ? parseFloat(longitude) : 106.8456;
-            db.run(sql, [finalUsername, name, phone, autoPPPoEUsername, connection_type || 'pppoe', email, address, package_id, customerData.odp_id || null, pppoe_profile, status || 'active', auto_suspension !== undefined ? auto_suspension : 1, normBillingDay, static_ip || null, assigned_ip || null, mac_address || null, finalLatitude, finalLongitude, cable_type || null, cable_length || null, port_number || null, cable_status || 'connected', cable_notes || null], async function (err) {
+            db.run(sql, [finalUsername, name, phone, autoPPPoEUsername, connection_type || 'pppoe', whatsapp_lid || null, password || null, email, address, package_id, customerData.odp_id || null, pppoe_profile, status || 'active', auto_suspension !== undefined ? auto_suspension : 1, normBillingDay, static_ip || null, assigned_ip || null, mac_address || null, finalLatitude, finalLongitude, cable_type || null, cable_length || null, port_number || null, cable_status || 'connected', cable_notes || null], async function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -1326,6 +1330,8 @@ class BillingManager {
                 phone,
                 pppoe_username,
                 connection_type,
+                password,
+                whatsapp_lid,
                 email,
                 address,
                 package_id,
@@ -1363,6 +1369,8 @@ class BillingManager {
                   phone = ?,
                   pppoe_username = ?,
                   connection_type = ?,
+                  whatsapp_lid = ?,
+                  password = ?,
                   email = ?,
                   address = ?,
                   package_id = ?,
@@ -1388,6 +1396,13 @@ class BillingManager {
                     phone || oldPhone,
                     pppoe_username,
                     connection_type || 'pppoe',
+                    whatsapp_lid !== undefined
+                        ? whatsapp_lid
+                        : oldCustomer.whatsapp_lid,
+                    
+                    password !== undefined
+                        ? password
+                        : oldCustomer.password,
                     email,
                     address,
                     package_id,
