@@ -1812,7 +1812,44 @@ class BillingManager {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve({ id: this.lastID, invoice_number, ...invoiceData });
+            
+                    const invoiceId = this.lastID;
+            
+                    const d = new Date();
+                    const date =
+                        d.getFullYear().toString().slice(-2) +
+                        String(d.getMonth() + 1).padStart(2, '0') +
+                        String(d.getDate()).padStart(2, '0');
+                    
+                    // Pertahankan nomor invoice jika sudah dikirim dari caller
+                    const finalInvoiceNumber =
+                        invoiceData.invoice_number || `INV-${date}-${invoiceId}`;
+            
+                    const db = this.db || null;
+            
+                    // sqlite3 callback mengubah nilai "this",
+                    // jadi gunakan billingManager.db
+                    billingManager.db.run(
+                        `UPDATE invoices
+                         SET invoice_number = ?
+                         WHERE id = ?`,
+                        [finalInvoiceNumber, invoiceId],
+                        function(updateErr) {
+            
+                            if (updateErr) {
+                                reject(updateErr);
+                                return;
+                            }
+            
+                            resolve({
+                                id: invoiceId,
+                                invoice_number: finalInvoiceNumber,
+                                ...invoiceData
+                            });
+            
+                        }
+                    );
+            
                 }
             });
         });
@@ -2694,7 +2731,7 @@ class BillingManager {
 
     // Utility functions
     generateInvoiceNumber() {
-    return `INV-${Date.now()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+    return `TMP-${Date.now()}`;
     }
 
     // Generate username otomatis berdasarkan nomor telepon
@@ -4126,7 +4163,7 @@ Terima kasih telah mempercayai layanan kami.
 *${getCompanyHeader()}*
 Info: ${getSetting('contact_whatsapp', '081947215703')}`;
 
-            const result = await whatsapp.sendMessage(customer.phone, message);
+            const result = await whatsapp.sendMessage.sendMessage(customer.phone, message);
             logger.info(`[NOTIFICATION] WhatsApp message sent successfully to ${customer.phone}`);
             return result;
         } catch (error) {

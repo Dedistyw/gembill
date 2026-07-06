@@ -20887,3 +20887,1251 @@
 [2026-06-25 00:01:33] [ERROR] GenieACS suspension failed for dg82: - socket hang up
 [2026-06-25 00:12:51] [ERROR] GenieACS restoration failed for dg82: - socket hang up
 [2026-06-25 00:30:05] [ERROR] GenieACS suspension failed for dg82: - socket hang up
+[2026-06-25 11:00:22] [ERROR] GenieACS restoration failed for dg82: - socket hang up
+[2026-06-25 14:24:57] [ERROR] [NOTIFICATION] Error sending payment success notification to 082213981366:
+{
+  "name": "TypeError",
+  "message": "whatsapp.sendMessage is not a function",
+  "stack": "TypeError: whatsapp.sendMessage is not a function\n    at BillingManager.sendPaymentSuccessNotification (/root/gembill/config/billing.js:4129:43)\n    at Statement.<anonymous> (/root/gembill/config/billing.js:3593:48)"
+}
+[2026-06-27 11:42:09] [ERROR] Hotspot restore failed for gy61: - input does not match any value of profile
+[2026-07-01 09:26:10] [ERROR] Mikrotik PPPoE suspension failed for ry69: - missing =.id=
+[2026-07-01 11:15:35] [ERROR] Error deleting customer:
+{
+  "name": "Error",
+  "message": "Tidak dapat menghapus pelanggan: 7 tagihan masih ada untuk pelanggan ini. Silakan hapus semua tagihan terlebih dahulu.",
+  "stack": "Error: Tidak dapat menghapus pelanggan: 7 tagihan masih ada untuk pelanggan ini. Silakan hapus semua tagihan terlebih dahulu.\n    at /root/gembill/config/billing.js:1585:28"
+}
+[2026-07-01 11:16:08] [ERROR] Error deleting customer:
+{
+  "name": "Error",
+  "message": "Tidak dapat menghapus pelanggan: 6 tagihan masih ada untuk pelanggan ini. Silakan hapus semua tagihan terlebih dahulu.",
+  "stack": "Error: Tidak dapat menghapus pelanggan: 6 tagihan masih ada untuk pelanggan ini. Silakan hapus semua tagihan terlebih dahulu.\n    at /root/gembill/config/billing.js:1585:28"
+}
+[2026-07-02 10:57:31] [ERROR] GenieACS suspension failed for nh72: - socket hang up
+[2026-07-02 13:04:25] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:04:25] [ERROR] No Mikrotik connection available
+[2026-07-02 13:10:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:10:06] [ERROR] No Mikrotik connection available
+[2026-07-02 13:11:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:11:06] [ERROR] No Mikrotik connection available
+[2026-07-02 13:15:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:15:06] [ERROR] No Mikrotik connection available
+[2026-07-02 13:40:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:40:06] [ERROR] No Mikrotik connection available
+[2026-07-02 13:41:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:41:06] [ERROR] No Mikrotik connection available
+[2026-07-02 13:43:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:43:06] [ERROR] No Mikrotik connection available
+[2026-07-02 13:53:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 13:53:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:01:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:01:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:07:02] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:07:02] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:07:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:07:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:08:48] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:08:48] [ERROR] No Mikrotik connection available
+[2026-07-02 14:09:26] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:09:35] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:09:38] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:12:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:12:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:14:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:14:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:29:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:29:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:35:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:35:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:37:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:37:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:38:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:38:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:45:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:45:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:47:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:47:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:50:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:50:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:51:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:51:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:55:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:55:06] [ERROR] No Mikrotik connection available
+[2026-07-02 14:56:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 14:56:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:00:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:00:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:01:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:01:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:07:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:07:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:09:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:09:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:10:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:10:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:11:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:11:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:12:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:12:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:13:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:13:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:22:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:22:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:24:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:24:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:26:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:26:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:29:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:29:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:31:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:31:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:34:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:34:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:39:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:39:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:45:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:45:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:46:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:46:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:50:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:50:06] [ERROR] No Mikrotik connection available
+[2026-07-02 15:59:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 15:59:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:01:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:01:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:07:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:07:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:08:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:08:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:18:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:18:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:19:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:19:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:20:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:20:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:22:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:22:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:23:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:23:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:43:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:43:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:47:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:47:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:49:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:49:06] [ERROR] No Mikrotik connection available
+[2026-07-02 16:59:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 16:59:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:01:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:01:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:03:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:03:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:12:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:12:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:14:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:14:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:16:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:16:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:20:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:20:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:22:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:22:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:25:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:25:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:27:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:27:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:41:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:41:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:49:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:49:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:55:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:55:06] [ERROR] No Mikrotik connection available
+[2026-07-02 17:59:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 17:59:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:14:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:14:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:16:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:16:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:20:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:20:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:21:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:21:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:25:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:25:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:33:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:33:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:41:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:41:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:42:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:42:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:43:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:43:06] [ERROR] No Mikrotik connection available
+[2026-07-02 18:50:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 18:50:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:01:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:01:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:03:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:03:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:04:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:04:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:05:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:05:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:16:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:16:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:17:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:17:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:19:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:19:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:22:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:22:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:30:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:30:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:37:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:37:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:38:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:38:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:43:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:43:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:50:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:50:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:53:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:53:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:55:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:55:06] [ERROR] No Mikrotik connection available
+[2026-07-02 19:56:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 19:56:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:08:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:08:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:12:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:12:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:13:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:13:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:16:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:16:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:17:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:17:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:19:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:19:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:20:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:20:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:24:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:24:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:27:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:27:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:31:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:31:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:35:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:35:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:36:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:36:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:39:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:39:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:40:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:40:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:41:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:41:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:42:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:42:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:43:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:43:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:44:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:44:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:50:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:50:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:51:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:51:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:55:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:55:06] [ERROR] No Mikrotik connection available
+[2026-07-02 20:56:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 20:56:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:06:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:06:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:08:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:08:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:13:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:13:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:23:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:23:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:29:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:29:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:33:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:33:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:37:09] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:37:09] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:37:09] [ERROR] No Mikrotik connection available
+[2026-07-02 21:37:19] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:37:19] [ERROR] No Mikrotik connection available
+[2026-07-02 21:37:20] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:37:20] [ERROR] No Mikrotik connection available
+[2026-07-02 21:37:21] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:37:21] [ERROR] No Mikrotik connection available
+[2026-07-02 21:37:37] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:39:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:39:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:47:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:47:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:57:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:57:06] [ERROR] No Mikrotik connection available
+[2026-07-02 21:58:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 21:58:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:05:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:05:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:08:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:08:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:10:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:10:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:20:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:20:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:21:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:21:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:25:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:25:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:32:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:32:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:47:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:47:06] [ERROR] No Mikrotik connection available
+[2026-07-02 22:49:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 22:49:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:01:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:01:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:06:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:06:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:13:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:13:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:30:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:30:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:44:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:44:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:55:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:55:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:58:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:58:06] [ERROR] No Mikrotik connection available
+[2026-07-02 23:59:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-02 23:59:06] [ERROR] No Mikrotik connection available
+[2026-07-03 00:04:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:04:09] [ERROR] No Mikrotik connection available
+[2026-07-03 00:07:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:07:06] [ERROR] No Mikrotik connection available
+[2026-07-03 00:08:06] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:08:06] [ERROR] No Mikrotik connection available
+[2026-07-03 00:24:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:24:08] [ERROR] No Mikrotik connection available
+[2026-07-03 00:30:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:30:09] [ERROR] No Mikrotik connection available
+[2026-07-03 00:32:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:32:08] [ERROR] No Mikrotik connection available
+[2026-07-03 00:34:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:34:08] [ERROR] No Mikrotik connection available
+[2026-07-03 00:40:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:40:09] [ERROR] No Mikrotik connection available
+[2026-07-03 00:42:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:42:08] [ERROR] No Mikrotik connection available
+[2026-07-03 00:56:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 00:56:08] [ERROR] No Mikrotik connection available
+[2026-07-03 01:10:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 01:10:08] [ERROR] No Mikrotik connection available
+[2026-07-03 01:16:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 01:16:08] [ERROR] No Mikrotik connection available
+[2026-07-03 01:37:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 01:37:08] [ERROR] No Mikrotik connection available
+[2026-07-03 01:48:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 01:48:08] [ERROR] No Mikrotik connection available
+[2026-07-03 01:59:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 01:59:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:17:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:17:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:22:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:22:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:24:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:24:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:25:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:25:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:36:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:36:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:38:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:38:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:46:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:46:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:50:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:50:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:56:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:56:08] [ERROR] No Mikrotik connection available
+[2026-07-03 02:58:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 02:58:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:01:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:01:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:10:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:10:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:11:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:11:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:13:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:13:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:14:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:14:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:17:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:17:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:30:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:30:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:31:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:31:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:36:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:36:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:42:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:42:08] [ERROR] No Mikrotik connection available
+[2026-07-03 03:43:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 03:43:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:00:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:00:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:18:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:18:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:21:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:21:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:27:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:27:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:31:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:31:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:32:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:32:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:34:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:34:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:43:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:43:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:47:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:47:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:50:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:50:08] [ERROR] No Mikrotik connection available
+[2026-07-03 04:57:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 04:57:08] [ERROR] No Mikrotik connection available
+[2026-07-03 05:03:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:03:08] [ERROR] No Mikrotik connection available
+[2026-07-03 05:16:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:16:08] [ERROR] No Mikrotik connection available
+[2026-07-03 05:17:08] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:17:08] [ERROR] No Mikrotik connection available
+[2026-07-03 05:22:34] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:22:43] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:22:58] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:23:34] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:23:53] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:25:33] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:25:33] [ERROR] No Mikrotik connection available
+[2026-07-03 05:33:35] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:33:35] [ERROR] No Mikrotik connection available
+[2026-07-03 05:38:35] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:38:35] [ERROR] No Mikrotik connection available
+[2026-07-03 05:42:35] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:42:35] [ERROR] No Mikrotik connection available
+[2026-07-03 05:56:35] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 05:56:35] [ERROR] No Mikrotik connection available
+[2026-07-03 06:00:42] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:01:23] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:01:26] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:01:41] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:01:53] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:02:05] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:26:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:26:11] [ERROR] No Mikrotik connection available
+[2026-07-03 06:29:50] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:29:50] [ERROR] No Mikrotik connection available
+[2026-07-03 06:35:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:35:11] [ERROR] No Mikrotik connection available
+[2026-07-03 06:38:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:38:11] [ERROR] No Mikrotik connection available
+[2026-07-03 06:40:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:40:11] [ERROR] No Mikrotik connection available
+[2026-07-03 06:44:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:44:11] [ERROR] No Mikrotik connection available
+[2026-07-03 06:48:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:48:11] [ERROR] No Mikrotik connection available
+[2026-07-03 06:57:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 06:57:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:06:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:06:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:10:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:10:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:12:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:12:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:14:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:14:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:18:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:18:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:20:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:20:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:24:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:24:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:25:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:25:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:27:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:27:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:30:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:30:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:38:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:38:11] [ERROR] No Mikrotik connection available
+[2026-07-03 07:47:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 07:47:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:03:57] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:05:45] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:06:07] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:06:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:06:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:07:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:07:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:10:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:10:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:11:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:11:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:17:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:17:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:20:47] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:20:47] [ERROR] No Mikrotik connection available
+[2026-07-03 08:25:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:25:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:26:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:26:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:38:14] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:42:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:42:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:56:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:56:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:57:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:57:11] [ERROR] No Mikrotik connection available
+[2026-07-03 08:59:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 08:59:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:02:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:02:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:05:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:05:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:10:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:10:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:12:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:12:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:13:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:13:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:15:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:15:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:18:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:18:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:19:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:19:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:26:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:26:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:27:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:27:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:29:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:29:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:30:12] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:30:12] [ERROR] No Mikrotik connection available
+[2026-07-03 09:33:11] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:33:11] [ERROR] No Mikrotik connection available
+[2026-07-03 09:40:21] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:40:21] [ERROR] No Mikrotik connection available
+[2026-07-03 09:41:07] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:45:10] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:45:10] [ERROR] No Mikrotik connection available
+[2026-07-03 09:46:42] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:47:35] [ERROR] Error connecting to Mikrotik: 
+[2026-07-03 09:57:00] [ERROR] name=RosException
+[2026-07-03 09:57:00] [ERROR] message=
+[2026-07-03 09:57:00] [ERROR] code=undefined
+[2026-07-03 09:57:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 09:57:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:07:54] [ERROR] name=RosException
+[2026-07-03 10:07:54] [ERROR] message=
+[2026-07-03 10:07:54] [ERROR] code=undefined
+[2026-07-03 10:07:54] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:12:00] [ERROR] name=RosException
+[2026-07-03 10:12:00] [ERROR] message=
+[2026-07-03 10:12:00] [ERROR] code=undefined
+[2026-07-03 10:12:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:12:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:16:00] [ERROR] name=RosException
+[2026-07-03 10:16:00] [ERROR] message=
+[2026-07-03 10:16:00] [ERROR] code=undefined
+[2026-07-03 10:16:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:16:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:20:00] [ERROR] name=RosException
+[2026-07-03 10:20:00] [ERROR] message=
+[2026-07-03 10:20:00] [ERROR] code=undefined
+[2026-07-03 10:20:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:20:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:24:00] [ERROR] name=RosException
+[2026-07-03 10:24:00] [ERROR] message=
+[2026-07-03 10:24:00] [ERROR] code=undefined
+[2026-07-03 10:24:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:24:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:28:00] [ERROR] name=RosException
+[2026-07-03 10:28:00] [ERROR] message=
+[2026-07-03 10:28:00] [ERROR] code=undefined
+[2026-07-03 10:28:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:28:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:33:00] [ERROR] name=RosException
+[2026-07-03 10:33:00] [ERROR] message=
+[2026-07-03 10:33:00] [ERROR] code=undefined
+[2026-07-03 10:33:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:33:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:39:00] [ERROR] name=RosException
+[2026-07-03 10:39:00] [ERROR] message=
+[2026-07-03 10:39:00] [ERROR] code=undefined
+[2026-07-03 10:39:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:39:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:41:00] [ERROR] name=RosException
+[2026-07-03 10:41:00] [ERROR] message=
+[2026-07-03 10:41:00] [ERROR] code=undefined
+[2026-07-03 10:41:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:41:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:42:00] [ERROR] name=RosException
+[2026-07-03 10:42:00] [ERROR] message=
+[2026-07-03 10:42:00] [ERROR] code=undefined
+[2026-07-03 10:42:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:42:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:44:00] [ERROR] name=RosException
+[2026-07-03 10:44:00] [ERROR] message=
+[2026-07-03 10:44:00] [ERROR] code=undefined
+[2026-07-03 10:44:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:44:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:54:00] [ERROR] name=RosException
+[2026-07-03 10:54:00] [ERROR] message=
+[2026-07-03 10:54:00] [ERROR] code=undefined
+[2026-07-03 10:54:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:54:00] [ERROR] No Mikrotik connection available
+[2026-07-03 10:56:00] [ERROR] name=RosException
+[2026-07-03 10:56:00] [ERROR] message=
+[2026-07-03 10:56:00] [ERROR] code=undefined
+[2026-07-03 10:56:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 10:56:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:04:00] [ERROR] name=RosException
+[2026-07-03 11:04:00] [ERROR] message=
+[2026-07-03 11:04:00] [ERROR] code=undefined
+[2026-07-03 11:04:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:04:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:08:00] [ERROR] name=RosException
+[2026-07-03 11:08:00] [ERROR] message=
+[2026-07-03 11:08:00] [ERROR] code=undefined
+[2026-07-03 11:08:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:08:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:16:00] [ERROR] name=RosException
+[2026-07-03 11:16:00] [ERROR] message=
+[2026-07-03 11:16:00] [ERROR] code=undefined
+[2026-07-03 11:16:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:16:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:18:00] [ERROR] name=RosException
+[2026-07-03 11:18:00] [ERROR] message=
+[2026-07-03 11:18:00] [ERROR] code=undefined
+[2026-07-03 11:18:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:18:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:22:00] [ERROR] name=RosException
+[2026-07-03 11:22:00] [ERROR] message=
+[2026-07-03 11:22:00] [ERROR] code=undefined
+[2026-07-03 11:22:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:22:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:27:00] [ERROR] name=RosException
+[2026-07-03 11:27:00] [ERROR] message=
+[2026-07-03 11:27:00] [ERROR] code=undefined
+[2026-07-03 11:27:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:27:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:37:00] [ERROR] name=RosException
+[2026-07-03 11:37:00] [ERROR] message=
+[2026-07-03 11:37:00] [ERROR] code=undefined
+[2026-07-03 11:37:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:37:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:52:00] [ERROR] name=RosException
+[2026-07-03 11:52:00] [ERROR] message=
+[2026-07-03 11:52:00] [ERROR] code=undefined
+[2026-07-03 11:52:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:52:00] [ERROR] No Mikrotik connection available
+[2026-07-03 11:53:00] [ERROR] name=RosException
+[2026-07-03 11:53:00] [ERROR] message=
+[2026-07-03 11:53:00] [ERROR] code=undefined
+[2026-07-03 11:53:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 11:53:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:05:00] [ERROR] name=RosException
+[2026-07-03 12:05:00] [ERROR] message=
+[2026-07-03 12:05:00] [ERROR] code=undefined
+[2026-07-03 12:05:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:05:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:10:00] [ERROR] name=RosException
+[2026-07-03 12:10:00] [ERROR] message=
+[2026-07-03 12:10:00] [ERROR] code=undefined
+[2026-07-03 12:10:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:10:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:11:00] [ERROR] name=RosException
+[2026-07-03 12:11:00] [ERROR] message=
+[2026-07-03 12:11:00] [ERROR] code=undefined
+[2026-07-03 12:11:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:11:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:18:00] [ERROR] name=RosException
+[2026-07-03 12:18:00] [ERROR] message=
+[2026-07-03 12:18:00] [ERROR] code=undefined
+[2026-07-03 12:18:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:18:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:19:00] [ERROR] name=RosException
+[2026-07-03 12:19:00] [ERROR] message=
+[2026-07-03 12:19:00] [ERROR] code=undefined
+[2026-07-03 12:19:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:19:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:20:00] [ERROR] name=RosException
+[2026-07-03 12:20:00] [ERROR] message=
+[2026-07-03 12:20:00] [ERROR] code=undefined
+[2026-07-03 12:20:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:20:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:25:00] [ERROR] name=RosException
+[2026-07-03 12:25:00] [ERROR] message=
+[2026-07-03 12:25:00] [ERROR] code=undefined
+[2026-07-03 12:25:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:25:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:26:00] [ERROR] name=RosException
+[2026-07-03 12:26:00] [ERROR] message=
+[2026-07-03 12:26:00] [ERROR] code=undefined
+[2026-07-03 12:26:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:26:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:28:00] [ERROR] name=RosException
+[2026-07-03 12:28:00] [ERROR] message=
+[2026-07-03 12:28:00] [ERROR] code=undefined
+[2026-07-03 12:28:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:28:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:41:00] [ERROR] name=RosException
+[2026-07-03 12:41:00] [ERROR] message=
+[2026-07-03 12:41:00] [ERROR] code=undefined
+[2026-07-03 12:41:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:41:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:42:03] [ERROR] name=RosException
+[2026-07-03 12:42:03] [ERROR] message=
+[2026-07-03 12:42:03] [ERROR] code=undefined
+[2026-07-03 12:42:03] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:49:00] [ERROR] name=RosException
+[2026-07-03 12:49:00] [ERROR] message=
+[2026-07-03 12:49:00] [ERROR] code=undefined
+[2026-07-03 12:49:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:49:00] [ERROR] No Mikrotik connection available
+[2026-07-03 12:52:00] [ERROR] name=RosException
+[2026-07-03 12:52:00] [ERROR] message=
+[2026-07-03 12:52:00] [ERROR] code=undefined
+[2026-07-03 12:52:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 12:52:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:03:00] [ERROR] name=RosException
+[2026-07-03 13:03:00] [ERROR] message=
+[2026-07-03 13:03:00] [ERROR] code=undefined
+[2026-07-03 13:03:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:03:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:08:00] [ERROR] name=RosException
+[2026-07-03 13:08:00] [ERROR] message=
+[2026-07-03 13:08:00] [ERROR] code=undefined
+[2026-07-03 13:08:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:08:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:14:00] [ERROR] name=RosException
+[2026-07-03 13:14:00] [ERROR] message=
+[2026-07-03 13:14:00] [ERROR] code=undefined
+[2026-07-03 13:14:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:14:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:27:00] [ERROR] name=RosException
+[2026-07-03 13:27:00] [ERROR] message=
+[2026-07-03 13:27:00] [ERROR] code=undefined
+[2026-07-03 13:27:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:27:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:36:00] [ERROR] name=RosException
+[2026-07-03 13:36:00] [ERROR] message=
+[2026-07-03 13:36:00] [ERROR] code=undefined
+[2026-07-03 13:36:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:36:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:41:00] [ERROR] name=RosException
+[2026-07-03 13:41:00] [ERROR] message=
+[2026-07-03 13:41:00] [ERROR] code=undefined
+[2026-07-03 13:41:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:41:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:44:00] [ERROR] name=RosException
+[2026-07-03 13:44:00] [ERROR] message=
+[2026-07-03 13:44:00] [ERROR] code=undefined
+[2026-07-03 13:44:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:44:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:47:00] [ERROR] name=RosException
+[2026-07-03 13:47:00] [ERROR] message=
+[2026-07-03 13:47:00] [ERROR] code=undefined
+[2026-07-03 13:47:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:47:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:51:00] [ERROR] name=RosException
+[2026-07-03 13:51:00] [ERROR] message=
+[2026-07-03 13:51:00] [ERROR] code=undefined
+[2026-07-03 13:51:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:51:00] [ERROR] No Mikrotik connection available
+[2026-07-03 13:53:00] [ERROR] name=RosException
+[2026-07-03 13:53:00] [ERROR] message=
+[2026-07-03 13:53:00] [ERROR] code=undefined
+[2026-07-03 13:53:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 13:53:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:00:00] [ERROR] name=RosException
+[2026-07-03 14:00:00] [ERROR] message=
+[2026-07-03 14:00:00] [ERROR] code=undefined
+[2026-07-03 14:00:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:00:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:03:00] [ERROR] name=RosException
+[2026-07-03 14:03:00] [ERROR] message=
+[2026-07-03 14:03:00] [ERROR] code=undefined
+[2026-07-03 14:03:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:03:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:07:00] [ERROR] name=RosException
+[2026-07-03 14:07:00] [ERROR] message=
+[2026-07-03 14:07:00] [ERROR] code=undefined
+[2026-07-03 14:07:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:07:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:11:00] [ERROR] name=RosException
+[2026-07-03 14:11:00] [ERROR] message=
+[2026-07-03 14:11:00] [ERROR] code=undefined
+[2026-07-03 14:11:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:11:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:15:00] [ERROR] name=RosException
+[2026-07-03 14:15:00] [ERROR] message=
+[2026-07-03 14:15:00] [ERROR] code=undefined
+[2026-07-03 14:15:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:15:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:23:00] [ERROR] name=RosException
+[2026-07-03 14:23:00] [ERROR] message=
+[2026-07-03 14:23:00] [ERROR] code=undefined
+[2026-07-03 14:23:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:23:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:26:00] [ERROR] name=RosException
+[2026-07-03 14:26:00] [ERROR] message=
+[2026-07-03 14:26:00] [ERROR] code=undefined
+[2026-07-03 14:26:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:26:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:28:00] [ERROR] name=RosException
+[2026-07-03 14:28:00] [ERROR] message=
+[2026-07-03 14:28:00] [ERROR] code=undefined
+[2026-07-03 14:28:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:28:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:32:00] [ERROR] name=RosException
+[2026-07-03 14:32:00] [ERROR] message=
+[2026-07-03 14:32:00] [ERROR] code=undefined
+[2026-07-03 14:32:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:32:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:34:00] [ERROR] name=RosException
+[2026-07-03 14:34:00] [ERROR] message=
+[2026-07-03 14:34:00] [ERROR] code=undefined
+[2026-07-03 14:34:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:34:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:36:00] [ERROR] name=RosException
+[2026-07-03 14:36:00] [ERROR] message=
+[2026-07-03 14:36:00] [ERROR] code=undefined
+[2026-07-03 14:36:00] [ERROR] stack=RosException
+    at Connector.onError (/root/gembill/node_modules/node-routeros/dist/connector/Connector.js:176:15)
+    at Socket.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[2026-07-03 14:36:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:42:00] [ERROR] name=RosException
+[2026-07-03 14:42:00] [ERROR] message=Username or password is invalid
+[2026-07-03 14:42:00] [ERROR] code=undefined
+[2026-07-03 14:42:00] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:42:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:43:00] [ERROR] name=RosException
+[2026-07-03 14:43:00] [ERROR] message=Username or password is invalid
+[2026-07-03 14:43:00] [ERROR] code=undefined
+[2026-07-03 14:43:00] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:43:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:44:00] [ERROR] name=RosException
+[2026-07-03 14:44:00] [ERROR] message=Username or password is invalid
+[2026-07-03 14:44:00] [ERROR] code=undefined
+[2026-07-03 14:44:00] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:44:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:45:00] [ERROR] name=RosException
+[2026-07-03 14:45:00] [ERROR] message=Username or password is invalid
+[2026-07-03 14:45:00] [ERROR] code=undefined
+[2026-07-03 14:45:00] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:45:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:45:56] [ERROR] name=RosException
+[2026-07-03 14:45:56] [ERROR] message=Username or password is invalid
+[2026-07-03 14:45:56] [ERROR] code=undefined
+[2026-07-03 14:45:56] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:45:56] [ERROR] No Mikrotik connection available
+[2026-07-03 14:45:57] [ERROR] name=RosException
+[2026-07-03 14:45:57] [ERROR] message=Username or password is invalid
+[2026-07-03 14:45:57] [ERROR] code=undefined
+[2026-07-03 14:45:57] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:45:57] [ERROR] No Mikrotik connection available
+[2026-07-03 14:45:57] [ERROR] name=RosException
+[2026-07-03 14:45:57] [ERROR] message=Username or password is invalid
+[2026-07-03 14:45:57] [ERROR] code=undefined
+[2026-07-03 14:45:57] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:45:57] [ERROR] No Mikrotik connection available
+[2026-07-03 14:46:00] [ERROR] name=RosException
+[2026-07-03 14:46:00] [ERROR] message=Username or password is invalid
+[2026-07-03 14:46:00] [ERROR] code=undefined
+[2026-07-03 14:46:00] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:46:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:46:43] [ERROR] name=RosException
+[2026-07-03 14:46:43] [ERROR] message=Username or password is invalid
+[2026-07-03 14:46:43] [ERROR] code=undefined
+[2026-07-03 14:46:43] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:46:43] [ERROR] No Mikrotik connection available
+[2026-07-03 14:46:45] [ERROR] name=RosException
+[2026-07-03 14:46:45] [ERROR] message=Username or password is invalid
+[2026-07-03 14:46:45] [ERROR] code=undefined
+[2026-07-03 14:46:45] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:46:45] [ERROR] No Mikrotik connection available
+[2026-07-03 14:47:00] [ERROR] name=RosException
+[2026-07-03 14:47:00] [ERROR] message=Username or password is invalid
+[2026-07-03 14:47:00] [ERROR] code=undefined
+[2026-07-03 14:47:00] [ERROR] stack=RosException: Username or password is invalid
+    at /root/gembill/node_modules/node-routeros/dist/RouterOSAPI.js:397:23
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2026-07-03 14:47:00] [ERROR] No Mikrotik connection available
+[2026-07-03 14:48:27] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:07] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:09] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:09] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:09] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:09] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:26] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:26] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:26] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:27] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:27] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:28] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:29] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:29] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:29] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:30] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:30] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:45] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:49:56] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:58:37] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:58:40] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:52] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:52] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:52] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:52] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:52] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:52] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:52] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:54] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:55] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:58] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 14:59:59] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:00:00] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:01:42] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:01:45] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:01:48] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:01:51] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:01:55] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:01:57] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-03 15:02:00] [ERROR] Error getting interface traffic: - input does not match any value of interface
+[2026-07-04 04:54:42] [ERROR] GenieACS suspension failed for r2f1: - socket hang up
+[2026-07-04 11:05:01] [ERROR] GenieACS restoration failed for r2f1: - socket hang up

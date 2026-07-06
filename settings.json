@@ -8,8 +8,8 @@
   "mikrotik_host": "10.5.5.1",
   "mikrotik_port": "3691",
   "mikrotik_user": "mikposdss",
-  "mikrotik_password": "dedi1234",
-  "main_interface": "ether1-ISP",
+  "mikrotik_password": "dedi0306",
+  "main_interface": "100Mb",
   "pppoe_monitor_enable": false,
   "technician_numbers.0": "085894387669",
   "technician_numbers.1": "085694994550",
@@ -238,5 +238,15 @@
   "whatsapp_daily_count.2026-06-19": 6,
   "whatsapp_daily_count.2026-06-20": 8,
   "whatsapp_daily_count.2026-06-21": 6,
-  "whatsapp_daily_count.2026-06-24": 19
+  "whatsapp_daily_count.2026-06-24": 19,
+  "whatsapp_daily_count.2026-06-25": 3,
+  "whatsapp_daily_count.2026-06-26": 3,
+  "whatsapp_daily_count.2026-06-27": 7,
+  "whatsapp_daily_count.2026-06-29": 1,
+  "whatsapp_daily_count.2026-07-01": 11,
+  "whatsapp_daily_count.2026-07-02": 10,
+  "whatsapp_daily_count.2026-07-03": 4,
+  "whatsapp_daily_count.2026-07-04": 7,
+  "whatsapp_daily_count.2026-07-05": 7,
+  "whatsapp_daily_count.2026-07-06": 4
 }

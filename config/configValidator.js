@@ -172,12 +172,11 @@ class ConfigValidator {
      * Test koneksi ke Mikrotik
      */
     async testMikrotikConnection() {
+        const mikrotikHost = getSetting('mikrotik_host', '192.168.1.1');
+        const mikrotikPort = getSetting('mikrotik_port', '8728');
+        const mikrotikUser = getSetting('mikrotik_user', 'admin');
+        const mikrotikPassword = getSetting('mikrotik_password', '');
         try {
-            const mikrotikHost = getSetting('mikrotik_host', '192.168.1.1');
-            const mikrotikPort = getSetting('mikrotik_port', '8728');
-            const mikrotikUser = getSetting('mikrotik_user', 'admin');
-            const mikrotikPassword = getSetting('mikrotik_password', '');
-
             // Validasi IP address
             if (!this.isValidIPAddress(mikrotikHost)) {
                 return {

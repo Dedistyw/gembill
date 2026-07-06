@@ -24,6 +24,12 @@ async function connectToMikrotik() {
         const port = parseInt(getSetting('mikrotik_port', '8728'));
         const user = getSetting('mikrotik_user', 'admin');
         const password = getSetting('mikrotik_password', 'admin');
+        console.log('[MIKROTIK CONFIG]', {
+            host,
+            port,
+            user,
+            password: password ? '***' : '(kosong)'
+        });
 
         if (!host || !user || !password) {
             logger.error('Mikrotik configuration is incomplete');
@@ -49,7 +55,14 @@ async function connectToMikrotik() {
 
         return conn;
     } catch (error) {
-        logger.error(`Error connecting to Mikrotik: ${error.message}`);
+        console.error("=== RAW ERROR ===");
+        console.dir(error, { depth: null });
+
+        logger.error(`name=${error?.name}`);
+        logger.error(`message=${error?.message}`);
+        logger.error(`code=${error?.code}`);
+        logger.error(`stack=${error?.stack}`);
+
         return null;
     }
 }

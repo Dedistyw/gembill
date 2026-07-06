@@ -54,7 +54,7 @@ class StaticIPSuspensionManager {
             switch (method) {
                 case this.suspensionMethods.ADDRESS_LIST:
                     if (customerIP) {
-                        const result = await this.suspendByAddressList(customerIP, reason);
+                        const result = await this.suspendByAddressList(customer, customerIP, reason);
                         results.mikrotik = result.success;
                         results.method_used = 'address_list';
                     }
@@ -121,7 +121,7 @@ class StaticIPSuspensionManager {
     /**
      * Metode 1: Suspend menggunakan Address List (Paling Efektif)
      */
-    async suspendByAddressList(customerIP, reason) {
+    async suspendByAddressList(customer, customerIP, reason) {
         try {
             const mikrotik = await getMikrotikConnection();
             
@@ -143,7 +143,7 @@ class StaticIPSuspensionManager {
             await mikrotik.write('/ip/firewall/address-list/add', [
                 '=list=isolir',
                 `=address=${customerIP}`,
-                `=comment=SUSPENDED - ${reason} - ${new Date().toISOString()}`
+                `=comment=SUSPENDED | ${customer.username} | ${customer.name || '-'} | ${reason} | ${new Date().toLocaleString('sv-SE').replace('T', ' ')}`
             ]);
 
             logger.info(
@@ -179,7 +179,7 @@ class StaticIPSuspensionManager {
             await mikrotik.write('/ip/dhcp-server/lease/set', [
                 `=.id=${lease['.id']}`,
                 '=blocked=yes',
-                `=comment=SUSPENDED - ${reason} - ${new Date().toISOString()}`
+                `=comment=SUSPENDED | ${customer.username} | ${customer.name || '-'} | ${reason} | ${new Date().toLocaleString('sv-SE').replace('T', ' ')}`
             ]);
 
             logger.info(`DHCP lease blocked for MAC ${macAddress}`);
@@ -216,7 +216,7 @@ class StaticIPSuspensionManager {
                 `=name=${queueName}`,
                 `=target=${customerIP}`,
                 `=max-limit=${limitSpeed}`,
-                `=comment=SUSPENDED - ${reason} - ${new Date().toISOString()}`,
+                `=comment=SUSPENDED | ${customer.username} | ${customer.name || '-'} | ${reason} | ${new Date().toLocaleString('sv-SE').replace('T', ' ')}`,
                 '=disabled=no'
             ]);
 
